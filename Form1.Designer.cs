@@ -34,6 +34,7 @@
             this.ISOPathBox = new System.Windows.Forms.TextBox();
             this.ISOSelectButton = new System.Windows.Forms.Button();
             this.FolderSelectButton = new System.Windows.Forms.Button();
+            this.ExtractISOButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -88,11 +89,22 @@
             this.FolderSelectButton.UseVisualStyleBackColor = true;
             this.FolderSelectButton.Click += new System.EventHandler(this.FolderSelectButton_Click);
             // 
+            // ExtractISOButton
+            // 
+            this.ExtractISOButton.Location = new System.Drawing.Point(32, 93);
+            this.ExtractISOButton.Name = "ExtractISOButton";
+            this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
+            this.ExtractISOButton.TabIndex = 6;
+            this.ExtractISOButton.Text = "Extract ISO";
+            this.ExtractISOButton.UseVisualStyleBackColor = true;
+            this.ExtractISOButton.Click += new System.EventHandler(this.ExtractISOButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ExtractISOButton);
             this.Controls.Add(this.FolderSelectButton);
             this.Controls.Add(this.ISOSelectButton);
             this.Controls.Add(this.ISOPathBox);
@@ -114,6 +126,7 @@
         private System.Windows.Forms.TextBox ISOPathBox;
         private System.Windows.Forms.Button ISOSelectButton;
         private System.Windows.Forms.Button FolderSelectButton;
+        private System.Windows.Forms.Button ExtractISOButton;
     }
 }
 
