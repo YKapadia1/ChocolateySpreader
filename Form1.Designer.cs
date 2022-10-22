@@ -91,7 +91,7 @@
             // 
             // ExtractISOButton
             // 
-            this.ExtractISOButton.Location = new System.Drawing.Point(32, 93);
+            this.ExtractISOButton.Location = new System.Drawing.Point(112, 88);
             this.ExtractISOButton.Name = "ExtractISOButton";
             this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
             this.ExtractISOButton.TabIndex = 6;
@@ -111,8 +111,11 @@
             this.Controls.Add(this.FolderPathBox);
             this.Controls.Add(this.FolderPathLabel);
             this.Controls.Add(this.ISOPathLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "ChocolateySpreader";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
