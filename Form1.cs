@@ -16,61 +16,85 @@ namespace ChocolateySpreader
     
     public partial class Form1 : Form
     {
-        //Used to determine if the user has actually selected a file/folder or not.
-        string ISOPath = null;
-        string FolderPath = null;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void ISOSelectButton_Click(object sender, EventArgs e)
+        //When the user has clicked the button to browse for an ISO file...
+        private void ISOSelectButton_Click(object sender, EventArgs e) 
         {
+            //Set up the file dialog with the initial directory, filters and disable multiselect.
             using (OpenFileDialog ISOPathDialog = new OpenFileDialog())
             {
                 ISOPathDialog.InitialDirectory = "C:\\";
                 ISOPathDialog.Filter = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
                 ISOPathDialog.FilterIndex = 1;
-                ISOPathDialog.RestoreDirectory = true;
+                ISOPathDialog.RestoreDirectory = true; //For some reason, this attribute seems to also affect the CommonOpenFileDialog.
                 ISOPathDialog.Multiselect = false;
                 
 
+                //Show the dialog, and if it was successful...
                 if (ISOPathDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ISOPath = ISOPathDialog.FileName;
+                    //Get the file path of the ISO, and put it into the text box.
                     ISOPathBox.Text = ISOPathDialog.FileName;
                 }
             }
         }
 
+        //When the user has clicked the button to browse for an ISO file...
         private void FolderSelectButton_Click(object sender, EventArgs e)
         {
-            using (CommonOpenFileDialog FolderSelectDialog = new CommonOpenFileDialog())
+            //If the user has not yet specified an ISO file...
+            if (ISOPathBox.Text == "")
             {
-                FolderSelectDialog.IsFolderPicker = true;
-                FolderSelectDialog.DefaultDirectory = Environment.SpecialFolder.MyComputer.ToString();
-                if (FolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                MessageBox.Show("Please specify an ISO before specifiying the output folder.", "No ISO file",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Set up the file dialog by specifying its a folder picker, and set the initial directory.
+                using (CommonOpenFileDialog FolderSelectDialog = new CommonOpenFileDialog())
                 {
-                    FolderPath = FolderSelectDialog.FileName;
-                    FolderPathBox.Text = FolderSelectDialog.FileName;
+                    FolderSelectDialog.IsFolderPicker = true;
+                    //FolderSelectDialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
+
+                    //Show the dialog, and if it was successful...
+                    if (FolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                    {
+                        //Get the folder path, and put it into the text box.
+                        FolderPathBox.Text = FolderSelectDialog.FileName;
+                    }
                 }
             }
         }
 
+        //When the user clicks the button to extract the ISO...
         private void ExtractISOButton_Click(object sender, EventArgs e)
         {
-            if (ISOPath == null)
+            //If the user has not selected an ISO...
+            if (ISOPathBox.Text == "")
             {
                 MessageBox.Show("You have not specified an ISO file to extract.", "No ISO file", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (FolderPath == null)
+            //If the user has not selected an output folder...
+            else if (FolderPathBox.Text == "")
             {
                 MessageBox.Show("You have not specified an output folder to extract to.", "No output folder",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                MessageBox.Show("Here's where the ISO would be extracted, if I had code for it!", "Unimplemented",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
+        
+        
+        //Don't touch, or everything will break!
         private void Form1_Load(object sender, EventArgs e)
         {
         }
