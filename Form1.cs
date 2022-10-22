@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,8 +89,18 @@ namespace ChocolateySpreader
             }
             else
             {
-                MessageBox.Show("Here's where the ISO would be extracted, if I had code for it!", "Unimplemented",
+                bool SevenZipInstalled = File.Exists("C:\\Program Files\\7-Zip\\7z.exe");
+                if (!SevenZipInstalled)
+                {
+                    MessageBox.Show("7-Zip is not installed. Get it from 7-zip.org.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Process.Start("https://www.7-zip.org/");
+                }
+                else
+                {
+                    MessageBox.Show("Add code to extract the stuff!", "So close!",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
