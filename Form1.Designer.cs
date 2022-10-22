@@ -28,24 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.ISOPathLabel = new System.Windows.Forms.Label();
+            this.FolderPathLabel = new System.Windows.Forms.Label();
+            this.FolderPathBox = new System.Windows.Forms.TextBox();
+            this.ISOPathBox = new System.Windows.Forms.TextBox();
+            this.ISOSelectButton = new System.Windows.Forms.Button();
+            this.FolderSelectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // ISOPathLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.ISOPathLabel.AutoSize = true;
+            this.ISOPathLabel.Location = new System.Drawing.Point(13, 13);
+            this.ISOPathLabel.Name = "ISOPathLabel";
+            this.ISOPathLabel.Size = new System.Drawing.Size(53, 13);
+            this.ISOPathLabel.TabIndex = 0;
+            this.ISOPathLabel.Text = "ISO Path:";
+            // 
+            // FolderPathLabel
+            // 
+            this.FolderPathLabel.AutoSize = true;
+            this.FolderPathLabel.Location = new System.Drawing.Point(13, 42);
+            this.FolderPathLabel.Name = "FolderPathLabel";
+            this.FolderPathLabel.Size = new System.Drawing.Size(74, 13);
+            this.FolderPathLabel.TabIndex = 1;
+            this.FolderPathLabel.Text = "Output Folder:";
+            // 
+            // FolderPathBox
+            // 
+            this.FolderPathBox.Location = new System.Drawing.Point(93, 39);
+            this.FolderPathBox.Name = "FolderPathBox";
+            this.FolderPathBox.Size = new System.Drawing.Size(120, 20);
+            this.FolderPathBox.TabIndex = 2;
+            // 
+            // ISOPathBox
+            // 
+            this.ISOPathBox.Location = new System.Drawing.Point(93, 9);
+            this.ISOPathBox.Name = "ISOPathBox";
+            this.ISOPathBox.Size = new System.Drawing.Size(120, 20);
+            this.ISOPathBox.TabIndex = 3;
+            // 
+            // ISOSelectButton
+            // 
+            this.ISOSelectButton.Location = new System.Drawing.Point(219, 8);
+            this.ISOSelectButton.Name = "ISOSelectButton";
+            this.ISOSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.ISOSelectButton.TabIndex = 4;
+            this.ISOSelectButton.Text = "Browse...";
+            this.ISOSelectButton.UseVisualStyleBackColor = true;
+            this.ISOSelectButton.Click += new System.EventHandler(this.ISOSelectButton_Click);
+            // 
+            // FolderSelectButton
+            // 
+            this.FolderSelectButton.Location = new System.Drawing.Point(219, 38);
+            this.FolderSelectButton.Name = "FolderSelectButton";
+            this.FolderSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.FolderSelectButton.TabIndex = 5;
+            this.FolderSelectButton.Text = "Browse...";
+            this.FolderSelectButton.UseVisualStyleBackColor = true;
+            this.FolderSelectButton.Click += new System.EventHandler(this.FolderSelectButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.FolderSelectButton);
+            this.Controls.Add(this.ISOSelectButton);
+            this.Controls.Add(this.ISOPathBox);
+            this.Controls.Add(this.FolderPathBox);
+            this.Controls.Add(this.FolderPathLabel);
+            this.Controls.Add(this.ISOPathLabel);
             this.Name = "Form1";
             this.Text = "ChocolateySpreader";
             this.ResumeLayout(false);
@@ -55,7 +108,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ISOPathLabel;
+        private System.Windows.Forms.Label FolderPathLabel;
+        private System.Windows.Forms.TextBox FolderPathBox;
+        private System.Windows.Forms.TextBox ISOPathBox;
+        private System.Windows.Forms.Button ISOSelectButton;
+        private System.Windows.Forms.Button FolderSelectButton;
     }
 }
 
