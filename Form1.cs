@@ -29,6 +29,7 @@ namespace ChocolateySpreader
             //Set up the file dialog with the initial directory, filters and disable multiselect.
             using (OpenFileDialog ISOPathDialog = new OpenFileDialog())
             {
+                ISOPathDialog.Title = "Select Windows ISO";
                 ISOPathDialog.InitialDirectory = "C:\\";
                 ISOPathDialog.Filter = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
                 ISOPathDialog.FilterIndex = 1;
@@ -36,7 +37,7 @@ namespace ChocolateySpreader
                 ISOPathDialog.Multiselect = false;
                 
 
-                //Show the dialog, and if it was successful...
+                //Show the dialog, and if the user has supplied a file...
                 if (ISOPathDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the file path of the ISO, and put it into the text box.
@@ -60,9 +61,9 @@ namespace ChocolateySpreader
                 using (CommonOpenFileDialog FolderSelectDialog = new CommonOpenFileDialog())
                 {
                     FolderSelectDialog.IsFolderPicker = true;
-                    //FolderSelectDialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
+                    FolderSelectDialog.Title = "Select folder to extract ISO to:";
 
-                    //Show the dialog, and if it was successful...
+                    //Show the dialog, and if the user has supplied a folder...
                     if (FolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
                     {
                         //Get the folder path, and put it into the text box.
@@ -75,10 +76,11 @@ namespace ChocolateySpreader
         //When the user clicks the button to extract the ISO...
         private void ExtractISOButton_Click(object sender, EventArgs e)
         {
+            string SevenZipLocation;
             //If the user has not selected an ISO...
             if (ISOPathBox.Text == "")
             {
-                MessageBox.Show("You have not specified an ISO file to extract.", "No ISO file", 
+                MessageBox.Show("You have not specified an ISO file to extract.", "No ISO file",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //If the user has not selected an output folder...
@@ -92,16 +94,47 @@ namespace ChocolateySpreader
                 //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
                 //This will fail if the user has specified an alternate install location!
                 bool SevenZipInstalled = File.Exists("C:\\Program Files\\7-Zip\\7z.exe");
-                //If 7-Zip is not installed...
+                //If 7-Zip is not installed in the usual 
                 if (!SevenZipInstalled)
                 {
-                    //Let the user know
-                    MessageBox.Show("7-Zip is not installed. Get it from 7-zip.org.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //Open the 7-Zip website.
-                    Process.Start("https://www.7-zip.org/");
+                    bool LookingFor7Z = true;
+                    while (LookingFor7Z)
+                    {
+                        using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
+                        {
+                            ZipSelectDialog.Title = "Locate 7z.exe";
+                            ZipSelectDialog.InitialDirectory = "C:\\";
+                            ZipSelectDialog.Filter = "7-Zip|7z.exe";
+                            ZipSelectDialog.FilterIndex = 1;
+                            ZipSelectDialog.Multiselect = false;
+                            //Show the dialog, and if the user has supplied a file...
+                            if (ZipSelectDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                //Check that the user has supplied a valid 7z.exe.
+                                if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
+                                {
+                                    MessageBox.Show("Invalid 7z.exe supplied!", "ChocolateySpreader",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    SevenZipLocation = ZipSelectDialog.FileName;
+                                    LookingFor7Z = false;
+                                    SevenZipInstalled = true;
+                                }
+                            }
+                            else //If the user has not supplied a file...
+                            {
+                                LookingFor7Z = false; //Assume they do not have 7-Zip installed.
+                                MessageBox.Show("If you do not have 7-Zip installed, you can get it from 7-zip.org.", "ChocolateySpreader",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //Open the 7-Zip website.
+                                Process.Start("https://www.7-zip.org/");
+                            }
+                        }
+                    }                    
                 }
-                else
+                if (SevenZipInstalled)
                 {
                     Process ExtractISO = new Process(); //Create a new process that we will start.
                     //Set the file path to where 7-Zip is usually located.
@@ -135,7 +168,7 @@ namespace ChocolateySpreader
                             MessageBox.Show("There is not enough free memory available to extract the ISO.", "ChocolateySpreader",
                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
-                        case 255: //If the user closed the window before it was completed or pressed CTRL+C...
+                        case -1073741510: //If the user closed the window before it was completed or pressed CTRL+C...
                             MessageBox.Show("The user cancelled the operation.", "ChocolateySpreader",
                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
