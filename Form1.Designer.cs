@@ -35,6 +35,8 @@
             this.ISOSelectButton = new System.Windows.Forms.Button();
             this.FolderSelectButton = new System.Windows.Forms.Button();
             this.ExtractISOButton = new System.Windows.Forms.Button();
+            this.OutputBox = new System.Windows.Forms.RichTextBox();
+            this.OutputLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -91,7 +93,7 @@
             // 
             // ExtractISOButton
             // 
-            this.ExtractISOButton.Location = new System.Drawing.Point(112, 88);
+            this.ExtractISOButton.Location = new System.Drawing.Point(12, 78);
             this.ExtractISOButton.Name = "ExtractISOButton";
             this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
             this.ExtractISOButton.TabIndex = 6;
@@ -99,11 +101,31 @@
             this.ExtractISOButton.UseVisualStyleBackColor = true;
             this.ExtractISOButton.Click += new System.EventHandler(this.ExtractISOButton_Click);
             // 
+            // OutputBox
+            // 
+            this.OutputBox.Location = new System.Drawing.Point(16, 295);
+            this.OutputBox.Name = "OutputBox";
+            this.OutputBox.ReadOnly = true;
+            this.OutputBox.Size = new System.Drawing.Size(290, 143);
+            this.OutputBox.TabIndex = 7;
+            this.OutputBox.Text = "";
+            // 
+            // OutputLabel
+            // 
+            this.OutputLabel.AutoSize = true;
+            this.OutputLabel.Location = new System.Drawing.Point(13, 279);
+            this.OutputLabel.Name = "OutputLabel";
+            this.OutputLabel.Size = new System.Drawing.Size(39, 13);
+            this.OutputLabel.TabIndex = 8;
+            this.OutputLabel.Text = "Output";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OutputLabel);
+            this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.ExtractISOButton);
             this.Controls.Add(this.FolderSelectButton);
             this.Controls.Add(this.ISOSelectButton);
@@ -130,6 +152,8 @@
         private System.Windows.Forms.Button ISOSelectButton;
         private System.Windows.Forms.Button FolderSelectButton;
         private System.Windows.Forms.Button ExtractISOButton;
+        private System.Windows.Forms.RichTextBox OutputBox;
+        private System.Windows.Forms.Label OutputLabel;
     }
 }
 
