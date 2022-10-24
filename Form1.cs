@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
-
-
 namespace ChocolateySpreader
 {
-    
+
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
         }
+
+        private void OutputLog(object sendingProcess, DataReceivedEventArgs e)
+        {
+            if (e.Data != null)
+            {
+                BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine); }));
+            }
+        }
+
 
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e) 
@@ -94,7 +103,7 @@ namespace ChocolateySpreader
                 //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
                 //This will fail if the user has specified an alternate install location!
                 bool SevenZipInstalled = File.Exists("C:\\Program Files\\7-Zip\\7z.exe");
-                //If 7-Zip is not installed in the usual 
+                //If 7-Zip is not installed in the usual location...
                 if (!SevenZipInstalled)
                 {
                     bool LookingFor7Z = true;
@@ -136,15 +145,26 @@ namespace ChocolateySpreader
                 }
                 if (SevenZipInstalled)
                 {
+                    ExtractISOButton.Enabled = false;
+                    ISOSelectButton.Enabled = false;
+                    FolderSelectButton.Enabled = false;
+                    string currentOutputLine;
+                    SevenZipLocation = "C:\\Program Files\\7-Zip\\7z.exe";
                     Process ExtractISO = new Process(); //Create a new process that we will start.
-                    //Set the file path to where 7-Zip is usually located.
-                    //This will break if the user has specified an alternate install location!
-                    ExtractISO.StartInfo.FileName =  "C:\\Program Files\\7-Zip\\7z.exe"; 
-                    ExtractISO.StartInfo.Arguments = " -o" + FolderPathBox.Text + " x " + ISOPathBox.Text; //Create the arguments necessary.
+                                                        //Set the file path to where 7-Zip is usually located.
+                    ExtractISO.StartInfo.FileName = SevenZipLocation;
+                    ExtractISO.StartInfo.Arguments = " -o" + FolderPathBox.Text + " -aoa x " + ISOPathBox.Text; //Create the arguments necessary.
+                    //-o switch specifies output directory, -aoa specifies to replace any existing files without user interaction.
+                    //x specifies to extract files from a given archive and keep folder structure.
+                    ExtractISO.StartInfo.CreateNoWindow = true;
+                    ExtractISO.StartInfo.RedirectStandardOutput = true;
+                    ExtractISO.StartInfo.UseShellExecute = false;
+                    ExtractISO.OutputDataReceived += new DataReceivedEventHandler(OutputLog);
                     ExtractISO.Start(); //Start the process.
+                    ExtractISO.BeginOutputReadLine();
                     while (!ExtractISO.HasExited) //If the process has not yet exited...
                     {
-                        //Do nothing.
+                        Application.DoEvents(); //Keep Form1 active to the text box can be updated.
                     }
                     switch (ExtractISO.ExitCode) //Check the exit code.
                     {
@@ -153,7 +173,7 @@ namespace ChocolateySpreader
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         case 1: //If there were non-fatal errors/warnings...
-                            MessageBox.Show("ISO extracted successfully!", "ChocolateySpreader",
+                            MessageBox.Show("ISO extracted with warnings. Please check for any corrupt/missing files.", "ChocolateySpreader",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         case 2: //If there was a fatal error...
@@ -173,7 +193,7 @@ namespace ChocolateySpreader
                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
-
+                    ExtractISOButton.Enabled = true;
                 }
             }
         }
