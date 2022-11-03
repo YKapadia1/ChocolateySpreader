@@ -25,10 +25,22 @@ namespace ChocolateySpreader
         }
 
         
+        //Strings for the various dialogs presented to the user.
         const string DEFAULT_7ZIP_LOCATION = "C:\\Program Files\\7-Zip\\7z.exe";
+        
+        const string ISO_SELECT_WINDOW_TITLE = "Select Windows ISO";
+        const string ISO_SELECT_WINDOW_DIRECTORY = "C:\\";
+        const string ISO_SELECT_WINDOW_FILTER = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
+        
+        const string OUTPUT_FOLDER_SELECT_TITLE = "Select folder to extract ISO to:";
+
+        const string ZIP_SELECT_WINDOW_TITLE = "Locate 7z.exe";
+        const string ZIP_SELECT_WINDOW_DIRECTORY = "C:\\Program Files";
+        const string ZIP_SELECT_WINDOW_FILTER = "7-Zip|7z.exe";
+
+
         //Strings containing the various messages that may be displayed to the user.
-        
-        
+        //Strings related to selecting an ISO and an output folder.
         const string ERR_NO_ISO_SPECIFIED_TITLE = "No ISO file";
         const string ERR_NO_ISO_SPECIFIED = "You have not specified an ISO file to extract.";
         const string ERR_NO_OUTPUT_SPECIFIED_TITLE = "No output folder";
@@ -44,8 +56,14 @@ namespace ChocolateySpreader
         const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
         const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
 
+        const string ERR_INVALID_7Z_EXE = "Invalid 7z.exe supplied!";
+        const string INFO_7Z_INSTALL_TIP = "If you do not have 7-Zip installed, you can get it from 7-zip.org.";
 
-        
+
+
+
+
+
 
 
         private void OutputLog(object sendingProcess, DataReceivedEventArgs e)
@@ -108,27 +126,33 @@ namespace ChocolateySpreader
         }
 
 
+        void CreateOpenFileDialog(string name, string directory, string filter, TextBox InputBox)
+        {
+            using (OpenFileDialog OpenDialog = new OpenFileDialog())
+            {
+                //Set up the file dialog with the name, initial directory, filters and disable multiselect.
+                OpenDialog.Title = name;
+                OpenDialog.InitialDirectory = directory;
+                OpenDialog.Filter = filter;
+                OpenDialog.FilterIndex = 1;
+                OpenDialog.RestoreDirectory = false;  //For some reason, this attribute seems to also affect the CommonOpenFileDialog.
+                OpenDialog.Multiselect = false;
+
+                //Show the dialog, and if the user has supplied a file...
+                if (OpenDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the file path, and put it into the text box.
+                    OpenDialog.FileName = InputBox.Text;
+                }
+            }
+            
+        }
+
+
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e) 
         {
-            //Set up the file dialog with the initial directory, filters and disable multiselect.
-            using (OpenFileDialog ISOPathDialog = new OpenFileDialog())
-            {
-                ISOPathDialog.Title = "Select Windows ISO";
-                ISOPathDialog.InitialDirectory = "C:\\";
-                ISOPathDialog.Filter = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
-                ISOPathDialog.FilterIndex = 1;
-                ISOPathDialog.RestoreDirectory = true; //For some reason, this attribute seems to also affect the CommonOpenFileDialog.
-                ISOPathDialog.Multiselect = false;
-                
-
-                //Show the dialog, and if the user has supplied a file...
-                if (ISOPathDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the file path of the ISO, and put it into the text box.
-                    ISOPathBox.Text = ISOPathDialog.FileName;
-                }
-            }
+            CreateOpenFileDialog(ISO_SELECT_WINDOW_TITLE, ISO_SELECT_WINDOW_DIRECTORY,ISO_SELECT_WINDOW_FILTER, ISOPathBox);
         }
 
         //When the user has clicked the button to browse for an ISO file...
@@ -146,7 +170,7 @@ namespace ChocolateySpreader
                 using (CommonOpenFileDialog OutputFolderSelectDialog = new CommonOpenFileDialog())
                 {
                     OutputFolderSelectDialog.IsFolderPicker = true;
-                    OutputFolderSelectDialog.Title = "Select folder to extract ISO to:";
+                    OutputFolderSelectDialog.Title = OUTPUT_FOLDER_SELECT_TITLE;
 
                     //Show the dialog, and if the user has supplied a folder...
                     if (OutputFolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -171,7 +195,7 @@ namespace ChocolateySpreader
             //If the user has not selected an output folder...
             else if (FolderPathBox.Text == "")
             {
-                MessageBox.Show(ERR_NO_OUTPUT_SPECIFIED,ERR_NO_OUTPUT_SPECIFIED_TITLE,
+                MessageBox.Show(ERR_NO_OUTPUT_SPECIFIED, ERR_NO_OUTPUT_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -187,9 +211,9 @@ namespace ChocolateySpreader
                     {
                         using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
                         {
-                            ZipSelectDialog.Title = "Locate 7z.exe"; //Set the title of the window.
-                            ZipSelectDialog.InitialDirectory = "C:\\Program Files\\"; //Set the initial directory of the selection window.
-                            ZipSelectDialog.Filter = "7-Zip|7z.exe"; //Set the filter so that it only shows exe files called 7z.
+                            ZipSelectDialog.Title = ZIP_SELECT_WINDOW_TITLE; //Set the title of the window.
+                            ZipSelectDialog.InitialDirectory = ZIP_SELECT_WINDOW_DIRECTORY; //Set the initial directory of the selection window.
+                            ZipSelectDialog.Filter = ZIP_SELECT_WINDOW_FILTER; //Set the filter so that it only shows exe files called 7z.
                             ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
                             ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
                             //Show the dialog, and if the user has supplied a file...
@@ -198,7 +222,7 @@ namespace ChocolateySpreader
                                 //Check that the user has supplied a valid 7z.exe.
                                 if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
                                 {
-                                    MessageBox.Show("Invalid 7z.exe supplied!", this.Text,
+                                    MessageBox.Show(ERR_INVALID_7Z_EXE, this.Text,
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
@@ -211,17 +235,17 @@ namespace ChocolateySpreader
                             else //If the user has not supplied a file...
                             {
                                 LookingFor7Z = false; //Assume they do not have 7-Zip installed.
-                                MessageBox.Show("If you do not have 7-Zip installed, you can get it from 7-zip.org.", this.Text,
+                                MessageBox.Show(INFO_7Z_INSTALL_TIP, this.Text,
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //Open the 7-Zip website.
                                 Process.Start("https://www.7-zip.org/");
                             }
                         }
-                    }                    
+                    }
                 }
                 if (SevenZipInstalled)
                 {
-                    
+
                     ExtractISO(ref SevenZipLocation);
                     ExtractISOButton.Enabled = true;
                     OutputFolderSelectButton.Enabled = true;
@@ -231,11 +255,5 @@ namespace ChocolateySpreader
             }
         }
 
-        
-        
-        //Don't touch, or everything will break!
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
     }
 }
