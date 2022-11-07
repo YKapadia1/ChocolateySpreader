@@ -52,6 +52,8 @@ namespace ChocolateySpreader
         
         const string WARN_SPECIFY_ISO_BEFORE_OUTPUT = "Please specify an ISO before specifiying the output folder.";
         const string WARN_SPECIFY_ISO_BEFORE_OUTPUT_TITLE = "No ISO file";
+        const string WARN_OUTPUT_FOLDER_NOT_EMPTY = "There appear to be files/folders inside the output folder you specified. " +
+            "Would you like to extract to this folder anyway?";
         
         const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
         const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
@@ -61,6 +63,59 @@ namespace ChocolateySpreader
 
 
 
+
+        void Checkfor7Z(ref string SevenZipLocation)
+        {
+            //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
+            //This will fail if the user has specified an alternate install location!
+            bool SevenZipInstalled = File.Exists(DEFAULT_7ZIP_LOCATION);
+            //If 7-Zip is not installed in the usual location...
+            if (!SevenZipInstalled)
+            {
+                bool LookingFor7Z = true; //Set a boolean to indicate that the user is looking for 7-Zip.
+                while (LookingFor7Z)
+                {
+                    using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
+                    {
+                        ZipSelectDialog.Title = ZIP_SELECT_WINDOW_TITLE; //Set the title of the window.
+                        ZipSelectDialog.InitialDirectory = ZIP_SELECT_WINDOW_DIRECTORY; //Set the initial directory of the selection window.
+                        ZipSelectDialog.Filter = ZIP_SELECT_WINDOW_FILTER; //Set the filter so that it only shows exe files called 7z.
+                        ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
+                        ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
+                                                             //Show the dialog, and if the user has supplied a file...
+                        if (ZipSelectDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            //Check that the user has supplied a valid 7z.exe.
+                            if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
+                            {
+                                MessageBox.Show(ERR_INVALID_7Z_EXE, this.Text,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                SevenZipLocation = ZipSelectDialog.FileName;
+                                LookingFor7Z = false;
+                                SevenZipInstalled = true;
+                            }
+                        }
+                        else //If the user has not supplied a file...
+                        {
+                            LookingFor7Z = false; //Assume they do not have 7-Zip installed.
+                            MessageBox.Show(INFO_7Z_INSTALL_TIP, this.Text,
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //Open the 7-Zip website.
+                            Process.Start("https://www.7-zip.org/");
+                        }
+                    }
+                }
+            }
+            if (SevenZipInstalled)
+            {
+
+                ExtractISO(SevenZipLocation);
+                //Reenable the buttons after the extraction process has exited.
+            }
+        }
 
 
 
@@ -74,7 +129,7 @@ namespace ChocolateySpreader
             }
         }
 
-        void ExtractISO(ref string SevenZipLocation)
+        void ExtractISO(string SevenZipLocation)
         {
             ExtractISOButton.Enabled = false;
             ISOSelectButton.Enabled = false;
@@ -123,10 +178,13 @@ namespace ChocolateySpreader
                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+            ExtractISOButton.Enabled = true;
+            OutputFolderSelectButton.Enabled = true;
+            ISOSelectButton.Enabled = true;
         }
 
 
-        void CreateOpenFileDialog(string name, string directory, string filter, TextBox InputBox)
+        string CreateOpenFileDialog(string name, string directory, string filter)
         {
             using (OpenFileDialog OpenDialog = new OpenFileDialog())
             {
@@ -142,8 +200,9 @@ namespace ChocolateySpreader
                 if (OpenDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the file path, and put it into the text box.
-                    OpenDialog.FileName = InputBox.Text;
+                    return OpenDialog.FileName;
                 }
+                return null;
             }
             
         }
@@ -152,7 +211,7 @@ namespace ChocolateySpreader
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e) 
         {
-            CreateOpenFileDialog(ISO_SELECT_WINDOW_TITLE, ISO_SELECT_WINDOW_DIRECTORY,ISO_SELECT_WINDOW_FILTER, ISOPathBox);
+            ISOPathBox.Text = CreateOpenFileDialog(ISO_SELECT_WINDOW_TITLE, ISO_SELECT_WINDOW_DIRECTORY,ISO_SELECT_WINDOW_FILTER);
         }
 
         //When the user has clicked the button to browse for an ISO file...
@@ -198,60 +257,20 @@ namespace ChocolateySpreader
                 MessageBox.Show(ERR_NO_OUTPUT_SPECIFIED, ERR_NO_OUTPUT_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //INFO: This is some janky ass shit right here... Try to make this neater!
+            else if (Directory.GetFileSystemEntries(FolderPathBox.Text).Length != 0)
+            {
+                switch (MessageBox.Show(WARN_OUTPUT_FOLDER_NOT_EMPTY, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    case DialogResult.Yes:
+                        Checkfor7Z(ref SevenZipLocation);
+                        break;
+                }
+            }
             else
             {
-                //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
-                //This will fail if the user has specified an alternate install location!
-                bool SevenZipInstalled = File.Exists(DEFAULT_7ZIP_LOCATION);
-                //If 7-Zip is not installed in the usual location...
-                if (!SevenZipInstalled)
-                {
-                    bool LookingFor7Z = true; //Set a boolean to indicate that the user is looking for 7-Zip.
-                    while (LookingFor7Z)
-                    {
-                        using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
-                        {
-                            ZipSelectDialog.Title = ZIP_SELECT_WINDOW_TITLE; //Set the title of the window.
-                            ZipSelectDialog.InitialDirectory = ZIP_SELECT_WINDOW_DIRECTORY; //Set the initial directory of the selection window.
-                            ZipSelectDialog.Filter = ZIP_SELECT_WINDOW_FILTER; //Set the filter so that it only shows exe files called 7z.
-                            ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
-                            ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
-                            //Show the dialog, and if the user has supplied a file...
-                            if (ZipSelectDialog.ShowDialog() == DialogResult.OK)
-                            {
-                                //Check that the user has supplied a valid 7z.exe.
-                                if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
-                                {
-                                    MessageBox.Show(ERR_INVALID_7Z_EXE, this.Text,
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    SevenZipLocation = ZipSelectDialog.FileName;
-                                    LookingFor7Z = false;
-                                    SevenZipInstalled = true;
-                                }
-                            }
-                            else //If the user has not supplied a file...
-                            {
-                                LookingFor7Z = false; //Assume they do not have 7-Zip installed.
-                                MessageBox.Show(INFO_7Z_INSTALL_TIP, this.Text,
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //Open the 7-Zip website.
-                                Process.Start("https://www.7-zip.org/");
-                            }
-                        }
-                    }
-                }
-                if (SevenZipInstalled)
-                {
+                ExtractISO(SevenZipLocation);
 
-                    ExtractISO(ref SevenZipLocation);
-                    ExtractISOButton.Enabled = true;
-                    OutputFolderSelectButton.Enabled = true;
-                    ISOSelectButton.Enabled = true;
-                    //Reenable the buttons after the extraction process has exited.
-                }
             }
         }
 
