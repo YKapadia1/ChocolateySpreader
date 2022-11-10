@@ -59,5 +59,11 @@ namespace ChocolateySpreader
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n" +
             "If Chocolatey is installed on this machine, press the \"Export Packages\" button at the top.";
         public const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:";
+
+        public const string CHOCO_DETECTED_MSG1 = "Chocolatey presence found!\n";
+        public const string CHOCO_DETECTED_MSG2 = "You will be able to easily export a list of installed packages currently on this machine.";
+
+        public const string CHOCO_NOT_DETECTED_MSG1 = "Chocolatey presence not found.\n";
+        public const string CHOCO_NOT_DETECTED_MSG2 = "Chocolatey must be installed to export a list of installed packages currently on this machine.";
     }
 }
