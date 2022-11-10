@@ -43,6 +43,8 @@ namespace ChocolateySpreader
         //Strings related to selecting an ISO and an output folder.
         const string ERR_NO_ISO_SPECIFIED_TITLE = "No ISO file";
         const string ERR_NO_ISO_SPECIFIED = "You have not specified an ISO file to extract.";
+        const string ERR_NO_ISO_FOLDER_SPECIFIED_TITLE = "No ISO folder";
+        const string ERR_NO_ISO_FOLDER_SPECIFIED = "You have not specified the folder where the Windows ISO files are located.";
         const string ERR_NO_OUTPUT_SPECIFIED_TITLE = "No output folder";
         const string ERR_NO_OUTPUT_SPECIFIED = "You have not specified an output folder to extract to.";
         const string ERR_ISO_EXTRACT_FATAL = "A fatal error occured when extracting the ISO.";
@@ -55,12 +57,21 @@ namespace ChocolateySpreader
         const string WARN_OUTPUT_FOLDER_NOT_EMPTY = "There appear to be files/folders inside the output folder you specified. " +
             "Would you like to extract to this folder anyway?";
         
+        //Strings related to the status of the extraction process.
         const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
         const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
 
+        //Strings related to locating 7-Zip.
         const string ERR_INVALID_7Z_EXE = "Invalid 7z.exe supplied!";
         const string INFO_7Z_INSTALL_TIP = "If you do not have 7-Zip installed, you can get it from 7-zip.org.";
 
+        //Strings related to selecting a folder with the ISO files and a packages list file.
+        const string ERR_INVALID_ISO_FOLDER_SPECIFIED_TITLE = "Invalid Windows ISO folder";
+        const string ERR_INVALID_ISO_FOLDER_SPECIFIED = "Could not find install.esd/.wim/.swm. Please check that the folder contains valid Windows ISO files.";
+        const string ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE = "No packages.config file";
+        const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n " +
+            "If Chocolatey is installed on this machine, type \"choco export\" followed by the location you want the file to be placed.";
+        const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:";
 
 
 
@@ -275,14 +286,36 @@ namespace ChocolateySpreader
             }
         }
 
-        private void FolderPathBox_TextChanged(object sender, EventArgs e)
+        private void ChocoSpreadButton_Click(object sender, EventArgs e)
         {
-
+            if (ISOFolderBox.Text == "")
+            {
+                MessageBox.Show(ERR_NO_ISO_FOLDER_SPECIFIED, ERR_NO_ISO_FOLDER_SPECIFIED_TITLE,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //If the user has not selected an output folder...
+            else if (PKGListBox.Text == "")
+            {
+                MessageBox.Show(ERR_NO_PACKAGE_LIST_SPECIFIED, ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE,
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ISOFolderButton_Click(object sender, EventArgs e)
         {
+            using (CommonOpenFileDialog ISOFolderSelectDialog = new CommonOpenFileDialog())
+            {
+                ISOFolderSelectDialog.IsFolderPicker = true;
+                ISOFolderSelectDialog.Title = ISO_FOLDER_SELECT_TITLE;
 
+                //Show the dialog, and if the user has supplied a folder...
+                if (ISOFolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    //Get the folder path, and put it into the text box.
+                    ISOFolderBox.Text = ISOFolderSelectDialog.FileName;
+                }
+            }
         }
+
     }
 }
