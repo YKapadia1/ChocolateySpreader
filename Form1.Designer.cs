@@ -190,25 +190,26 @@
             this.ISOFolderLabel.TabIndex = 9;
             this.ISOFolderLabel.Text = "ISO Folder:";
             // 
-            // ChocoDetectLabel2
+            // ChocoDetectLabel
             // 
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
             this.ChocoDetectLabel.Location = new System.Drawing.Point(360, 9);
-            this.ChocoDetectLabel.Name = "ChocoDetectLabel2";
+            this.ChocoDetectLabel.Name = "ChocoDetectLabel";
             this.ChocoDetectLabel.Size = new System.Drawing.Size(150, 13);
             this.ChocoDetectLabel.TabIndex = 17;
             this.ChocoDetectLabel.Text = "Chocolatey Not Detected";
             // 
-            // button1
+            // ChocoExportButton
             // 
             this.ChocoExportButton.Location = new System.Drawing.Point(363, 25);
-            this.ChocoExportButton.Name = "button1";
+            this.ChocoExportButton.Name = "ChocoExportButton";
             this.ChocoExportButton.Size = new System.Drawing.Size(147, 23);
             this.ChocoExportButton.TabIndex = 18;
             this.ChocoExportButton.Text = "Export Package List";
             this.ChocoExportButton.UseVisualStyleBackColor = true;
+            this.ChocoExportButton.Click += new System.EventHandler(this.ChocoExportButton_Click);
             // 
             // Form1
             // 
