@@ -11,12 +11,8 @@ namespace ChocolateySpreader
 {
     public class ProgramFunctions
     {
-        
-
         public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
         {
-
-
             form1.ExtractISOButton.Enabled = false;
             form1.ISOSelectButton.Enabled = false;
             form1.ISOFolderButton.Enabled = false;
