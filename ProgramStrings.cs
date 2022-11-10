@@ -62,8 +62,10 @@ namespace ChocolateySpreader
 
         public const string CHOCO_DETECTED_MSG1 = "Chocolatey presence found!\n";
         public const string CHOCO_DETECTED_MSG2 = "You will be able to easily export a list of installed packages currently on this machine.";
+        public const string CHOCO_DETECTED_LABEL = "Chocolatey Detected!";
 
         public const string CHOCO_NOT_DETECTED_MSG1 = "Chocolatey presence not found.\n";
         public const string CHOCO_NOT_DETECTED_MSG2 = "Chocolatey must be installed to export a list of installed packages currently on this machine.";
+        public const string CHOCO_NOT_DETECTED_LABEL = "Chocolatey Not Detected";
     }
 }
