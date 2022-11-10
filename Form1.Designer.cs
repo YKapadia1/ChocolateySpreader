@@ -1,6 +1,6 @@
 ﻿namespace ChocolateySpreader
 {
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -248,24 +248,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Label ISOPathLabel;
-        private System.Windows.Forms.Label FolderPathLabel;
-        private System.Windows.Forms.TextBox FolderPathBox;
-        private System.Windows.Forms.TextBox ISOPathBox;
-        private System.Windows.Forms.Button ISOSelectButton;
-        private System.Windows.Forms.Button OutputFolderSelectButton;
-        private System.Windows.Forms.Button ExtractISOButton;
-        private System.Windows.Forms.RichTextBox OutputBox;
-        private System.Windows.Forms.Label OutputLabel;
-        private System.Windows.Forms.Button ChocoSpreadButton;
-        private System.Windows.Forms.Button PKGListButton;
-        private System.Windows.Forms.Button ISOFolderButton;
-        private System.Windows.Forms.TextBox ISOFolderBox;
-        private System.Windows.Forms.TextBox PKGListBox;
-        private System.Windows.Forms.Label PKGListLabel;
-        private System.Windows.Forms.Label ISOFolderLabel;
-        private System.Windows.Forms.Label ChocoDetectLabel;
-        private System.Windows.Forms.Button ChocoExportButton;
+        public System.Windows.Forms.Label ISOPathLabel;
+        public System.Windows.Forms.Label FolderPathLabel;
+        public System.Windows.Forms.TextBox FolderPathBox;
+        public System.Windows.Forms.TextBox ISOPathBox;
+        public System.Windows.Forms.Button ISOSelectButton;
+        public System.Windows.Forms.Button OutputFolderSelectButton;
+        public System.Windows.Forms.Button ExtractISOButton;
+        public System.Windows.Forms.RichTextBox OutputBox;
+        public System.Windows.Forms.Label OutputLabel;
+        public System.Windows.Forms.Button ChocoSpreadButton;
+        public System.Windows.Forms.Button PKGListButton;
+        public System.Windows.Forms.Button ISOFolderButton;
+        public System.Windows.Forms.TextBox ISOFolderBox;
+        public System.Windows.Forms.TextBox PKGListBox;
+        public System.Windows.Forms.Label PKGListLabel;
+        public System.Windows.Forms.Label ISOFolderLabel;
+        public System.Windows.Forms.Label ChocoDetectLabel;
+        public System.Windows.Forms.Button ChocoExportButton;
     }
 }
 

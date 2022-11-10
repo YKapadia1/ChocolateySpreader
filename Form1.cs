@@ -16,10 +16,13 @@ namespace ChocolateySpreader
         public Form1()
         {
             InitializeComponent();
+
+            Form1 FuncForm = this;
         }
 
         Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
-
+        ProgramFunctions Functions = new ProgramFunctions();
+        
         void Checkfor7Z(ref string SevenZipLocation)
         {
             //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
@@ -69,127 +72,25 @@ namespace ChocolateySpreader
             if (SevenZipInstalled)
             {
 
-                ExtractISO(SevenZipLocation);
+                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text,this);
                 //Reenable the buttons after the extraction process has exited.
             }
         }
 
-        private void OutputLog(object sendingProcess, DataReceivedEventArgs e)
+        public void OutputLog(object sendingProcess, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
-                BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine);}));
+                BeginInvoke(new MethodInvoker(() => {OutputBox.AppendText(e.Data + Environment.NewLine); }));
                 //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
                 //If this was done synchronously, the UI would freeze.
             }
         }
 
-        void ExtractISO(string SevenZipLocation)
-        {
-            ExtractISOButton.Enabled = false;
-            ISOSelectButton.Enabled = false;
-            ISOFolderButton.Enabled = false;
-            PKGListButton.Enabled = false;
-            OutputFolderSelectButton.Enabled = false;
-            Process ExtractISO = new Process(); //Create a new process that we will start.
-                                                //Set the file path to where 7-Zip has been located.
-            ExtractISO.StartInfo.FileName = SevenZipLocation;
-            ExtractISO.StartInfo.Arguments = " -o" + FolderPathBox.Text + " -aoa -bsp1 x " + ISOPathBox.Text; 
-            //Create the arguments necessary.
-            //-o switch specifies output directory, -aoa specifies to replace any existing files without user interaction.
-            //x specifies to extract files from a given archive and keep folder structure.
-            //-bsp1 redirects the standard output so the progress can be shown.
-            ExtractISO.StartInfo.CreateNoWindow = true;
-            ExtractISO.StartInfo.RedirectStandardOutput = true;
-            ExtractISO.StartInfo.UseShellExecute = false;
-            
-            //Send any output to the event handler responsible for updating the text box.
-            ExtractISO.OutputDataReceived += new DataReceivedEventHandler(OutputLog); 
-            ExtractISO.Start(); //Start the process.
-            ExtractISO.BeginOutputReadLine(); //Begin asynchronously reading the output.
-            while (!ExtractISO.HasExited) //If the process has not yet exited...
-            {
-                Application.DoEvents(); //Keep Form1 active to the text box can be updated.
-            }
-            switch (ExtractISO.ExitCode) //Check the exit code.
-            {
-                case 0: //If there was no error...
-                    MessageBox.Show(ProgramStrings.INFO_ISO_EXTRACT_SUCCESS, this.Text,
-                        MessageBoxButtons.OK, MessageBoxIcon.Information) ;
-                    break;
-                case 1: //If there were non-fatal errors/warnings...
-                    MessageBox.Show(ProgramStrings.INFO_ISO_EXTRACT_WARNING, this.Text,
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-                case 2: //If there was a fatal error...
-                    MessageBox.Show(ProgramStrings.ERR_ISO_EXTRACT_FATAL, this.Text,
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 7: //If there was a command line error.
-                    MessageBox.Show(ProgramStrings.ERR_ISO_EXTRACT_CLI, this.Text,
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 8: //If we have ran out of memory...
-                    MessageBox.Show(ProgramStrings.ERR_ISO_EXTRACT_NO_MEMORY, this.Text,
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case -1073741510: //If the user closed the window before it was completed or pressed CTRL+C...
-                    MessageBox.Show(ProgramStrings.ERR_ISO_EXTRACT_USER_ABORT, this.Text,
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-            }
-            ExtractISOButton.Enabled = true;
-            OutputFolderSelectButton.Enabled = true;
-            ISOSelectButton.Enabled = true;
-        }
-
-
-        string CreateOpenFileDialog(string name, string directory, string filter)
-        {
-            using (OpenFileDialog OpenDialog = new OpenFileDialog())
-            {
-                //Set up the file dialog with the name, initial directory, filters and disable multiselect.
-                OpenDialog.Title = name;
-                OpenDialog.InitialDirectory = directory;
-                OpenDialog.Filter = filter;
-                OpenDialog.FilterIndex = 1;
-                OpenDialog.RestoreDirectory = false;  //For some reason, this attribute seems to also affect the CommonOpenFileDialog.
-                OpenDialog.Multiselect = false;
-
-                //Show the dialog, and if the user has supplied a file...
-                if (OpenDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the file path, and put it into the text box.
-                    return OpenDialog.FileName;
-                }
-                return null;
-            }
-            
-        }
-
-        string CreateOpenFolderDialog(string name)
-        {
-            //Set up the file dialog by specifying its a folder picker, and set the initial directory.
-            using (CommonOpenFileDialog FolderSelectDialog = new CommonOpenFileDialog())
-            {
-                FolderSelectDialog.IsFolderPicker = true;
-                FolderSelectDialog.Title = name;
-
-                //Show the dialog, and if the user has supplied a folder...
-                if (FolderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
-                {
-                    //Return the folder path.
-                    return FolderSelectDialog.FileName;
-                }
-            }
-            return null; //Return null if the user pressed Cancel.
-        }
-
-
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e) 
         {
-            ISOPathBox.Text = CreateOpenFileDialog(ProgramStrings.ISO_SELECT_WINDOW_TITLE, ProgramStrings.ISO_SELECT_WINDOW_DIRECTORY
+            ISOPathBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.ISO_SELECT_WINDOW_TITLE, ProgramStrings.ISO_SELECT_WINDOW_DIRECTORY
                 ,ProgramStrings.ISO_SELECT_WINDOW_FILTER);
         }
 
@@ -204,7 +105,7 @@ namespace ChocolateySpreader
             }
             else
             {
-                FolderPathBox.Text = CreateOpenFolderDialog(ProgramStrings.OUTPUT_FOLDER_SELECT_TITLE);
+                FolderPathBox.Text = Functions.CreateOpenFolderDialog(ProgramStrings.OUTPUT_FOLDER_SELECT_TITLE);
             }
         }
 
@@ -236,11 +137,10 @@ namespace ChocolateySpreader
             }
             else
             {
-                ExtractISO(SevenZipLocation);
+                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
 
             }
         }
-
         private void ChocoSpreadButton_Click(object sender, EventArgs e)
         {
             if (ISOFolderBox.Text == "")
@@ -258,12 +158,12 @@ namespace ChocolateySpreader
 
         private void ISOFolderButton_Click(object sender, EventArgs e)
         {
-           ISOFolderBox.Text = CreateOpenFolderDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE);
+           ISOFolderBox.Text = Functions.CreateOpenFolderDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE);
         }
 
         private void PKGListButton_Click(object sender, EventArgs e)
         {
-            PKGListBox.Text = CreateOpenFileDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE, 
+            PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE, 
                 ProgramStrings.ISO_FOLDER_SELECT_WINDOW_DIRECTORY, ProgramStrings.ISO_FOLDER_SELECT_WINDOW_FILTER);
         }
 
@@ -279,11 +179,10 @@ namespace ChocolateySpreader
             //Use the expanded environment variable and the provided path to determine if Chocolatey is installed.
             if (File.Exists(chocoEnv + "\\choco.exe"))
             {
-                MessageBox.Show(ProgramStrings.CHOCO_DETECTED_MSG1 +
-                   ProgramStrings.CHOCO_DETECTED_MSG2,
+                MessageBox.Show(ProgramStrings.CHOCO_DETECTED_MSG1 + ProgramStrings.CHOCO_DETECTED_MSG2,
                     this.Text,MessageBoxButtons.OK,MessageBoxIcon.Information);
                 //Inform the user that Chocolatey has been detected, and what they can do with it.
-                ChocoDetectLabel.Text = "Chocolatey Detected!";
+                ChocoDetectLabel.Text = ProgramStrings.CHOCO_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Green;
                 //Change the label text, font and colour.
@@ -293,14 +192,13 @@ namespace ChocolateySpreader
             }
             else
             {
-                MessageBox.Show(ProgramStrings.CHOCO_NOT_DETECTED_MSG1 +
-                    ProgramStrings.CHOCO_NOT_DETECTED_MSG2,
+                MessageBox.Show(ProgramStrings.CHOCO_NOT_DETECTED_MSG1 + ProgramStrings.CHOCO_NOT_DETECTED_MSG2,
                     this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ChocoDetectLabel.Text = "Chocolatey Not Detected";
+                ChocoDetectLabel.Text = ProgramStrings.CHOCO_NOT_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Red;
                 ChocoDetectLabel.Location = new Point(360, 9);
-                ChocoExportButton.Visible = false;
+                ChocoExportButton.Enabled = false;
             }
         }
     }
