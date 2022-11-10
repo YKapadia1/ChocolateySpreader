@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocolateySpreader", "ChocolateySpreader.csproj", "{BA5E833F-A0CF-4FE7-B064-4C2177DBC86B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChocolateyBaker", "ChocolateyBaker\ChocolateyBaker.csproj", "{50798111-A511-446D-A07E-E963FE940EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BA5E833F-A0CF-4FE7-B064-4C2177DBC86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA5E833F-A0CF-4FE7-B064-4C2177DBC86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA5E833F-A0CF-4FE7-B064-4C2177DBC86B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50798111-A511-446D-A07E-E963FE940EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50798111-A511-446D-A07E-E963FE940EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50798111-A511-446D-A07E-E963FE940EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50798111-A511-446D-A07E-E963FE940EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
