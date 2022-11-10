@@ -34,19 +34,19 @@ namespace ChocolateySpreader
         public const string ERR_NO_ISO_FOLDER_SPECIFIED = "You have not specified the folder where the Windows ISO files are located.";
         public const string ERR_NO_OUTPUT_SPECIFIED_TITLE = "No output folder";
         public const string ERR_NO_OUTPUT_SPECIFIED = "You have not specified an output folder to extract to.";
-        public const string ERR_ISO_EXTRACT_FATAL = "A fatal error occured when extracting the ISO.";
-        public const string ERR_ISO_EXTRACT_CLI = "A command line error occured when extracting the ISO.";
-        public const string ERR_ISO_EXTRACT_NO_MEMORY = "There is not enough free memory available to extract the ISO.";
-        public const string ERR_ISO_EXTRACT_USER_ABORT = "The user cancelled the operation.";
 
         public const string WARN_SPECIFY_ISO_BEFORE_OUTPUT = "Please specify an ISO before specifiying the output folder.";
         public const string WARN_SPECIFY_ISO_BEFORE_OUTPUT_TITLE = "No ISO file";
-        public const string WARN_OUTPUT_FOLDER_NOT_EMPTY = "There appear to be files/folders inside the output folder you specified. " +
+        public const string WARN_OUTPUT_FOLDER_NOT_EMPTY = "There appear to be files/folders inside the output folder you specified.\n" +
             "Would you like to extract to this folder anyway?";
 
         //Strings related to the status of the extraction process.
         public const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
         public const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
+        public const string ERR_ISO_EXTRACT_FATAL = "A fatal error occured when extracting the ISO.";
+        public const string ERR_ISO_EXTRACT_CLI = "A command line error occured when extracting the ISO.";
+        public const string ERR_ISO_EXTRACT_NO_MEMORY = "There is not enough free memory available to extract the ISO.";
+        public const string ERR_ISO_EXTRACT_USER_ABORT = "The user cancelled the operation.";
 
         //Strings related to locating 7-Zip.
         public const string ERR_INVALID_7Z_EXE = "Invalid 7z.exe supplied!";
@@ -56,8 +56,8 @@ namespace ChocolateySpreader
         public const string ERR_INVALID_ISO_FOLDER_SPECIFIED_TITLE = "Invalid Windows ISO folder";
         public const string ERR_INVALID_ISO_FOLDER_SPECIFIED = "Could not find install.esd/.wim/.swm. Please check that the folder contains valid Windows ISO files.";
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE = "No packages.config file";
-        public const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n " +
-            "If Chocolatey is installed on this machine, type \"choco export\" followed by the location you want the file to be placed.";
+        public const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n" +
+            "If Chocolatey is installed on this machine, press the \"Export Packages\" button at the top.";
         public const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:";
     }
 }
