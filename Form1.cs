@@ -137,7 +137,7 @@ namespace ChocolateySpreader
             Process ExtractISO = new Process(); //Create a new process that we will start.
                                                 //Set the file path to where 7-Zip is usually located.
             ExtractISO.StartInfo.FileName = SevenZipLocation;
-            ExtractISO.StartInfo.Arguments = " -o" + FolderPathBox.Text + " -aoa x " + ISOPathBox.Text; 
+            ExtractISO.StartInfo.Arguments = " -o" + FolderPathBox.Text + " -aoa bsp1 x " + ISOPathBox.Text; 
             //Create the arguments necessary.
             //-o switch specifies output directory, -aoa specifies to replace any existing files without user interaction.
             //x specifies to extract files from a given archive and keep folder structure.
