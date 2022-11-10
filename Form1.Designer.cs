@@ -49,45 +49,40 @@
             // ISOPathLabel
             // 
             this.ISOPathLabel.AutoSize = true;
-            this.ISOPathLabel.Location = new System.Drawing.Point(17, 16);
-            this.ISOPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ISOPathLabel.Location = new System.Drawing.Point(13, 13);
             this.ISOPathLabel.Name = "ISOPathLabel";
-            this.ISOPathLabel.Size = new System.Drawing.Size(62, 16);
+            this.ISOPathLabel.Size = new System.Drawing.Size(53, 13);
             this.ISOPathLabel.TabIndex = 0;
             this.ISOPathLabel.Text = "ISO Path:";
             // 
             // FolderPathLabel
             // 
             this.FolderPathLabel.AutoSize = true;
-            this.FolderPathLabel.Location = new System.Drawing.Point(18, 62);
-            this.FolderPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FolderPathLabel.Location = new System.Drawing.Point(14, 50);
             this.FolderPathLabel.Name = "FolderPathLabel";
-            this.FolderPathLabel.Size = new System.Drawing.Size(90, 16);
+            this.FolderPathLabel.Size = new System.Drawing.Size(74, 13);
             this.FolderPathLabel.TabIndex = 1;
             this.FolderPathLabel.Text = "Output Folder:";
             // 
             // FolderPathBox
             // 
-            this.FolderPathBox.Location = new System.Drawing.Point(22, 82);
-            this.FolderPathBox.Margin = new System.Windows.Forms.Padding(4);
+            this.FolderPathBox.Location = new System.Drawing.Point(16, 67);
             this.FolderPathBox.Name = "FolderPathBox";
-            this.FolderPathBox.Size = new System.Drawing.Size(159, 22);
+            this.FolderPathBox.Size = new System.Drawing.Size(120, 20);
             this.FolderPathBox.TabIndex = 2;
             // 
             // ISOPathBox
             // 
-            this.ISOPathBox.Location = new System.Drawing.Point(20, 36);
-            this.ISOPathBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ISOPathBox.Location = new System.Drawing.Point(15, 29);
             this.ISOPathBox.Name = "ISOPathBox";
-            this.ISOPathBox.Size = new System.Drawing.Size(159, 22);
+            this.ISOPathBox.Size = new System.Drawing.Size(120, 20);
             this.ISOPathBox.TabIndex = 3;
             // 
             // ISOSelectButton
             // 
-            this.ISOSelectButton.Location = new System.Drawing.Point(188, 35);
-            this.ISOSelectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ISOSelectButton.Location = new System.Drawing.Point(141, 28);
             this.ISOSelectButton.Name = "ISOSelectButton";
-            this.ISOSelectButton.Size = new System.Drawing.Size(100, 24);
+            this.ISOSelectButton.Size = new System.Drawing.Size(75, 20);
             this.ISOSelectButton.TabIndex = 4;
             this.ISOSelectButton.Text = "Browse...";
             this.ISOSelectButton.UseVisualStyleBackColor = true;
@@ -95,10 +90,9 @@
             // 
             // OutputFolderSelectButton
             // 
-            this.OutputFolderSelectButton.Location = new System.Drawing.Point(189, 81);
-            this.OutputFolderSelectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.OutputFolderSelectButton.Location = new System.Drawing.Point(142, 66);
             this.OutputFolderSelectButton.Name = "OutputFolderSelectButton";
-            this.OutputFolderSelectButton.Size = new System.Drawing.Size(100, 24);
+            this.OutputFolderSelectButton.Size = new System.Drawing.Size(75, 20);
             this.OutputFolderSelectButton.TabIndex = 5;
             this.OutputFolderSelectButton.Text = "Browse...";
             this.OutputFolderSelectButton.UseVisualStyleBackColor = true;
@@ -106,10 +100,9 @@
             // 
             // ExtractISOButton
             // 
-            this.ExtractISOButton.Location = new System.Drawing.Point(120, 130);
-            this.ExtractISOButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ExtractISOButton.Location = new System.Drawing.Point(90, 106);
             this.ExtractISOButton.Name = "ExtractISOButton";
-            this.ExtractISOButton.Size = new System.Drawing.Size(100, 28);
+            this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
             this.ExtractISOButton.TabIndex = 6;
             this.ExtractISOButton.Text = "Extract ISO";
             this.ExtractISOButton.UseVisualStyleBackColor = true;
@@ -117,30 +110,27 @@
             // 
             // OutputBox
             // 
-            this.OutputBox.Location = new System.Drawing.Point(21, 363);
-            this.OutputBox.Margin = new System.Windows.Forms.Padding(4);
+            this.OutputBox.Location = new System.Drawing.Point(16, 295);
             this.OutputBox.Name = "OutputBox";
             this.OutputBox.ReadOnly = true;
-            this.OutputBox.Size = new System.Drawing.Size(385, 175);
+            this.OutputBox.Size = new System.Drawing.Size(290, 143);
             this.OutputBox.TabIndex = 7;
             this.OutputBox.Text = "";
             // 
             // OutputLabel
             // 
             this.OutputLabel.AutoSize = true;
-            this.OutputLabel.Location = new System.Drawing.Point(17, 343);
-            this.OutputLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.OutputLabel.Location = new System.Drawing.Point(13, 279);
             this.OutputLabel.Name = "OutputLabel";
-            this.OutputLabel.Size = new System.Drawing.Size(45, 16);
+            this.OutputLabel.Size = new System.Drawing.Size(39, 13);
             this.OutputLabel.TabIndex = 8;
             this.OutputLabel.Text = "Output";
             // 
             // ChocoSpreadButton
             // 
-            this.ChocoSpreadButton.Location = new System.Drawing.Point(99, 283);
-            this.ChocoSpreadButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ChocoSpreadButton.Location = new System.Drawing.Point(74, 230);
             this.ChocoSpreadButton.Name = "ChocoSpreadButton";
-            this.ChocoSpreadButton.Size = new System.Drawing.Size(149, 28);
+            this.ChocoSpreadButton.Size = new System.Drawing.Size(112, 23);
             this.ChocoSpreadButton.TabIndex = 15;
             this.ChocoSpreadButton.Text = "Insert Scripts";
             this.ChocoSpreadButton.UseVisualStyleBackColor = true;
@@ -148,20 +138,19 @@
             // 
             // PKGListButton
             // 
-            this.PKGListButton.Location = new System.Drawing.Point(189, 233);
-            this.PKGListButton.Margin = new System.Windows.Forms.Padding(4);
+            this.PKGListButton.Location = new System.Drawing.Point(142, 189);
             this.PKGListButton.Name = "PKGListButton";
-            this.PKGListButton.Size = new System.Drawing.Size(100, 24);
+            this.PKGListButton.Size = new System.Drawing.Size(75, 20);
             this.PKGListButton.TabIndex = 14;
             this.PKGListButton.Text = "Browse...";
             this.PKGListButton.UseVisualStyleBackColor = true;
+            this.PKGListButton.Click += new System.EventHandler(this.PKGListButton_Click);
             // 
             // ISOFolderButton
             // 
-            this.ISOFolderButton.Location = new System.Drawing.Point(187, 187);
-            this.ISOFolderButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ISOFolderButton.Location = new System.Drawing.Point(140, 152);
             this.ISOFolderButton.Name = "ISOFolderButton";
-            this.ISOFolderButton.Size = new System.Drawing.Size(100, 24);
+            this.ISOFolderButton.Size = new System.Drawing.Size(75, 20);
             this.ISOFolderButton.TabIndex = 13;
             this.ISOFolderButton.Text = "Browse...";
             this.ISOFolderButton.UseVisualStyleBackColor = true;
@@ -169,47 +158,43 @@
             // 
             // ISOFolderBox
             // 
-            this.ISOFolderBox.Location = new System.Drawing.Point(20, 188);
-            this.ISOFolderBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ISOFolderBox.Location = new System.Drawing.Point(15, 153);
             this.ISOFolderBox.Name = "ISOFolderBox";
-            this.ISOFolderBox.Size = new System.Drawing.Size(159, 22);
+            this.ISOFolderBox.Size = new System.Drawing.Size(120, 20);
             this.ISOFolderBox.TabIndex = 12;
             // 
             // PKGListBox
             // 
-            this.PKGListBox.Location = new System.Drawing.Point(22, 234);
-            this.PKGListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.PKGListBox.Location = new System.Drawing.Point(16, 190);
             this.PKGListBox.Name = "PKGListBox";
-            this.PKGListBox.Size = new System.Drawing.Size(159, 22);
+            this.PKGListBox.Size = new System.Drawing.Size(120, 20);
             this.PKGListBox.TabIndex = 11;
             // 
             // PKGListLabel
             // 
             this.PKGListLabel.AutoSize = true;
-            this.PKGListLabel.Location = new System.Drawing.Point(18, 214);
-            this.PKGListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PKGListLabel.Location = new System.Drawing.Point(14, 174);
             this.PKGListLabel.Name = "PKGListLabel";
-            this.PKGListLabel.Size = new System.Drawing.Size(95, 16);
+            this.PKGListLabel.Size = new System.Drawing.Size(77, 13);
             this.PKGListLabel.TabIndex = 10;
             this.PKGListLabel.Text = "Packages List:";
             // 
             // ISOFolderLabel
             // 
             this.ISOFolderLabel.AutoSize = true;
-            this.ISOFolderLabel.Location = new System.Drawing.Point(17, 168);
-            this.ISOFolderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ISOFolderLabel.Location = new System.Drawing.Point(13, 136);
             this.ISOFolderLabel.Name = "ISOFolderLabel";
-            this.ISOFolderLabel.Size = new System.Drawing.Size(74, 16);
+            this.ISOFolderLabel.Size = new System.Drawing.Size(60, 13);
             this.ISOFolderLabel.TabIndex = 9;
             this.ISOFolderLabel.Text = "ISO Folder:";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(696, 554);
+            this.ClientSize = new System.Drawing.Size(522, 450);
             this.Controls.Add(this.ChocoSpreadButton);
             this.Controls.Add(this.PKGListButton);
             this.Controls.Add(this.ISOFolderButton);
@@ -228,7 +213,6 @@
             this.Controls.Add(this.ISOPathLabel);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "ChocolateySpreader";
