@@ -1,6 +1,8 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Configuration;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,6 +17,8 @@ namespace ChocolateySpreader
         {
             InitializeComponent();
         }
+
+        Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
 
         void Checkfor7Z(ref string SevenZipLocation)
         {
@@ -261,6 +265,43 @@ namespace ChocolateySpreader
         {
             PKGListBox.Text = CreateOpenFileDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE, 
                 ProgramStrings.ISO_FOLDER_SELECT_WINDOW_DIRECTORY, ProgramStrings.ISO_FOLDER_SELECT_WINDOW_FILTER);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string chocoEnv = "";
+            //When the program starts, get the environment variable for Chocolatey.
+            chocoEnv = Environment.ExpandEnvironmentVariables("%ChocolateyInstall%");
+            //If the environment variable is not found, it will just expand to %ChocolateyInstall%, which won't do anything.
+            //If the environment variable is found, it will expand to where chocolatey is installed.
+            
+            
+            //Use the expanded environment variable and the provided path to determine if Chocolatey is installed.
+            if (File.Exists(chocoEnv + "\\choco.exe"))
+            {
+                MessageBox.Show(ProgramStrings.CHOCO_DETECTED_MSG1 +
+                   ProgramStrings.CHOCO_DETECTED_MSG2,
+                    this.Text,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                //Inform the user that Chocolatey has been detected, and what they can do with it.
+                ChocoDetectLabel.Text = "Chocolatey Detected!";
+                ChocoDetectLabel.Font = ChocoPresence;
+                ChocoDetectLabel.ForeColor = Color.Green;
+                //Change the label text, font and colour.
+                ChocoDetectLabel.Location = new Point(447, 19);
+                //Change the position of the label for better presentation.
+              
+            }
+            else
+            {
+                MessageBox.Show(ProgramStrings.CHOCO_NOT_DETECTED_MSG1 +
+                    ProgramStrings.CHOCO_NOT_DETECTED_MSG2,
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ChocoDetectLabel.Text = "Chocolatey Not Detected";
+                ChocoDetectLabel.Font = ChocoPresence;
+                ChocoDetectLabel.ForeColor = Color.Red;
+                ChocoDetectLabel.Location = new Point(360, 9);
+                ChocoExportButton.Visible = false;
+            }
         }
     }
 }
