@@ -16,7 +16,6 @@ namespace ChocolateySpreader
         public Form1()
         {
             InitializeComponent();
-
             Form1 FuncForm = this;
         }
 
@@ -71,7 +70,6 @@ namespace ChocolateySpreader
             }
             if (SevenZipInstalled)
             {
-
                 Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text,this);
                 //Reenable the buttons after the extraction process has exited.
             }
@@ -138,7 +136,6 @@ namespace ChocolateySpreader
             else
             {
                 Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
-
             }
         }
         private void ChocoSpreadButton_Click(object sender, EventArgs e)
@@ -188,7 +185,6 @@ namespace ChocolateySpreader
                 //Change the label text, font and colour.
                 ChocoDetectLabel.Location = new Point(447, 19);
                 //Change the position of the label for better presentation.
-              
             }
             else
             {
