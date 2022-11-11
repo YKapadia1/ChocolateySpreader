@@ -195,11 +195,11 @@
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
-            this.ChocoDetectLabel.Location = new System.Drawing.Point(360, 9);
+            this.ChocoDetectLabel.Location = new System.Drawing.Point(371, 9);
             this.ChocoDetectLabel.Name = "ChocoDetectLabel";
-            this.ChocoDetectLabel.Size = new System.Drawing.Size(150, 13);
+            this.ChocoDetectLabel.Size = new System.Drawing.Size(130, 13);
             this.ChocoDetectLabel.TabIndex = 17;
-            this.ChocoDetectLabel.Text = "Chocolatey Not Detected";
+            this.ChocoDetectLabel.Text = "Chocolatey Detected!";
             // 
             // ChocoExportButton
             // 
