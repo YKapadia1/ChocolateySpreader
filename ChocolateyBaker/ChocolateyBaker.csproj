@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <BaseOutputPath>D:\UCLan OneDrive\OneDrive - UCLan\Year 3\CO3808 - Final Year Project\ChocolateySpreader\bin</BaseOutputPath>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
 </Project>
