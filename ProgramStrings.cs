@@ -15,11 +15,14 @@ namespace ChocolateySpreader
         public const string ISO_SELECT_WINDOW_DIRECTORY = "C:\\";
         public const string ISO_SELECT_WINDOW_FILTER = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
 
-        public const string ISO_FOLDER_SELECT_WINDOW_TITLE = "Select packages.config";
-        public const string ISO_FOLDER_SELECT_WINDOW_DIRECTORY = "C:\\";
-        public const string ISO_FOLDER_SELECT_WINDOW_FILTER = "Package List (packages.config)|packages.config|All Files(*.*)|*.*";
+        public const string ISO_FOLDER_SELECT_WINDOW_TITLE = "Select folder where ISO files are located:";
+
+        public const string PKG_LIST_SELECT_WINDOW_TITLE = "Select packages.config";
+        public const string PKG_LIST_SELECT_WINDOW_DIRECTORY = "C:\\";
+        public const string PKG_LIST_SELECT_WINDOW_FILTER = "Package List|packages.config|All Files(*.*)|*.*";
 
         public const string OUTPUT_FOLDER_SELECT_TITLE = "Select folder to extract ISO to:";
+        public const string PKG_LIST_OUTPUT_SELECT_TITLE = "Choose location to save package list:";
 
         public const string ZIP_SELECT_WINDOW_TITLE = "Locate 7z.exe";
         public const string ZIP_SELECT_WINDOW_DIRECTORY = "C:\\Program Files";
@@ -67,5 +70,8 @@ namespace ChocolateySpreader
         public const string CHOCO_NOT_DETECTED_MSG1 = "Chocolatey presence not found.\n";
         public const string CHOCO_NOT_DETECTED_MSG2 = "Chocolatey must be installed to export a list of installed packages currently on this machine.";
         public const string CHOCO_NOT_DETECTED_LABEL = "Chocolatey Not Detected";
+
+        public const string INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS = "Package list successfully exported!";
+        public const string ERR_CHOCO_PKG_LIST_EXPORT_FAIL = "An error occured while exporting the package list.";
     }
 }

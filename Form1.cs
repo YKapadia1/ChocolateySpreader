@@ -21,7 +21,8 @@ namespace ChocolateySpreader
 
         Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
         ProgramFunctions Functions = new ProgramFunctions();
-        
+        string chocoEnv = "";
+
         void Checkfor7Z(ref string SevenZipLocation)
         {
             //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
@@ -160,13 +161,12 @@ namespace ChocolateySpreader
 
         private void PKGListButton_Click(object sender, EventArgs e)
         {
-            PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE, 
-                ProgramStrings.ISO_FOLDER_SELECT_WINDOW_DIRECTORY, ProgramStrings.ISO_FOLDER_SELECT_WINDOW_FILTER);
+            PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.PKG_LIST_SELECT_WINDOW_TITLE, 
+                ProgramStrings.PKG_LIST_SELECT_WINDOW_DIRECTORY, ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string chocoEnv = "";
             //When the program starts, get the environment variable for Chocolatey.
             chocoEnv = Environment.ExpandEnvironmentVariables("%ChocolateyInstall%");
             //If the environment variable is not found, it will just expand to %ChocolateyInstall%, which won't do anything.
@@ -183,7 +183,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Green;
                 //Change the label text, font and colour.
-                ChocoDetectLabel.Location = new Point(447, 19);
+                ChocoDetectLabel.Location = new Point(371, 9);
                 //Change the position of the label for better presentation.
             }
             else
@@ -195,6 +195,49 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.ForeColor = Color.Red;
                 ChocoDetectLabel.Location = new Point(360, 9);
                 ChocoExportButton.Enabled = false;
+            }
+        }
+
+        private void ChocoExportButton_Click(object sender, EventArgs e)
+        {
+            string PKGListOutput = null;
+            using (SaveFileDialog SavePKGList = new SaveFileDialog())
+            {
+                SavePKGList.Title = ProgramStrings.PKG_LIST_OUTPUT_SELECT_TITLE;
+                SavePKGList.InitialDirectory = "C:\\";
+                SavePKGList.Filter = ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER;
+                SavePKGList.FilterIndex = 1;
+                SavePKGList.RestoreDirectory = false;
+                SavePKGList.OverwritePrompt = true;
+                if (SavePKGList.ShowDialog() == DialogResult.OK)
+                {
+                    PKGListOutput = SavePKGList.FileName;
+                }
+            }
+            if (PKGListOutput != null)
+            {
+                Process ChocoExportPKGList = new Process();
+                ChocoExportPKGList.StartInfo.FileName = chocoEnv + "\\choco.exe";
+                ChocoExportPKGList.StartInfo.Arguments = "export " + PKGListOutput + " --include-version-numbers";
+                ChocoExportPKGList.StartInfo.CreateNoWindow = true;
+                ChocoExportPKGList.StartInfo.Verb = "runas";
+                ChocoExportPKGList.Start();
+                ChocoExportPKGList.WaitForExit();
+                switch (ChocoExportPKGList.ExitCode) //Check the exit code.
+                {
+                    case 0: //If there was no error...
+                        MessageBox.Show(ProgramStrings.INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS, this.Text,
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    case 1: //If there was an error
+                        MessageBox.Show(ProgramStrings.ERR_CHOCO_PKG_LIST_EXPORT_FAIL, this.Text,
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case -1: //If there was a fatal error...
+                        MessageBox.Show(ProgramStrings.ERR_CHOCO_PKG_LIST_EXPORT_FAIL, this.Text,
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
             }
         }
     }
