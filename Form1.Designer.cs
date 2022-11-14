@@ -46,6 +46,8 @@
             this.ISOFolderLabel = new System.Windows.Forms.Label();
             this.ChocoDetectLabel = new System.Windows.Forms.Label();
             this.ChocoExportButton = new System.Windows.Forms.Button();
+            this.PKGListViewBox = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -112,17 +114,17 @@
             // 
             // OutputBox
             // 
-            this.OutputBox.Location = new System.Drawing.Point(16, 279);
+            this.OutputBox.Location = new System.Drawing.Point(17, 317);
             this.OutputBox.Name = "OutputBox";
             this.OutputBox.ReadOnly = true;
-            this.OutputBox.Size = new System.Drawing.Size(290, 159);
+            this.OutputBox.Size = new System.Drawing.Size(255, 159);
             this.OutputBox.TabIndex = 7;
             this.OutputBox.Text = "";
             // 
             // OutputLabel
             // 
             this.OutputLabel.AutoSize = true;
-            this.OutputLabel.Location = new System.Drawing.Point(12, 263);
+            this.OutputLabel.Location = new System.Drawing.Point(13, 301);
             this.OutputLabel.Name = "OutputLabel";
             this.OutputLabel.Size = new System.Drawing.Size(39, 13);
             this.OutputLabel.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             // ChocoSpreadButton
             // 
-            this.ChocoSpreadButton.Location = new System.Drawing.Point(74, 230);
+            this.ChocoSpreadButton.Location = new System.Drawing.Point(79, 228);
             this.ChocoSpreadButton.Name = "ChocoSpreadButton";
             this.ChocoSpreadButton.Size = new System.Drawing.Size(112, 23);
             this.ChocoSpreadButton.TabIndex = 15;
@@ -142,7 +144,7 @@
             // 
             this.PKGListButton.Location = new System.Drawing.Point(142, 189);
             this.PKGListButton.Name = "PKGListButton";
-            this.PKGListButton.Size = new System.Drawing.Size(75, 20);
+            this.PKGListButton.Size = new System.Drawing.Size(75, 22);
             this.PKGListButton.TabIndex = 14;
             this.PKGListButton.Text = "Browse...";
             this.PKGListButton.UseVisualStyleBackColor = true;
@@ -152,7 +154,7 @@
             // 
             this.ISOFolderButton.Location = new System.Drawing.Point(140, 152);
             this.ISOFolderButton.Name = "ISOFolderButton";
-            this.ISOFolderButton.Size = new System.Drawing.Size(75, 20);
+            this.ISOFolderButton.Size = new System.Drawing.Size(75, 22);
             this.ISOFolderButton.TabIndex = 13;
             this.ISOFolderButton.Text = "Browse...";
             this.ISOFolderButton.UseVisualStyleBackColor = true;
@@ -195,7 +197,7 @@
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
-            this.ChocoDetectLabel.Location = new System.Drawing.Point(371, 9);
+            this.ChocoDetectLabel.Location = new System.Drawing.Point(408, 9);
             this.ChocoDetectLabel.Name = "ChocoDetectLabel";
             this.ChocoDetectLabel.Size = new System.Drawing.Size(130, 13);
             this.ChocoDetectLabel.TabIndex = 17;
@@ -203,7 +205,7 @@
             // 
             // ChocoExportButton
             // 
-            this.ChocoExportButton.Location = new System.Drawing.Point(363, 25);
+            this.ChocoExportButton.Location = new System.Drawing.Point(400, 25);
             this.ChocoExportButton.Name = "ChocoExportButton";
             this.ChocoExportButton.Size = new System.Drawing.Size(147, 23);
             this.ChocoExportButton.TabIndex = 18;
@@ -211,13 +213,33 @@
             this.ChocoExportButton.UseVisualStyleBackColor = true;
             this.ChocoExportButton.Click += new System.EventHandler(this.ChocoExportButton_Click);
             // 
+            // PKGListViewBox
+            // 
+            this.PKGListViewBox.Location = new System.Drawing.Point(292, 317);
+            this.PKGListViewBox.Name = "PKGListViewBox";
+            this.PKGListViewBox.ReadOnly = true;
+            this.PKGListViewBox.Size = new System.Drawing.Size(434, 159);
+            this.PKGListViewBox.TabIndex = 19;
+            this.PKGListViewBox.Text = "No package list loaded.";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(289, 301);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Packages:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(522, 450);
+            this.ClientSize = new System.Drawing.Size(806, 488);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PKGListViewBox);
             this.Controls.Add(this.ChocoExportButton);
             this.Controls.Add(this.ChocoDetectLabel);
             this.Controls.Add(this.ChocoSpreadButton);
@@ -267,6 +289,8 @@
         public System.Windows.Forms.Label ISOFolderLabel;
         public System.Windows.Forms.Label ChocoDetectLabel;
         public System.Windows.Forms.Button ChocoExportButton;
+        public System.Windows.Forms.RichTextBox PKGListViewBox;
+        public System.Windows.Forms.Label label1;
     }
 }
 

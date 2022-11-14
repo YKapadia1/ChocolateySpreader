@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Drawing.Configuration;
 using System.IO;
 using System.Windows.Forms;
-
+using System.Xml;
 
 namespace ChocolateySpreader
 {
@@ -152,6 +152,26 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED, ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+#if DEBUG
+                MessageBox.Show("This will take ChocoBaker from the debug folder.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
+                    ProgramStrings.CHOICE_INSERT_OOBE_LOCATION +
+                    ProgramStrings.CHOICE_INSERT_OOBE_EXPLANATION, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                if (MessageBox.Show(ProgramStrings.CHOICE_INSERT_PKG_FILE + ISOFolderBox.Text +
+                    ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
+                    ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    MessageBox.Show("Insert the files now!", this.Text);
+                }
+#else
+           MessageBox.Show("This will take ChocoBaker from the release folder.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);     
+#endif
+            }
+
         }
 
         private void ISOFolderButton_Click(object sender, EventArgs e)
@@ -163,6 +183,25 @@ namespace ChocolateySpreader
         {
             PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.PKG_LIST_SELECT_WINDOW_TITLE, 
                 ProgramStrings.PKG_LIST_SELECT_WINDOW_DIRECTORY, ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER);
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            PKGListViewBox.Clear();
+            PKGListViewBox.AppendText("Name   Version");
+
+            using (var fileStream = File.OpenText(PKGListBox.Text))
+                using(XmlReader reader = XmlReader.Create(fileStream,settings))
+            {
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+                            PKGListViewBox.AppendText(reader.GetAttribute("id") + "   " + reader.GetAttribute("version")+ "\n");
+                            break;
+                    }
+                }
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -183,7 +222,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Green;
                 //Change the label text, font and colour.
-                ChocoDetectLabel.Location = new Point(371, 9);
+                ChocoDetectLabel.Location = new Point(408, 9);
                 //Change the position of the label for better presentation.
             }
             else
@@ -193,7 +232,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_NOT_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Red;
-                ChocoDetectLabel.Location = new Point(360, 9);
+                ChocoDetectLabel.Location = new Point(400, 9);
                 ChocoExportButton.Enabled = false;
             }
         }
@@ -216,6 +255,7 @@ namespace ChocolateySpreader
             }
             if (PKGListOutput != null)
             {
+                //Create a new process instance that will call Chocolatey and export the list of installed packages with their version numbers.
                 Process ChocoExportPKGList = new Process();
                 ChocoExportPKGList.StartInfo.FileName = chocoEnv + "\\choco.exe";
                 ChocoExportPKGList.StartInfo.Arguments = "export " + PKGListOutput + " --include-version-numbers";
