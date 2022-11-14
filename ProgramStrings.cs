@@ -73,5 +73,15 @@ namespace ChocolateySpreader
 
         public const string INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS = "Package list successfully exported!";
         public const string ERR_CHOCO_PKG_LIST_EXPORT_FAIL = "An error occured while exporting the package list.";
+
+        public const string CHOICE_INSERT_OOBE_OPERATION = "This will insert OOBE.cmd into the following location:\n";
+        public const string CHOICE_INSERT_OOBE_LOCATION = "\\sources\\$OEM\\$$\\Setup\\Scripts\n";
+        public const string CHOICE_INSERT_OOBE_EXPLANATION = "OOBE.cmd will run ChocolateyBaker and install your packages.";
+
+        public const string CHOICE_INSERT_PKG_FILE = "ChocolateyBaker and your specified package list will be inserted into the following location.\n";
+        public const string CHOICE_INSERT_PKG_FILE_LOCATION = "\\setup\n";
+
+        public const string CHOICE_ISO_CREATION_TEXT = "Once the files are inserted into the folder, a new Windows ISO will be created.";
+        public const string CHOICE_INSERT_FILES_QUESTION = "Do you wish to continue?";
     }
 }
