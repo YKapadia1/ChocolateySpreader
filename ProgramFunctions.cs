@@ -114,13 +114,7 @@ namespace ChocolateySpreader
             }
             return null; //Return null if the user pressed Cancel.
         }
-        public void CreateNewISO(string ISOPath)
-        {
-
-        }
     }
-
-    
 
     
 }
