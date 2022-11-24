@@ -200,7 +200,7 @@
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
-            this.ChocoDetectLabel.Location = new System.Drawing.Point(408, 9);
+            this.ChocoDetectLabel.Location = new System.Drawing.Point(417, 9);
             this.ChocoDetectLabel.Name = "ChocoDetectLabel";
             this.ChocoDetectLabel.Size = new System.Drawing.Size(130, 13);
             this.ChocoDetectLabel.TabIndex = 17;
@@ -208,7 +208,7 @@
             // 
             // ChocoExportButton
             // 
-            this.ChocoExportButton.Location = new System.Drawing.Point(400, 25);
+            this.ChocoExportButton.Location = new System.Drawing.Point(520, 25);
             this.ChocoExportButton.Name = "ChocoExportButton";
             this.ChocoExportButton.Size = new System.Drawing.Size(147, 23);
             this.ChocoExportButton.TabIndex = 18;
@@ -261,7 +261,7 @@
             this.materialContextMenuStrip1.Depth = 0;
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(181, 26);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Form1
             // 
@@ -269,7 +269,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(806, 488);
+            this.ClientSize = new System.Drawing.Size(670, 488);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PKGListVersionBox);
             this.Controls.Add(this.label1);

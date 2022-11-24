@@ -262,7 +262,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Green;
                 //Change the label text, font and colour.
-                ChocoDetectLabel.Location = new Point(408, 9);
+                ChocoDetectLabel.Location = new Point(528, 9);
                 //Change the position of the label for better presentation.
             }
             else
@@ -272,7 +272,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_NOT_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Red;
-                ChocoDetectLabel.Location = new Point(400, 9);
+                ChocoDetectLabel.Location = new Point(518, 9);
                 ChocoExportButton.Enabled = false;
             }
         }
