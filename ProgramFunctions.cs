@@ -2,17 +2,28 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace ChocolateySpreader
 {
     public class ProgramFunctions
     {
+        [DllImport("User32.dll")]
+        public extern static int GetScrollPos(IntPtr hWnd, int nBar);
+        
+        
+        [DllImport("User32.dll")]
+        public extern static int SendMessage(IntPtr hWnd, int msg, int wParam, ref Point lParam);
+
         public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
         {
+            //Disable the buttons to prevent accidental user input.
             form1.ExtractISOButton.Enabled = false;
             form1.ISOSelectButton.Enabled = false;
             form1.ISOFolderButton.Enabled = false;
@@ -66,6 +77,7 @@ namespace ChocolateySpreader
                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+            //Reenable the buttons once the operation is finished.
             form1.ExtractISOButton.Enabled = true;
             form1.OutputFolderSelectButton.Enabled = true;
             form1.ISOSelectButton.Enabled = true;

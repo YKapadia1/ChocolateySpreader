@@ -83,5 +83,9 @@ namespace ChocolateySpreader
 
         public const string CHOICE_ISO_CREATION_TEXT = "Once the files are inserted into the folder, a new Windows ISO will be created.";
         public const string CHOICE_INSERT_FILES_QUESTION = "Do you wish to continue?";
+
+
+        //The string related to selecting a file the XML parser could not handle.
+        public const string ERR_PKGLIST_PARSE_ERROR = "An error occured when attempting to parse the package file.";
     }
 }

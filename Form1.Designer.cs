@@ -48,6 +48,9 @@
             this.ChocoExportButton = new System.Windows.Forms.Button();
             this.PKGListViewBox = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PKGListVersionBox = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -218,9 +221,11 @@
             this.PKGListViewBox.Location = new System.Drawing.Point(292, 317);
             this.PKGListViewBox.Name = "PKGListViewBox";
             this.PKGListViewBox.ReadOnly = true;
-            this.PKGListViewBox.Size = new System.Drawing.Size(434, 159);
+            this.PKGListViewBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.PKGListViewBox.Size = new System.Drawing.Size(190, 159);
             this.PKGListViewBox.TabIndex = 19;
             this.PKGListViewBox.Text = "No package list loaded.";
+            this.PKGListViewBox.VScroll += new System.EventHandler(this.PKGListViewBox_VScroll);
             // 
             // label1
             // 
@@ -231,6 +236,33 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Packages:";
             // 
+            // PKGListVersionBox
+            // 
+            this.PKGListVersionBox.Location = new System.Drawing.Point(488, 317);
+            this.PKGListVersionBox.Name = "PKGListVersionBox";
+            this.PKGListVersionBox.ReadOnly = true;
+            this.PKGListVersionBox.Size = new System.Drawing.Size(175, 159);
+            this.PKGListVersionBox.TabIndex = 21;
+            this.PKGListVersionBox.Text = "No package list loaded.";
+            this.PKGListVersionBox.VScroll += new System.EventHandler(this.PKGListVersionBox_VScroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(485, 301);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Version:";
+            // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(181, 26);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +270,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(806, 488);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.PKGListVersionBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PKGListViewBox);
             this.Controls.Add(this.ChocoExportButton);
@@ -291,6 +325,9 @@
         public System.Windows.Forms.Button ChocoExportButton;
         public System.Windows.Forms.RichTextBox PKGListViewBox;
         public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.RichTextBox PKGListVersionBox;
+        public System.Windows.Forms.Label label2;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
     }
 }
 

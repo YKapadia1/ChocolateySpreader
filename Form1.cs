@@ -16,11 +16,21 @@ namespace ChocolateySpreader
         public Form1()
         {
             InitializeComponent();
-            Form1 FuncForm = this;
         }
 
         Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
         ProgramFunctions Functions = new ProgramFunctions();
+        
+        
+        
+        //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
+        //Create constants necessary for program operation.
+        const int WM_USER = 0x400;
+        const int EM_GETSCROLLPOS = WM_USER + 221;
+        const int EM_SETSCROLLPOS = WM_USER + 222;
+        //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
+        
+        
         string chocoEnv = "";
 
         void Checkfor7Z(ref string SevenZipLocation)
@@ -176,32 +186,62 @@ namespace ChocolateySpreader
 
         private void ISOFolderButton_Click(object sender, EventArgs e)
         {
-           ISOFolderBox.Text = Functions.CreateOpenFolderDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE);
+           //Set the text of the text box by opening a open folder dialog and getting the folder path from that.
+            ISOFolderBox.Text = Functions.CreateOpenFolderDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE);
         }
 
         private void PKGListButton_Click(object sender, EventArgs e)
         {
+            //Set the text of the text box by opening a open file dialog and getting the file path from that.
             PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.PKG_LIST_SELECT_WINDOW_TITLE, 
                 ProgramStrings.PKG_LIST_SELECT_WINDOW_DIRECTORY, ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER);
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.IgnoreWhitespace = true;
-            PKGListViewBox.Clear();
-            PKGListViewBox.AppendText("Name   Version");
-
-            using (var fileStream = File.OpenText(PKGListBox.Text))
-                using(XmlReader reader = XmlReader.Create(fileStream,settings))
-            {
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            PKGListViewBox.AppendText(reader.GetAttribute("id") + "   " + reader.GetAttribute("version")+ "\n");
-                            break;
-                    }
-                }
-            }
             
+            //If the text box is not empty...
+            if (PKGListBox.Text != String.Empty)
+            {
+                XmlReaderSettings settings = new XmlReaderSettings(); //Create a new XML parser settings instance.
+                settings.IgnoreWhitespace = true; //Ignore any whitespaces.
+                PKGListViewBox.Clear();
+                PKGListVersionBox.Clear();
+                try //Try to...
+                    {
+                    using (var fileStream = File.OpenText(PKGListBox.Text)) //Open the package file.    
+                    using (XmlReader reader = XmlReader.Create(fileStream, settings))
+                            //Create an XML parser instance.
+                        {
+                            while (reader.Read()) //While the reader is reading through the file...
+                            {
+                                switch (reader.NodeType)
+                                {
+                                    case XmlNodeType.Element: //If the reader has found an element...
+                                        if (reader.GetAttribute("id") != null) //If the value returned is not null...
+                                        {
+                                            PKGListViewBox.AppendText(reader.GetAttribute("id") + "\n"); //Put it into the text box.
+                                        }
+                                        if (reader.GetAttribute("version") != null)
+                                        {
+                                            PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
+                                        }
+                                        //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
+                                        //text boxes to be out of sync when scrolling.
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                catch (ArgumentException) //If the filestream throws an argument exception...
+                {
+                    return; //Handle it and do nothing else. This is usually caused when a user cancels the open file dialog.
+                    //The if statement above shouldn't let the code run to this point, but I added it just in case.
+                }
+                    catch(XmlException) //If the parser instance has thrown an exception...
+                    //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
+                    {
+                        MessageBox.Show(ProgramStrings.ERR_PKGLIST_PARSE_ERROR, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                
+                
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -280,5 +320,26 @@ namespace ChocolateySpreader
                 }
             }
         }
+
+        //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
+
+        private void PKGListViewBox_VScroll(object sender, EventArgs e)
+        {
+            Point pt = new Point();
+
+            ProgramFunctions.SendMessage(PKGListViewBox.Handle, EM_GETSCROLLPOS, 0, ref pt);
+
+            ProgramFunctions.SendMessage(PKGListVersionBox.Handle, EM_SETSCROLLPOS, 0, ref pt);
+        }
+
+        private void PKGListVersionBox_VScroll(object sender, EventArgs e)
+        {
+            Point pt = new Point();
+
+            ProgramFunctions.SendMessage(PKGListVersionBox.Handle, EM_GETSCROLLPOS, 0, ref pt);
+
+            ProgramFunctions.SendMessage(PKGListViewBox.Handle, EM_SETSCROLLPOS, 0, ref pt);
+        }
+        //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
     }
 }
