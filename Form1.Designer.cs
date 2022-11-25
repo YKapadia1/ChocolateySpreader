@@ -200,7 +200,7 @@
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
-            this.ChocoDetectLabel.Location = new System.Drawing.Point(417, 9);
+            this.ChocoDetectLabel.Location = new System.Drawing.Point(528, 9);
             this.ChocoDetectLabel.Name = "ChocoDetectLabel";
             this.ChocoDetectLabel.Size = new System.Drawing.Size(130, 13);
             this.ChocoDetectLabel.TabIndex = 17;

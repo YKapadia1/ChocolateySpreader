@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -14,6 +15,10 @@ namespace ChocolateySpreader
 {
     public class ProgramFunctions
     {
+        const string OOBEFolder = @"\sources\$OEM$\$$\Setup\Scripts";
+        const string ChocoBakerFolder = @"\setup";
+
+
         [DllImport("User32.dll")]
         public extern static int GetScrollPos(IntPtr hWnd, int nBar);
         
@@ -126,7 +131,57 @@ namespace ChocolateySpreader
             }
             return null; //Return null if the user pressed Cancel.
         }
+
+        public void InsertFiles(TextBox Destination, RichTextBox Output)
+        {
+            Output.Clear();
+
+            try
+            {
+                Output.AppendText("Inserting OOBE.cmd into " + Destination.Text + OOBEFolder + "...\n");
+                Directory.CreateDirectory(Destination.Text + OOBEFolder);
+                Directory.CreateDirectory(Destination.Text + ChocoBakerFolder);
+
+
+                DirectoryInfo OOBESrc = new DirectoryInfo("./files");
+                DirectoryInfo OOBEDest = new DirectoryInfo(Destination.Text + OOBEFolder);
+                DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0");
+                DirectoryInfo ChocoBakerDest = new DirectoryInfo(Destination.Text + @"\setup");
+                FileInfo[] OOBEFiles = OOBESrc.GetFiles();
+                FileInfo[] ChocoBakerFiles = ChocoBakerSrc.GetFiles();
+
+
+                foreach (FileInfo file in OOBEFiles)
+                {
+                    file.CopyTo(OOBEDest.FullName + @"\" + file.Name, true);
+                }
+
+                Output.AppendText("Inserting ChocolateyBaker into " + Destination.Text + ChocoBakerFolder + "...");
+
+                foreach (FileInfo file in ChocoBakerFiles)
+                {
+                    file.CopyTo(ChocoBakerDest.FullName + @"\" + file.Name, true);
+                }
+                MessageBox.Show("Operation Successful!");
+            }
+            catch (UnauthorizedAccessException)
+            //This exception shouldn't be thrown as this program is written to always be run as an Administrator.
+            {
+                MessageBox.Show(ProgramStrings.ERR_USER_UNAUTHORISED, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FileNotFoundException fe)
+            {
+                MessageBox.Show(ProgramStrings.ERR_FILE_NOT_FOUND1 + fe.FileName + ProgramStrings.ERR_FILE_NOT_FOUND2, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (PathTooLongException)
+            {
+                MessageBox.Show(ProgramStrings.ERR_PATH_TOO_LONG, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
+
+
+    
 
     
 }

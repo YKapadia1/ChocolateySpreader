@@ -20,9 +20,11 @@ namespace ChocolateySpreader
 
         Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
         ProgramFunctions Functions = new ProgramFunctions();
+
         
-        
-        
+
+
+
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
         //Create constants necessary for program operation.
         const int WM_USER = 0x400;
@@ -134,7 +136,7 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_NO_OUTPUT_SPECIFIED, ProgramStrings.ERR_NO_OUTPUT_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //INFO: This is some janky ass shit right here... Try to make this neater!
+            //INFO: This is some janky shit right here... Try to make this neater!
             else if (Directory.GetFileSystemEntries(FolderPathBox.Text).Length != 0)
             {
                 switch (MessageBox.Show(ProgramStrings.WARN_OUTPUT_FOLDER_NOT_EMPTY, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
@@ -151,6 +153,7 @@ namespace ChocolateySpreader
         }
         private void ChocoSpreadButton_Click(object sender, EventArgs e)
         {
+            //If the user has not specified the folder where the ISO files are located...
             if (ISOFolderBox.Text == "")
             {
                 MessageBox.Show(ProgramStrings.ERR_NO_ISO_FOLDER_SPECIFIED, ProgramStrings.ERR_NO_ISO_FOLDER_SPECIFIED_TITLE,
@@ -164,8 +167,6 @@ namespace ChocolateySpreader
             }
             else
             {
-#if DEBUG
-                MessageBox.Show("This will take ChocoBaker from the debug folder.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
                     ProgramStrings.CHOICE_INSERT_OOBE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_OOBE_EXPLANATION, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -175,11 +176,8 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Insert the files now!", this.Text);
+                    Functions.InsertFiles(ISOFolderBox, OutputBox);
                 }
-#else
-           MessageBox.Show("This will take ChocoBaker from the release folder.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);     
-#endif
             }
 
         }

@@ -9,6 +9,8 @@ namespace ChocolateySpreader
     public class ProgramStrings
     {
         //Strings for the various dialogs presented to the user.
+        public const string WINDOW_TITLE = "ChocolateySpreader";
+        
         public const string DEFAULT_7ZIP_LOCATION = "C:\\Program Files\\7-Zip\\7z.exe";
 
         public const string ISO_SELECT_WINDOW_TITLE = "Select Windows ISO";
@@ -87,5 +89,10 @@ namespace ChocolateySpreader
 
         //The string related to selecting a file the XML parser could not handle.
         public const string ERR_PKGLIST_PARSE_ERROR = "An error occured when attempting to parse the package file.";
+
+        public const string ERR_USER_UNAUTHORISED = "This user account is not authorised to write to the location you specified. Try running this program as an administrator.";
+        public const string ERR_FILE_NOT_FOUND1 = "The file ";
+        public const string ERR_FILE_NOT_FOUND2 = " could not be found. Please check it exists.";
+        public const string ERR_PATH_TOO_LONG = "The path to the ISO files is too long. Try shortening it by moving it out of sub-folders or by reducing the length of the folder name.";
     }
 }
