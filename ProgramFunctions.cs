@@ -18,7 +18,7 @@ namespace ChocolateySpreader
         const string OOBEFolder = @"\sources\$OEM$\$$\Setup\Scripts";
         const string ChocoBakerFolder = @"\setup";
         public const string ISOCreatorEXE = "C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg\\oscdimg.exe";
-        const string ISOCreatorArgs1 = @"-m -o -u2 -udfver102 -bootdata:2#p0,e,b";
+        const string ISOCreatorArgs1 = @"-m -o -u2 -udfver102 -lESD-ISO -bootdata:2#p0,e,b";
         const string ISOCreatorArgs2 = @"\boot\etfsboot.com#pEF,e,b";
         const string ISOCreatorArgs3 = @"\efi\microsoft\boot\efisys.bin ";
 

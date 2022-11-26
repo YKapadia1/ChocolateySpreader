@@ -259,8 +259,12 @@ namespace ChocolateySpreader
                 }
                 catch (ArgumentException) //If the filestream throws an argument exception...
                 {
+                    PKGListViewBox.Text = "No package list loaded.";
+                    PKGListVersionBox.Text = PKGListViewBox.Text;
+                    //Reset the text of the text boxes, as they get cleared before the XML reader tries to open the file.
                     return; //Handle it and do nothing else. This is usually caused when a user cancels the open file dialog.
                     //The if statement above shouldn't let the code run to this point, but I added it just in case.
+                    
                 }
                 catch (XmlException) //If the parser instance has thrown an exception...
                                      //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
