@@ -51,6 +51,9 @@
             this.PKGListVersionBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.FinalISOButton = new System.Windows.Forms.Button();
+            this.FinalISOPath = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -87,9 +90,10 @@
             // 
             // ISOSelectButton
             // 
+            this.ISOSelectButton.CausesValidation = false;
             this.ISOSelectButton.Location = new System.Drawing.Point(141, 28);
             this.ISOSelectButton.Name = "ISOSelectButton";
-            this.ISOSelectButton.Size = new System.Drawing.Size(75, 20);
+            this.ISOSelectButton.Size = new System.Drawing.Size(75, 22);
             this.ISOSelectButton.TabIndex = 4;
             this.ISOSelectButton.Text = "Browse...";
             this.ISOSelectButton.UseVisualStyleBackColor = true;
@@ -99,7 +103,7 @@
             // 
             this.OutputFolderSelectButton.Location = new System.Drawing.Point(142, 66);
             this.OutputFolderSelectButton.Name = "OutputFolderSelectButton";
-            this.OutputFolderSelectButton.Size = new System.Drawing.Size(75, 20);
+            this.OutputFolderSelectButton.Size = new System.Drawing.Size(75, 22);
             this.OutputFolderSelectButton.TabIndex = 5;
             this.OutputFolderSelectButton.Text = "Browse...";
             this.OutputFolderSelectButton.UseVisualStyleBackColor = true;
@@ -135,11 +139,11 @@
             // 
             // ChocoSpreadButton
             // 
-            this.ChocoSpreadButton.Location = new System.Drawing.Point(79, 228);
+            this.ChocoSpreadButton.Location = new System.Drawing.Point(17, 255);
             this.ChocoSpreadButton.Name = "ChocoSpreadButton";
-            this.ChocoSpreadButton.Size = new System.Drawing.Size(112, 23);
+            this.ChocoSpreadButton.Size = new System.Drawing.Size(206, 23);
             this.ChocoSpreadButton.TabIndex = 15;
-            this.ChocoSpreadButton.Text = "Insert Scripts";
+            this.ChocoSpreadButton.Text = "Insert Scripts and Create ISO";
             this.ChocoSpreadButton.UseVisualStyleBackColor = true;
             this.ChocoSpreadButton.Click += new System.EventHandler(this.ChocoSpreadButton_Click);
             // 
@@ -167,7 +171,7 @@
             // 
             this.ISOFolderBox.Location = new System.Drawing.Point(15, 153);
             this.ISOFolderBox.Name = "ISOFolderBox";
-            this.ISOFolderBox.Size = new System.Drawing.Size(120, 20);
+            this.ISOFolderBox.Size = new System.Drawing.Size(121, 20);
             this.ISOFolderBox.TabIndex = 12;
             // 
             // PKGListBox
@@ -263,6 +267,32 @@
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
             this.materialContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // FinalISOButton
+            // 
+            this.FinalISOButton.Location = new System.Drawing.Point(140, 226);
+            this.FinalISOButton.Name = "FinalISOButton";
+            this.FinalISOButton.Size = new System.Drawing.Size(75, 22);
+            this.FinalISOButton.TabIndex = 25;
+            this.FinalISOButton.Text = "Browse...";
+            this.FinalISOButton.UseVisualStyleBackColor = true;
+            this.FinalISOButton.Click += new System.EventHandler(this.FinalISOButton_Click);
+            // 
+            // FinalISOPath
+            // 
+            this.FinalISOPath.Location = new System.Drawing.Point(16, 227);
+            this.FinalISOPath.Name = "FinalISOPath";
+            this.FinalISOPath.Size = new System.Drawing.Size(120, 20);
+            this.FinalISOPath.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 211);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Output ISO:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +300,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(670, 488);
+            this.Controls.Add(this.FinalISOButton);
+            this.Controls.Add(this.FinalISOPath);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PKGListVersionBox);
             this.Controls.Add(this.label1);
@@ -328,6 +361,9 @@
         public System.Windows.Forms.RichTextBox PKGListVersionBox;
         public System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
+        public System.Windows.Forms.Button FinalISOButton;
+        public System.Windows.Forms.TextBox FinalISOPath;
+        public System.Windows.Forms.Label label3;
     }
 }
 
