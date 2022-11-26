@@ -10,7 +10,6 @@ namespace ChocolateyBaker
         {
             string InstallDrive = null;
             Console.WriteLine("Installing Chocolatey and your packages now. You should see the icons appear on your desktop...\n");
-            //While no Windows install drive has been found...
             while (InstallDrive == null)
             {
                 DriveInfo[] currentDrives = DriveInfo.GetDrives();
@@ -24,8 +23,6 @@ namespace ChocolateyBaker
                     }
 
                 }
-                //If the drive used to install Windows could not be found...
-                //Unlikely this would happen, as this program would not run if that was the case.
                 if (InstallDrive == null)
                 {
                     Console.WriteLine("Could not find the drive used to install Windows!");
@@ -52,11 +49,6 @@ namespace ChocolateyBaker
             instPackages.StartInfo.UseShellExecute = false;
             instPackages.Start();
             instPackages.WaitForExit();
-
-            Console.WriteLine("Done. Chocolatey and your specified packages should now be installed.");
-            Console.WriteLine("To update your packages, run the command 'choco upgrade all' in an elevated command prompt.");
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
     }
 
