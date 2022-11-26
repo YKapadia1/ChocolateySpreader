@@ -12,7 +12,7 @@ namespace ChocolateySpreader
 
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace ChocolateySpreader
         Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
         ProgramFunctions Functions = new ProgramFunctions();
 
-        
+
 
 
 
@@ -31,8 +31,8 @@ namespace ChocolateySpreader
         const int EM_GETSCROLLPOS = WM_USER + 221;
         const int EM_SETSCROLLPOS = WM_USER + 222;
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
-        
-        
+
+
         string chocoEnv = "";
 
         void Checkfor7Z(ref string SevenZipLocation)
@@ -50,7 +50,7 @@ namespace ChocolateySpreader
                     {
                         //Set the title, filter, and directory of the open file dialog.
                         ZipSelectDialog.Title = ProgramStrings.ZIP_SELECT_WINDOW_TITLE;
-                        ZipSelectDialog.InitialDirectory = ProgramStrings.ZIP_SELECT_WINDOW_DIRECTORY; 
+                        ZipSelectDialog.InitialDirectory = ProgramStrings.ZIP_SELECT_WINDOW_DIRECTORY;
                         ZipSelectDialog.Filter = ProgramStrings.ZIP_SELECT_WINDOW_FILTER;
                         ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
                         ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
@@ -83,7 +83,7 @@ namespace ChocolateySpreader
             }
             if (SevenZipInstalled)
             {
-                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text,this);
+                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
                 //Reenable the buttons after the extraction process has exited.
             }
         }
@@ -92,17 +92,17 @@ namespace ChocolateySpreader
         {
             if (e.Data != null)
             {
-                BeginInvoke(new MethodInvoker(() => {OutputBox.AppendText(e.Data + Environment.NewLine); }));
+                BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine); }));
                 //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
                 //If this was done synchronously, the UI would freeze.
             }
         }
 
         //When the user has clicked the button to browse for an ISO file...
-        private void ISOSelectButton_Click(object sender, EventArgs e) 
+        private void ISOSelectButton_Click(object sender, EventArgs e)
         {
             ISOPathBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.ISO_SELECT_WINDOW_TITLE, ProgramStrings.ISO_SELECT_WINDOW_DIRECTORY
-                ,ProgramStrings.ISO_SELECT_WINDOW_FILTER);
+                , ProgramStrings.ISO_SELECT_WINDOW_FILTER);
         }
 
         //When the user has clicked the button to browse for an ISO file...
@@ -165,6 +165,17 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED, ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //If the user has not specified a location to save the final ISO...
+            else if (FinalISOPath.Text == "")
+            {
+                MessageBox.Show(ProgramStrings.ERR_NO_OUTPUT_ISO_PATH_SPECIFIED, this.Text,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!File.Exists(ProgramFunctions.ISOCreatorEXE))
+            {
+                MessageBox.Show(ProgramStrings.ERR_ISO_CREATOR_NOT_FOUND, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Process.Start("https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install");
+            }
             else
             {
                 MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
@@ -176,24 +187,43 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    Functions.InsertFiles(ISOFolderBox, OutputBox);
+                    ChocoExportButton.Enabled = false;
+                    ChocoSpreadButton.Enabled = false;
+                    ISOSelectButton.Enabled = false;
+                    ISOFolderButton.Enabled = false;
+                    FinalISOButton.Enabled = false;
+                    OutputFolderSelectButton.Enabled = false;
+                    ExtractISOButton.Enabled = false;
+                    PKGListButton.Enabled = false;
+
+
+                    Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputBox, this);
+
+
+                    ChocoExportButton.Enabled = true;
+                    ChocoSpreadButton.Enabled = true;
+                    ISOSelectButton.Enabled = true;
+                    ISOFolderButton.Enabled = true;
+                    FinalISOButton.Enabled = true;
+                    OutputFolderSelectButton.Enabled = true;
+                    ExtractISOButton.Enabled = true;
+                    PKGListButton.Enabled = true;
                 }
             }
-
         }
 
         private void ISOFolderButton_Click(object sender, EventArgs e)
         {
-           //Set the text of the text box by opening a open folder dialog and getting the folder path from that.
+            //Set the text of the text box by opening a open folder dialog and getting the folder path from that.
             ISOFolderBox.Text = Functions.CreateOpenFolderDialog(ProgramStrings.ISO_FOLDER_SELECT_TITLE);
         }
 
         private void PKGListButton_Click(object sender, EventArgs e)
         {
             //Set the text of the text box by opening a open file dialog and getting the file path from that.
-            PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.PKG_LIST_SELECT_WINDOW_TITLE, 
+            PKGListBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.PKG_LIST_SELECT_WINDOW_TITLE,
                 ProgramStrings.PKG_LIST_SELECT_WINDOW_DIRECTORY, ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER);
-            
+
             //If the text box is not empty...
             if (PKGListBox.Text != String.Empty)
             {
@@ -202,43 +232,43 @@ namespace ChocolateySpreader
                 PKGListViewBox.Clear();
                 PKGListVersionBox.Clear();
                 try //Try to...
-                    {
+                {
                     using (var fileStream = File.OpenText(PKGListBox.Text)) //Open the package file.    
                     using (XmlReader reader = XmlReader.Create(fileStream, settings))
-                            //Create an XML parser instance.
+                    //Create an XML parser instance.
+                    {
+                        while (reader.Read()) //While the reader is reading through the file...
                         {
-                            while (reader.Read()) //While the reader is reading through the file...
+                            switch (reader.NodeType)
                             {
-                                switch (reader.NodeType)
-                                {
-                                    case XmlNodeType.Element: //If the reader has found an element...
-                                        if (reader.GetAttribute("id") != null) //If the value returned is not null...
-                                        {
-                                            PKGListViewBox.AppendText(reader.GetAttribute("id") + "\n"); //Put it into the text box.
-                                        }
-                                        if (reader.GetAttribute("version") != null)
-                                        {
-                                            PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
-                                        }
-                                        //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
-                                        //text boxes to be out of sync when scrolling.
-                                        break;
-                                }
+                                case XmlNodeType.Element: //If the reader has found an element...
+                                    if (reader.GetAttribute("id") != null) //If the value returned is not null...
+                                    {
+                                        PKGListViewBox.AppendText(reader.GetAttribute("id") + "\n"); //Put it into the text box.
+                                    }
+                                    if (reader.GetAttribute("version") != null)
+                                    {
+                                        PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
+                                    }
+                                    //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
+                                    //text boxes to be out of sync when scrolling.
+                                    break;
                             }
                         }
                     }
+                }
                 catch (ArgumentException) //If the filestream throws an argument exception...
                 {
                     return; //Handle it and do nothing else. This is usually caused when a user cancels the open file dialog.
                     //The if statement above shouldn't let the code run to this point, but I added it just in case.
                 }
-                    catch(XmlException) //If the parser instance has thrown an exception...
-                    //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
-                    {
-                        MessageBox.Show(ProgramStrings.ERR_PKGLIST_PARSE_ERROR, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                
-                
+                catch (XmlException) //If the parser instance has thrown an exception...
+                                     //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
+                {
+                    MessageBox.Show(ProgramStrings.ERR_PKGLIST_PARSE_ERROR, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
         }
 
@@ -248,13 +278,13 @@ namespace ChocolateySpreader
             chocoEnv = Environment.ExpandEnvironmentVariables("%ChocolateyInstall%");
             //If the environment variable is not found, it will just expand to %ChocolateyInstall%, which won't do anything.
             //If the environment variable is found, it will expand to where chocolatey is installed.
-            
-            
+
+
             //Use the expanded environment variable and the provided path to determine if Chocolatey is installed.
             if (File.Exists(chocoEnv + "\\choco.exe"))
             {
                 MessageBox.Show(ProgramStrings.CHOCO_DETECTED_MSG1 + ProgramStrings.CHOCO_DETECTED_MSG2,
-                    this.Text,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Inform the user that Chocolatey has been detected, and what they can do with it.
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
@@ -275,17 +305,19 @@ namespace ChocolateySpreader
             }
         }
 
+        //When the user clicks the button to export their package list...
         private void ChocoExportButton_Click(object sender, EventArgs e)
         {
             string PKGListOutput = null;
+            //Create a save file dialog.
             using (SaveFileDialog SavePKGList = new SaveFileDialog())
             {
-                SavePKGList.Title = ProgramStrings.PKG_LIST_OUTPUT_SELECT_TITLE;
-                SavePKGList.InitialDirectory = "C:\\";
-                SavePKGList.Filter = ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER;
-                SavePKGList.FilterIndex = 1;
-                SavePKGList.RestoreDirectory = false;
-                SavePKGList.OverwritePrompt = true;
+                SavePKGList.Title = ProgramStrings.PKG_LIST_OUTPUT_SELECT_TITLE; //Set the title of the dialog.
+                SavePKGList.InitialDirectory = "C:\\"; //Set the initial directory.
+                SavePKGList.Filter = ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER; //Set the filters
+                SavePKGList.FilterIndex = 1; //Set the default filter.
+                SavePKGList.RestoreDirectory = false; //Do not restore the directory the user was on if this dialog was opened before.
+                SavePKGList.OverwritePrompt = true; //Ask the user if they want to overwrite the file they selected.
                 if (SavePKGList.ShowDialog() == DialogResult.OK)
                 {
                     PKGListOutput = SavePKGList.FileName;
@@ -307,7 +339,7 @@ namespace ChocolateySpreader
                         MessageBox.Show(ProgramStrings.INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS, this.Text,
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
-                    case 1: //If there was an error
+                    case 1: //If there was an error...
                         MessageBox.Show(ProgramStrings.ERR_CHOCO_PKG_LIST_EXPORT_FAIL, this.Text,
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
@@ -339,5 +371,23 @@ namespace ChocolateySpreader
             ProgramFunctions.SendMessage(PKGListViewBox.Handle, EM_SETSCROLLPOS, 0, ref pt);
         }
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
+
+
+        private void FinalISOButton_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog SaveFinalISO = new SaveFileDialog())
+            {
+                SaveFinalISO.Title = ProgramStrings.OUTPUT_ISO_SELECT_TITLE;
+                SaveFinalISO.InitialDirectory = "C:\\";
+                SaveFinalISO.Filter = ProgramStrings.ISO_SELECT_WINDOW_FILTER;
+                SaveFinalISO.FilterIndex = 1;
+                SaveFinalISO.RestoreDirectory = false;
+                SaveFinalISO.OverwritePrompt = true;
+                if (SaveFinalISO.ShowDialog() == DialogResult.OK)
+                {
+                    FinalISOPath.Text = SaveFinalISO.FileName;
+                }
+            }
+        }
     }
 }
