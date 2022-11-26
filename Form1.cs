@@ -165,17 +165,6 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED, ProgramStrings.ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //If the user has not specified a location to save the final ISO...
-            else if (FinalISOPath.Text == "")
-            {
-                MessageBox.Show(ProgramStrings.ERR_NO_OUTPUT_ISO_PATH_SPECIFIED, this.Text,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (!File.Exists(ProgramFunctions.ISOCreatorEXE))
-            {
-                MessageBox.Show(ProgramStrings.ERR_ISO_CREATOR_NOT_FOUND, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Process.Start("https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install");
-            }
             else
             {
                 MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
@@ -187,29 +176,10 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    ChocoExportButton.Enabled = false;
-                    ChocoSpreadButton.Enabled = false;
-                    ISOSelectButton.Enabled = false;
-                    ISOFolderButton.Enabled = false;
-                    FinalISOButton.Enabled = false;
-                    OutputFolderSelectButton.Enabled = false;
-                    ExtractISOButton.Enabled = false;
-                    PKGListButton.Enabled = false;
-                    
-                    
-                    Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputBox, this);
-                    
-                    
-                    ChocoExportButton.Enabled = true;
-                    ChocoSpreadButton.Enabled = true;
-                    ISOSelectButton.Enabled = true;
-                    ISOFolderButton.Enabled = true;
-                    FinalISOButton.Enabled = true;
-                    OutputFolderSelectButton.Enabled = true;
-                    ExtractISOButton.Enabled = true;
-                    PKGListButton.Enabled = true;
+                    Functions.InsertFiles(ISOFolderBox, OutputBox);
                 }
             }
+
         }
 
         private void ISOFolderButton_Click(object sender, EventArgs e)
@@ -305,19 +275,17 @@ namespace ChocolateySpreader
             }
         }
 
-        //When the user clicks the button to export their package list...
         private void ChocoExportButton_Click(object sender, EventArgs e)
         {
             string PKGListOutput = null;
-            //Create a save file dialog.
             using (SaveFileDialog SavePKGList = new SaveFileDialog())
             {
-                SavePKGList.Title = ProgramStrings.PKG_LIST_OUTPUT_SELECT_TITLE; //Set the title of the dialog.
-                SavePKGList.InitialDirectory = "C:\\"; //Set the initial directory.
-                SavePKGList.Filter = ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER; //Set the filters
-                SavePKGList.FilterIndex = 1; //Set the default filter.
-                SavePKGList.RestoreDirectory = false; //Do not restore the directory the user was on if this dialog was opened before.
-                SavePKGList.OverwritePrompt = true; //Ask the user if they want to overwrite the file they selected.
+                SavePKGList.Title = ProgramStrings.PKG_LIST_OUTPUT_SELECT_TITLE;
+                SavePKGList.InitialDirectory = "C:\\";
+                SavePKGList.Filter = ProgramStrings.PKG_LIST_SELECT_WINDOW_FILTER;
+                SavePKGList.FilterIndex = 1;
+                SavePKGList.RestoreDirectory = false;
+                SavePKGList.OverwritePrompt = true;
                 if (SavePKGList.ShowDialog() == DialogResult.OK)
                 {
                     PKGListOutput = SavePKGList.FileName;
@@ -339,7 +307,7 @@ namespace ChocolateySpreader
                         MessageBox.Show(ProgramStrings.INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS, this.Text,
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
-                    case 1: //If there was an error...
+                    case 1: //If there was an error
                         MessageBox.Show(ProgramStrings.ERR_CHOCO_PKG_LIST_EXPORT_FAIL, this.Text,
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
@@ -371,23 +339,5 @@ namespace ChocolateySpreader
             ProgramFunctions.SendMessage(PKGListViewBox.Handle, EM_SETSCROLLPOS, 0, ref pt);
         }
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
-        
-        
-        private void FinalISOButton_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog SaveFinalISO = new SaveFileDialog())
-            {
-                SaveFinalISO.Title = ProgramStrings.OUTPUT_ISO_SELECT_TITLE;
-                SaveFinalISO.InitialDirectory = "C:\\";
-                SaveFinalISO.Filter = ProgramStrings.ISO_SELECT_WINDOW_FILTER;
-                SaveFinalISO.FilterIndex = 1;
-                SaveFinalISO.RestoreDirectory = false;
-                SaveFinalISO.OverwritePrompt = true;
-                if (SaveFinalISO.ShowDialog() == DialogResult.OK)
-                {
-                    FinalISOPath.Text = SaveFinalISO.FileName;
-                }
-            }
-        }
     }
 }

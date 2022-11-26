@@ -23,8 +23,6 @@ namespace ChocolateySpreader
         public const string PKG_LIST_SELECT_WINDOW_DIRECTORY = "C:\\";
         public const string PKG_LIST_SELECT_WINDOW_FILTER = "Package List|packages.config|All Files(*.*)|*.*";
 
-        public const string OUTPUT_ISO_SELECT_TITLE = "Choose where to save the final ISO:";
-
         public const string OUTPUT_FOLDER_SELECT_TITLE = "Select folder to extract ISO to:";
         public const string PKG_LIST_OUTPUT_SELECT_TITLE = "Choose location to save package list:";
 
@@ -64,12 +62,9 @@ namespace ChocolateySpreader
         public const string ERR_INVALID_ISO_FOLDER_SPECIFIED = "Could not find install.esd/.wim/.swm. Please check that the folder contains valid Windows ISO files.";
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE = "No packages.config file";
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n" +
-            "If Chocolatey is installed on this machine, press the \"Export Package List\" button at the top.";
-        public const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:"; 
-        public const string ERR_NO_OUTPUT_ISO_PATH_SPECIFIED = "You have not specified a location to save the finalised ISO.";
+            "If Chocolatey is installed on this machine, press the \"Export Packages\" button at the top.";
+        public const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:";
 
-        
-        //Strings related to Chocolatey presence detection.
         public const string CHOCO_DETECTED_MSG1 = "Chocolatey presence found!\n";
         public const string CHOCO_DETECTED_MSG2 = "You will be able to easily export a list of installed packages currently on this machine.";
         public const string CHOCO_DETECTED_LABEL = "Chocolatey Detected!";
@@ -78,13 +73,9 @@ namespace ChocolateySpreader
         public const string CHOCO_NOT_DETECTED_MSG2 = "Chocolatey must be installed to export a list of installed packages currently on this machine.";
         public const string CHOCO_NOT_DETECTED_LABEL = "Chocolatey Not Detected";
 
-        
-        //Strings related to exporting the package list.
         public const string INFO_CHOCO_PKG_LIST_EXPORT_SUCCESS = "Package list successfully exported!";
         public const string ERR_CHOCO_PKG_LIST_EXPORT_FAIL = "An error occured while exporting the package list.";
 
-        
-        //Strings informing the user what is going to happen when they press the "Insert Scripts" button.
         public const string CHOICE_INSERT_OOBE_OPERATION = "This will insert OOBE.cmd into the following location:\n";
         public const string CHOICE_INSERT_OOBE_LOCATION = "\\sources\\$OEM\\$$\\Setup\\Scripts\n";
         public const string CHOICE_INSERT_OOBE_EXPLANATION = "OOBE.cmd will run ChocolateyBaker and install your packages.";
@@ -99,17 +90,9 @@ namespace ChocolateySpreader
         //The string related to selecting a file the XML parser could not handle.
         public const string ERR_PKGLIST_PARSE_ERROR = "An error occured when attempting to parse the package file.";
 
-
-        //Strings related to creating the ISO.
-        public const string ERR_ISO_CREATOR_NOT_FOUND = "The Windows Assessment and Deployment Kit does not appear to be installed. You can install it from here: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install";
         public const string ERR_USER_UNAUTHORISED = "This user account is not authorised to write to the location you specified. Try running this program as an administrator.";
         public const string ERR_FILE_NOT_FOUND1 = "The file ";
         public const string ERR_FILE_NOT_FOUND2 = " could not be found. Please check it exists.";
         public const string ERR_PATH_TOO_LONG = "The path to the ISO files is too long. Try shortening it by moving it out of sub-folders or by reducing the length of the folder name.";
-        public const string ERR_ISO_CREATION_ERROR = "An error occured when creating the ISO. Please check the Output window for details.";
-        public const string INFO_ISO_CREATION_SUCCESS1 = "Your ISO was successfully created! Please note the following things however:\n";
-        public const string INFO_ISO_CREATION_SUCCESS2 = "An active Internet connection is required throughout the setup process.\n";
-        public const string INFO_ISO_CREATION_SUCCESS3 = "The auto-install scripts will not work on a Ventoy enabled USB drive. You will need to extract the setup folder from this ISO onto the root of the USB drive.";
-
     }
 }
