@@ -34,21 +34,17 @@ namespace ChocolateyBaker
             instChoco.StartInfo.FileName = "powershell.exe";
             instChoco.StartInfo.Arguments = "-NoProfile -Inputformat None -ExecutionPolicy Bypass -Command " +
             "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; " +
-            @"iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))";
+            @"iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); choco install " + InstallDrive + @"\setup\packages.config -y --ignore-checksums";
+            //WARNING: Ignoring package checksums can be potentially dangerous! Make sure you know what you are doing!
+            instChoco.StartInfo.RedirectStandardOutput = false;
             instChoco.StartInfo.CreateNoWindow = false;
             instChoco.StartInfo.UseShellExecute = false;
             instChoco.Start();
             instChoco.WaitForExit();
-
-
-            Process instPackages = new Process();
-            instPackages.StartInfo.FileName = "powershell.exe";
-            instPackages.StartInfo.Arguments = "choco install " + InstallDrive + @"setup\packages.config -y";
-            instPackages.StartInfo.RedirectStandardOutput = false;
-            instPackages.StartInfo.CreateNoWindow = false;
-            instPackages.StartInfo.UseShellExecute = false;
-            instPackages.Start();
-            instPackages.WaitForExit();
+            Console.WriteLine("Done. Chocolatey and your packages should now be installed.");
+            Console.WriteLine("To update your packages, run 'choco upgrade all' from an elevated command prompt.");
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 
