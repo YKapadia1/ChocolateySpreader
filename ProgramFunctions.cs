@@ -17,6 +17,10 @@ namespace ChocolateySpreader
     {
         const string OOBEFolder = @"\sources\$OEM$\$$\Setup\Scripts";
         const string ChocoBakerFolder = @"\setup";
+        public const string ISOCreatorEXE = "C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg\\oscdimg.exe";
+        const string ISOCreatorArgs1 = @"-m -o -u2 -udfver102 -bootdata:2#p0,e,b";
+        const string ISOCreatorArgs2 = @"\boot\etfsboot.com#pEF,e,b";
+        const string ISOCreatorArgs3 = @"\efi\microsoft\boot\efisys.bin ";
 
 
         [DllImport("User32.dll")]
@@ -132,37 +136,50 @@ namespace ChocolateySpreader
             return null; //Return null if the user pressed Cancel.
         }
 
-        public void InsertFiles(TextBox Destination, RichTextBox Output)
+        public void InsertFiles(TextBox Destination, string ISOFolderLocation, string OutputISOLocation, string PKGListLocation, RichTextBox Output, Form1 form1)
         {
+            
             Output.Clear();
-
             try
             {
                 Output.AppendText("Inserting OOBE.cmd into " + Destination.Text + OOBEFolder + "...\n");
+
+                //Create the directories necessary. If they already exist, this will do nothing.
                 Directory.CreateDirectory(Destination.Text + OOBEFolder);
                 Directory.CreateDirectory(Destination.Text + ChocoBakerFolder);
 
 
+                
+                //Create new DirectoryInfo objects for the source files and the destinations.
                 DirectoryInfo OOBESrc = new DirectoryInfo("./files");
-                DirectoryInfo OOBEDest = new DirectoryInfo(Destination.Text + OOBEFolder);
                 DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0");
+                DirectoryInfo OOBEDest = new DirectoryInfo(Destination.Text + OOBEFolder);
                 DirectoryInfo ChocoBakerDest = new DirectoryInfo(Destination.Text + @"\setup");
+
+
+
+                //Create new FileInfo objects based on the files in the directories the DirectoryInfo objects hold.
                 FileInfo[] OOBEFiles = OOBESrc.GetFiles();
                 FileInfo[] ChocoBakerFiles = ChocoBakerSrc.GetFiles();
-
 
                 foreach (FileInfo file in OOBEFiles)
                 {
                     file.CopyTo(OOBEDest.FullName + @"\" + file.Name, true);
+                    Output.AppendText("Inserted OOBE.cmd\n");
                 }
 
-                Output.AppendText("Inserting ChocolateyBaker into " + Destination.Text + ChocoBakerFolder + "...");
+                Output.AppendText("Inserting ChocolateyBaker into " + Destination.Text + ChocoBakerFolder + "...\n");
 
                 foreach (FileInfo file in ChocoBakerFiles)
                 {
                     file.CopyTo(ChocoBakerDest.FullName + @"\" + file.Name, true);
+                    Output.AppendText("Inserted " + file.Name + "\n");
                 }
-                MessageBox.Show("Operation Successful!");
+                if (File.Exists(Destination.Text + @"\setup\packages.config"))
+                {
+                    File.Delete(Destination.Text + @"\setup\packages.config");
+                }
+                File.Copy(PKGListLocation, Destination.Text + @"\setup\packages.config");
             }
             catch (UnauthorizedAccessException)
             //This exception shouldn't be thrown as this program is written to always be run as an Administrator.
@@ -170,13 +187,44 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_USER_UNAUTHORISED, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (FileNotFoundException fe)
+            //If a file to be copied could not be found...
             {
                 MessageBox.Show(ProgramStrings.ERR_FILE_NOT_FOUND1 + fe.FileName + ProgramStrings.ERR_FILE_NOT_FOUND2, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (PathTooLongException)
+            //If the path to the ISO's or the files to be copied are too long...
             {
                 MessageBox.Show(ProgramStrings.ERR_PATH_TOO_LONG, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            if (File.Exists(ISOCreatorEXE))
+            {
+                Process CreateISO = new Process();
+                CreateISO.StartInfo.FileName = ISOCreatorEXE;
+                CreateISO.StartInfo.Arguments = ISOCreatorArgs1 + ISOFolderLocation + ISOCreatorArgs2 +
+                    ISOFolderLocation + ISOCreatorArgs3 + ISOFolderLocation + " " + OutputISOLocation;
+                form1.OutputBox.AppendText(CreateISO.StartInfo.Arguments);
+                CreateISO.StartInfo.CreateNoWindow = true;
+                CreateISO.StartInfo.RedirectStandardOutput = true;
+                CreateISO.StartInfo.RedirectStandardError = true;
+                CreateISO.StartInfo.UseShellExecute = false;
+
+                CreateISO.OutputDataReceived += new DataReceivedEventHandler(form1.OutputLog);
+                CreateISO.Start();
+                CreateISO.BeginOutputReadLine();
+                while (!CreateISO.HasExited)
+                {
+                    Application.DoEvents();
+                }
+                if (CreateISO.ExitCode == 1)
+                {
+                    MessageBox.Show(ProgramStrings.ERR_ISO_CREATION_ERROR, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(ProgramStrings.INFO_ISO_CREATION_SUCCESS1 + ProgramStrings.INFO_ISO_CREATION_SUCCESS2 + ProgramStrings.INFO_ISO_CREATION_SUCCESS3, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            
         }
     }
 
