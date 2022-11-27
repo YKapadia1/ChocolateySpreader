@@ -252,7 +252,7 @@ namespace ChocolateySpreader
                 //Inform the user that Chocolatey has been detected, and what they can do with it.
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
-                ChocoDetectLabel.ForeColor = Color.Green;
+                ChocoDetectLabel.ForeColor = Color.LimeGreen;
                 //Change the label text, font and colour.
                 ChocoDetectLabel.Location = new Point(535, 9);
                 //Change the position of the label for better presentation.

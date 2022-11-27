@@ -247,7 +247,7 @@ namespace ChocolateySpreader
             // 
             this.ChocoDetectLabel.AutoSize = true;
             this.ChocoDetectLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChocoDetectLabel.ForeColor = System.Drawing.Color.Green;
+            this.ChocoDetectLabel.ForeColor = System.Drawing.Color.LimeGreen;
             this.ChocoDetectLabel.Location = new System.Drawing.Point(533, 9);
             this.ChocoDetectLabel.Name = "ChocoDetectLabel";
             this.ChocoDetectLabel.Size = new System.Drawing.Size(118, 13);
