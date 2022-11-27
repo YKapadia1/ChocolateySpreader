@@ -18,7 +18,10 @@ namespace ChocolateySpreader
             InitializeComponent();
         }
 
+        //Create a new Font object to be used for detecting Chocolatey presence.
         Font ChocoPresence = new Font("Segoe UI", 8.25f, style: FontStyle.Bold);
+        
+        //Initialise a new functions object so the methods can be called.
         ProgramFunctions Functions = new ProgramFunctions();
 
 
@@ -33,9 +36,10 @@ namespace ChocolateySpreader
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
 
 
-        string chocoEnv = "";
+        string chocoEnv = ""; //Initialise to null so it can be used later.
 
 
+        //An asynchronous method to update a control without freezing the UI.
         public void OutputLog(object sendingProcess, DataReceivedEventArgs e)
         {
             if (e.Data != null)
@@ -49,6 +53,7 @@ namespace ChocolateySpreader
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e)
         {
+            //Create an open file dialog, and set the text of the text box to the selected file's path.
             ISOPathBox.Text = Functions.CreateOpenFileDialog(ProgramStrings.ISO_SELECT_WINDOW_TITLE, ProgramStrings.ISO_SELECT_WINDOW_DIRECTORY
                 , ProgramStrings.ISO_SELECT_WINDOW_FILTER);
         }
@@ -77,6 +82,7 @@ namespace ChocolateySpreader
             {
                 MessageBox.Show(ProgramStrings.ERR_NO_ISO_SPECIFIED, ProgramStrings.ERR_NO_ISO_SPECIFIED_TITLE,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Show a message box to the user.
             }
             //If the user has not selected an output folder...
             else if (FolderPathBox.Text == "")
@@ -84,7 +90,7 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_NO_OUTPUT_SPECIFIED, ProgramStrings.ERR_NO_OUTPUT_SPECIFIED_TITLE,
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //INFO: This is some janky shit right here... Try to make this neater!
+            //If the folder the user has selected already contains files...
             else if (Directory.GetFileSystemEntries(FolderPathBox.Text).Length != 0)
             {
                 switch (MessageBox.Show(ProgramStrings.WARN_OUTPUT_FOLDER_NOT_EMPTY, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
@@ -99,6 +105,8 @@ namespace ChocolateySpreader
                 Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
             }
         }
+        
+        //If the user has clicked the button to insert the scripts and create the ISO...
         private void ChocoSpreadButton_Click(object sender, EventArgs e)
         {
             //If the user has not specified the folder where the ISO files are located...
@@ -123,7 +131,9 @@ namespace ChocolateySpreader
             {
                 MessageBox.Show(ProgramStrings.ERR_ISO_CREATOR_NOT_FOUND, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Process.Start("https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install");
+                //Open the following website. This will open the user's default browser.
             }
+            //Final check: If the user has supplied a folder path containing valid Windows ISO files...
             else if (File.Exists(ISOFolderBox.Text + @"\sources\install.wim") || File.Exists(ISOFolderBox.Text + @"\sources\install.esd") || File.Exists(ISOFolderBox.Text + @"\sources\install.swm"))
             {
                 MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
@@ -155,6 +165,7 @@ namespace ChocolateySpreader
                 }
             }
             else
+            //If not...
             {
                 MessageBox.Show(ProgramStrings.ERR_INVALID_ISO_FOLDER_SPECIFIED, ProgramStrings.ERR_INVALID_ISO_FOLDER_SPECIFIED_TITLE,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -280,10 +291,10 @@ namespace ChocolateySpreader
             {
                 //Create a new process instance that will call Chocolatey and export the list of installed packages with their version numbers.
                 Process ChocoExportPKGList = new Process();
-                ChocoExportPKGList.StartInfo.FileName = chocoEnv + "\\choco.exe";
-                ChocoExportPKGList.StartInfo.Arguments = "export " + PKGListOutput + " --include-version-numbers";
-                ChocoExportPKGList.StartInfo.CreateNoWindow = true;
-                ChocoExportPKGList.StartInfo.Verb = "runas";
+                ChocoExportPKGList.StartInfo.FileName = chocoEnv + "\\choco.exe"; //The path to the Chocolatey executable.
+                ChocoExportPKGList.StartInfo.Arguments = "export " + PKGListOutput + " --include-version-numbers"; //The arguments required.
+                ChocoExportPKGList.StartInfo.CreateNoWindow = true; //INFO: This can probably be removed, since a new window gets created anyway...
+                ChocoExportPKGList.StartInfo.Verb = "runas"; //Run the process as an administrator.
                 ChocoExportPKGList.Start();
                 ChocoExportPKGList.WaitForExit();
                 switch (ChocoExportPKGList.ExitCode) //Check the exit code.
@@ -305,7 +316,6 @@ namespace ChocolateySpreader
         }
 
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
-
         private void PKGListViewBox_VScroll(object sender, EventArgs e)
         {
             Point pt = new Point();
@@ -326,6 +336,7 @@ namespace ChocolateySpreader
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
 
 
+        
         private void FinalISOButton_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog SaveFinalISO = new SaveFileDialog())
@@ -343,9 +354,13 @@ namespace ChocolateySpreader
             }
         }
 
+        //If the text in the output window has been changed...
         private void OutputBox_TextChanged(object sender, EventArgs e)
         {
-            OutputBox.SelectionStart = OutputBox.Text.Length - 1;
+            if (OutputBox.Text.Length != 0)
+            {
+                OutputBox.SelectionStart = OutputBox.Text.Length - 1; //Go to the end of the output box.
+            }
         }
     }
 }

@@ -15,14 +15,25 @@ namespace ChocolateySpreader
 {
     public class ProgramFunctions
     {
+
+        //Various constants related to file locations or program arguments.
+        public const string ISOCreatorEXE = "C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg\\oscdimg.exe";
         const string OOBEFolder = @"\sources\$OEM$\$$\Setup\Scripts";
         const string ChocoBakerFolder = @"\setup";
-        public const string ISOCreatorEXE = "C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg\\oscdimg.exe";
+        
+        //The arguments to be passed to the ISO creator.
+        //-m ignores the maximum file size an image can have, -o enables MD5 hashing.
+        //-u2 creates the image using the UDF file system, -udfver102 uses UDF version 1.02.
+        //-l specifies the volume label. In this case, it will be "ESD-ISO".
+        //-bootdata specifies the number of boot entries on the ISO. In this case, 2 are provided.
+        //One for non-UEFI systems, and one for UEFI enabled systems.
         const string ISOCreatorArgs1 = @"-m -o -u2 -udfver102 -lESD-ISO -bootdata:2#p0,e,b";
         const string ISOCreatorArgs2 = @"\boot\etfsboot.com#pEF,e,b";
         const string ISOCreatorArgs3 = @"\efi\microsoft\boot\efisys.bin ";
 
 
+        
+        //Two DLL imports to enable the synchronisation of scrolling between multiple controls.
         [DllImport("User32.dll")]
         public extern static int GetScrollPos(IntPtr hWnd, int nBar);
 
@@ -30,10 +41,12 @@ namespace ChocolateySpreader
         [DllImport("User32.dll")]
         public extern static int SendMessage(IntPtr hWnd, int msg, int wParam, ref Point lParam);
 
+        
+        
         public void Checkfor7Z(ref string SevenZipLocation, Form1 form1)
         {
             //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
-            //This will fail if the user has specified an alternate install location!
+            //This will fail if the user has installed 7-Zip in an alternate location.
             bool SevenZipInstalled = File.Exists(ProgramStrings.DEFAULT_7ZIP_LOCATION);
             //If 7-Zip is not installed in the usual location...
             if (!SevenZipInstalled)
@@ -89,13 +102,20 @@ namespace ChocolateySpreader
         public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
         {
             //Disable the buttons to prevent accidental user input.
+            //For every control in the form...
             foreach (Control control in form1.Controls)
             {
+                //If the control is a button...
                 if (control is Button)
                 {
+                    //Flip its enabled state.
+                    //If enabled, it will be flipped to disabled, and vice versa.
                     control.Enabled = !control.Enabled;
                 }
             }
+           
+            
+            
             Process ExtractISO = new Process(); //Create a new process that we will start.
                                                 //Set the file path to where 7-Zip has been located.
             ExtractISO.StartInfo.FileName = SevenZipLocation;
@@ -196,10 +216,12 @@ namespace ChocolateySpreader
 
         public void InsertFiles(TextBox Destination, string ISOFolderLocation, string OutputISOLocation, string PKGListLocation, RichTextBox Output, Form1 form1)
         {
-
+            //Clear any text inside the output window.
             Output.Clear();
-            try
+            
+            try //Try to...
             {
+                //Insert text into the output window letting the user know what the program is doing.
                 Output.AppendText("Inserting OOBE.cmd into " + Destination.Text + OOBEFolder + "...\n");
 
                 //Create the directories necessary. If they already exist, this will do nothing.
@@ -220,10 +242,13 @@ namespace ChocolateySpreader
                 FileInfo[] OOBEFiles = OOBESrc.GetFiles();
                 FileInfo[] ChocoBakerFiles = ChocoBakerSrc.GetFiles();
 
+                //For every file to be copied in the FileInfo object...
                 foreach (FileInfo file in OOBEFiles)
                 {
+                    //Insert the file into the directory.
                     file.CopyTo(OOBEDest.FullName + @"\" + file.Name, true);
-                    Output.AppendText("Inserted OOBE.cmd\n");
+                    //Insert text into the output window of what file was copied.
+                    Output.AppendText(file + "\n");
                 }
 
                 Output.AppendText("Inserting ChocolateyBaker into " + Destination.Text + ChocoBakerFolder + "...\n");
@@ -233,13 +258,18 @@ namespace ChocolateySpreader
                     file.CopyTo(ChocoBakerDest.FullName + @"\" + file.Name, true);
                     Output.AppendText("Inserted " + file.Name + "\n");
                 }
+                
+                //If a packages.config file already exists...
                 if (File.Exists(Destination.Text + @"\setup\packages.config"))
                 {
+                    //Delete it. This does not have any user warning, consider adding one.
                     File.Delete(Destination.Text + @"\setup\packages.config");
                 }
+                //Copy the packages.config file.
                 File.Copy(PKGListLocation, Destination.Text + @"\setup\packages.config");
             }
             catch (UnauthorizedAccessException)
+            //If the user does not have sufficient privileges...
             //This exception shouldn't be thrown as this program is written to always be run as an Administrator.
             {
                 MessageBox.Show(ProgramStrings.ERR_USER_UNAUTHORISED, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -254,6 +284,7 @@ namespace ChocolateySpreader
             {
                 MessageBox.Show(ProgramStrings.ERR_PATH_TOO_LONG, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //If oscdimg.exe exists...
             if (File.Exists(ISOCreatorEXE))
             {
                 Process CreateISO = new Process();

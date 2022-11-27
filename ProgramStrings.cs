@@ -8,10 +8,10 @@ namespace ChocolateySpreader
 {
     public class ProgramStrings
     {
-        //Strings for the various dialogs presented to the user.
+        //Strings for the various file dialogs presented to the user.
         public const string WINDOW_TITLE = "ChocolateySpreader";
 
-        public const string DEFAULT_7ZIP_LOCATION = "C:\\Program Files\\7-Zip\\7z.exe";
+        public const string DEFAULT_7ZIP_LOCATION = @"C:\Program Files\7-Zip\7z.exe";
 
         public const string ISO_SELECT_WINDOW_TITLE = "Select Windows ISO";
         public const string ISO_SELECT_WINDOW_DIRECTORY = "C:\\";
@@ -29,7 +29,7 @@ namespace ChocolateySpreader
         public const string PKG_LIST_OUTPUT_SELECT_TITLE = "Choose location to save package list:";
 
         public const string ZIP_SELECT_WINDOW_TITLE = "Locate 7z.exe";
-        public const string ZIP_SELECT_WINDOW_DIRECTORY = "C:\\Program Files";
+        public const string ZIP_SELECT_WINDOW_DIRECTORY = @"C:\Program Files";
         public const string ZIP_SELECT_WINDOW_FILTER = "7-Zip|7z.exe";
 
 
@@ -92,7 +92,7 @@ namespace ChocolateySpreader
         public const string CHOICE_INSERT_PKG_FILE = "ChocolateyBaker and your specified package list will be inserted into the following location.\n";
         public const string CHOICE_INSERT_PKG_FILE_LOCATION = "\\setup\n";
 
-        public const string CHOICE_ISO_CREATION_TEXT = "Once the files are inserted into the folder, a new Windows ISO will be created.";
+        public const string CHOICE_ISO_CREATION_TEXT = "Once the files are inserted into the folders, a new Windows ISO will be created.";
         public const string CHOICE_INSERT_FILES_QUESTION = "Do you wish to continue?";
 
 
