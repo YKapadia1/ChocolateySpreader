@@ -18,7 +18,7 @@ namespace ChocolateySpreader
             InitializeComponent();
         }
 
-        Font ChocoPresence = new Font("Microsoft Sans Serif", 8.25f, style: FontStyle.Bold);
+        Font ChocoPresence = new Font("Segoe UI", 8.25f, style: FontStyle.Bold);
         ProgramFunctions Functions = new ProgramFunctions();
 
 
@@ -176,7 +176,7 @@ namespace ChocolateySpreader
                 MessageBox.Show(ProgramStrings.ERR_ISO_CREATOR_NOT_FOUND, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Process.Start("https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install");
             }
-            else
+            else if (File.Exists(ISOFolderBox.Text + @"\sources\install.wim") || File.Exists(ISOFolderBox.Text + @"\sources\install.esd") || File.Exists(ISOFolderBox.Text + @"\sources\install.swm"))
             {
                 MessageBox.Show(ProgramStrings.CHOICE_INSERT_OOBE_OPERATION + ISOFolderBox.Text +
                     ProgramStrings.CHOICE_INSERT_OOBE_LOCATION +
@@ -209,6 +209,11 @@ namespace ChocolateySpreader
                     ExtractISOButton.Enabled = true;
                     PKGListButton.Enabled = true;
                 }
+            }
+            else
+            {
+                MessageBox.Show(ProgramStrings.ERR_INVALID_ISO_FOLDER_SPECIFIED, ProgramStrings.ERR_INVALID_ISO_FOLDER_SPECIFIED_TITLE,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -294,7 +299,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Green;
                 //Change the label text, font and colour.
-                ChocoDetectLabel.Location = new Point(528, 9);
+                ChocoDetectLabel.Location = new Point(535, 9);
                 //Change the position of the label for better presentation.
             }
             else
@@ -304,7 +309,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_NOT_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Red;
-                ChocoDetectLabel.Location = new Point(518, 9);
+                ChocoDetectLabel.Location = new Point(525, 9);
                 ChocoExportButton.Enabled = false;
             }
         }
@@ -392,6 +397,11 @@ namespace ChocolateySpreader
                     FinalISOPath.Text = SaveFinalISO.FileName;
                 }
             }
+        }
+
+        private void OutputBox_TextChanged(object sender, EventArgs e)
+        {
+            OutputBox.SelectionStart = OutputBox.Text.Length - 1;
         }
     }
 }
