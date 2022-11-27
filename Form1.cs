@@ -35,58 +35,6 @@ namespace ChocolateySpreader
 
         string chocoEnv = "";
 
-        void Checkfor7Z(ref string SevenZipLocation)
-        {
-            //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
-            //This will fail if the user has specified an alternate install location!
-            bool SevenZipInstalled = File.Exists(ProgramStrings.DEFAULT_7ZIP_LOCATION);
-            //If 7-Zip is not installed in the usual location...
-            if (!SevenZipInstalled)
-            {
-                bool LookingFor7Z = true; //Set a boolean to indicate that the user is looking for 7-Zip.
-                while (LookingFor7Z)
-                {
-                    using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
-                    {
-                        //Set the title, filter, and directory of the open file dialog.
-                        ZipSelectDialog.Title = ProgramStrings.ZIP_SELECT_WINDOW_TITLE;
-                        ZipSelectDialog.InitialDirectory = ProgramStrings.ZIP_SELECT_WINDOW_DIRECTORY;
-                        ZipSelectDialog.Filter = ProgramStrings.ZIP_SELECT_WINDOW_FILTER;
-                        ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
-                        ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
-                                                             //Show the dialog, and if the user has supplied a file...
-                        if (ZipSelectDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            //Check that the user has supplied a valid 7z.exe.
-                            if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
-                            {
-                                MessageBox.Show(ProgramStrings.ERR_INVALID_7Z_EXE, this.Text,
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                SevenZipLocation = ZipSelectDialog.FileName;
-                                LookingFor7Z = false;
-                                SevenZipInstalled = true;
-                            }
-                        }
-                        else //If the user has not supplied a file...
-                        {
-                            LookingFor7Z = false; //Assume they do not have 7-Zip installed.
-                            MessageBox.Show(ProgramStrings.INFO_7Z_INSTALL_TIP, this.Text,
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //Open the 7-Zip website.
-                            Process.Start("https://www.7-zip.org/");
-                        }
-                    }
-                }
-            }
-            if (SevenZipInstalled)
-            {
-                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
-                //Reenable the buttons after the extraction process has exited.
-            }
-        }
 
         public void OutputLog(object sendingProcess, DataReceivedEventArgs e)
         {
@@ -142,7 +90,7 @@ namespace ChocolateySpreader
                 switch (MessageBox.Show(ProgramStrings.WARN_OUTPUT_FOLDER_NOT_EMPTY, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
-                        Checkfor7Z(ref SevenZipLocation);
+                        Functions.Checkfor7Z(ref SevenZipLocation, this);
                         break;
                 }
             }
@@ -187,27 +135,23 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    ChocoExportButton.Enabled = false;
-                    ChocoSpreadButton.Enabled = false;
-                    ISOSelectButton.Enabled = false;
-                    ISOFolderButton.Enabled = false;
-                    FinalISOButton.Enabled = false;
-                    OutputFolderSelectButton.Enabled = false;
-                    ExtractISOButton.Enabled = false;
-                    PKGListButton.Enabled = false;
+                    foreach (Control control in this.Controls)
+                    {
+                        if (control is Button)
+                        {
+                            control.Enabled = !control.Enabled;
+                        }
+                    }
 
 
                     Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputBox, this);
-
-
-                    ChocoExportButton.Enabled = true;
-                    ChocoSpreadButton.Enabled = true;
-                    ISOSelectButton.Enabled = true;
-                    ISOFolderButton.Enabled = true;
-                    FinalISOButton.Enabled = true;
-                    OutputFolderSelectButton.Enabled = true;
-                    ExtractISOButton.Enabled = true;
-                    PKGListButton.Enabled = true;
+                    foreach (Control control in this.Controls)
+                    {
+                        if (control is Button)
+                        {
+                            control.Enabled = !control.Enabled;
+                        }
+                    }
                 }
             }
             else

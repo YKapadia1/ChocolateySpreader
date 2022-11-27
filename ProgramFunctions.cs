@@ -30,15 +30,72 @@ namespace ChocolateySpreader
         [DllImport("User32.dll")]
         public extern static int SendMessage(IntPtr hWnd, int msg, int wParam, ref Point lParam);
 
+        public void Checkfor7Z(ref string SevenZipLocation, Form1 form1)
+        {
+            //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
+            //This will fail if the user has specified an alternate install location!
+            bool SevenZipInstalled = File.Exists(ProgramStrings.DEFAULT_7ZIP_LOCATION);
+            //If 7-Zip is not installed in the usual location...
+            if (!SevenZipInstalled)
+            {
+                bool LookingFor7Z = true; //Set a boolean to indicate that the user is looking for 7-Zip.
+                while (LookingFor7Z)
+                {
+                    using (OpenFileDialog ZipSelectDialog = new OpenFileDialog())
+                    {
+                        //Set the title, filter, and directory of the open file dialog.
+                        ZipSelectDialog.Title = ProgramStrings.ZIP_SELECT_WINDOW_TITLE;
+                        ZipSelectDialog.InitialDirectory = ProgramStrings.ZIP_SELECT_WINDOW_DIRECTORY;
+                        ZipSelectDialog.Filter = ProgramStrings.ZIP_SELECT_WINDOW_FILTER;
+                        ZipSelectDialog.FilterIndex = 1; //Set the selected filter to be 1.
+                        ZipSelectDialog.Multiselect = false; //Disallow the user from selecting multiple files.
+                                                             //Show the dialog, and if the user has supplied a file...
+                        if (ZipSelectDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            //Check that the user has supplied a valid 7z.exe.
+                            if (ZipSelectDialog.FileName.EndsWith("7z.exe") != true)
+                            {
+                                MessageBox.Show(ProgramStrings.ERR_INVALID_7Z_EXE, form1.Text,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                SevenZipLocation = ZipSelectDialog.FileName;
+                                LookingFor7Z = false;
+                                SevenZipInstalled = true;
+                            }
+                        }
+                        else //If the user has not supplied a file...
+                        {
+                            LookingFor7Z = false; //Assume they do not have 7-Zip installed.
+                            MessageBox.Show(ProgramStrings.INFO_7Z_INSTALL_TIP, form1.Text,
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //Open the 7-Zip website.
+                            Process.Start("https://www.7-zip.org/");
+                        }
+                    }
+                }
+            }
+            if (SevenZipInstalled)
+            {
+                ExtractISO(SevenZipLocation, form1.FolderPathBox.Text, form1.ISOPathBox.Text, form1);
+                //Extract the ISO and re-enable the buttons after the extraction process has exited.
+            }
+        }
+
+
+
+
         public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
         {
             //Disable the buttons to prevent accidental user input.
-            form1.ExtractISOButton.Enabled = false;
-            form1.ISOSelectButton.Enabled = false;
-            form1.ISOFolderButton.Enabled = false;
-            form1.PKGListButton.Enabled = false;
-            form1.ChocoSpreadButton.Enabled = false;
-            form1.OutputFolderSelectButton.Enabled = false;
+            foreach (Control control in form1.Controls)
+            {
+                if (control is Button)
+                {
+                    control.Enabled = !control.Enabled;
+                }
+            }
             Process ExtractISO = new Process(); //Create a new process that we will start.
                                                 //Set the file path to where 7-Zip has been located.
             ExtractISO.StartInfo.FileName = SevenZipLocation;
@@ -87,12 +144,13 @@ namespace ChocolateySpreader
                     break;
             }
             //Reenable the buttons once the operation is finished.
-            form1.ExtractISOButton.Enabled = true;
-            form1.OutputFolderSelectButton.Enabled = true;
-            form1.ISOSelectButton.Enabled = true;
-            form1.PKGListButton.Enabled = true;
-            form1.ChocoSpreadButton.Enabled = true;
-            form1.ISOFolderButton.Enabled = true;
+            foreach (Control control in form1.Controls)
+            {
+                if (control is Button)
+                {
+                    control.Enabled = !control.Enabled;
+                }
+            }
         }
 
         public string CreateOpenFileDialog(string name, string directory, string filter)
