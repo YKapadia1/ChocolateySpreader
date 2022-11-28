@@ -217,6 +217,10 @@ namespace ChocolateySpreader
                                     {
                                         PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
                                     }
+                                    else if (reader.GetAttribute("id") != null && reader.GetAttribute("version") == null)
+                                    {
+                                        PKGListVersionBox.AppendText("Latest\n");  
+                                    }
                                     //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
                                     //text boxes to be out of sync when scrolling.
                                     break;
