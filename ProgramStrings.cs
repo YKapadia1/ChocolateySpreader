@@ -15,7 +15,7 @@ namespace ChocolateySpreader
 
         public const string ISO_SELECT_WINDOW_TITLE = "Select Windows ISO";
         public const string ISO_SELECT_WINDOW_DIRECTORY = "C:\\";
-        public const string ISO_SELECT_WINDOW_FILTER = "ISO Files (*.iso)|*.iso|All Files (*.*)|*.*";
+        public const string ISO_SELECT_WINDOW_FILTER = "ISO Files|*.iso|All Files|*.*";
 
         public const string ISO_FOLDER_SELECT_WINDOW_TITLE = "Select folder where ISO files are located:";
 

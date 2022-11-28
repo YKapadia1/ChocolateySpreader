@@ -44,9 +44,16 @@ namespace ChocolateySpreader
         {
             if (e.Data != null)
             {
-                BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine); }));
-                //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
-                //If this was done synchronously, the UI would freeze.
+                if (e.Data.Contains("%"))
+                {
+                    BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data); }));
+                }
+                else
+                {
+                    BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine); }));
+                    //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
+                    //If this was done synchronously, the UI would freeze.
+                }
             }
         }
 
@@ -102,7 +109,7 @@ namespace ChocolateySpreader
             }
             else
             {
-                Functions.ExtractISO(SevenZipLocation, FolderPathBox.Text, ISOPathBox.Text, this);
+                Functions.Checkfor7Z(ref SevenZipLocation, this);
             }
         }
         

@@ -96,9 +96,6 @@ namespace ChocolateySpreader
             }
         }
 
-
-
-
         public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
         {
             //Disable the buttons to prevent accidental user input.
