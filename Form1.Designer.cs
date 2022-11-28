@@ -271,11 +271,11 @@ namespace ChocolateySpreader
             this.PKGListViewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PKGListViewBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PKGListViewBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.PKGListViewBox.Location = new System.Drawing.Point(292, 317);
+            this.PKGListViewBox.Location = new System.Drawing.Point(278, 317);
             this.PKGListViewBox.Name = "PKGListViewBox";
             this.PKGListViewBox.ReadOnly = true;
             this.PKGListViewBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.PKGListViewBox.Size = new System.Drawing.Size(190, 159);
+            this.PKGListViewBox.Size = new System.Drawing.Size(215, 159);
             this.PKGListViewBox.TabIndex = 19;
             this.PKGListViewBox.Text = "No package list loaded.";
             this.PKGListViewBox.VScroll += new System.EventHandler(this.PKGListViewBox_VScroll);
@@ -285,7 +285,7 @@ namespace ChocolateySpreader
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(289, 301);
+            this.label1.Location = new System.Drawing.Point(275, 301);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 20;
@@ -300,7 +300,7 @@ namespace ChocolateySpreader
             this.PKGListVersionBox.Location = new System.Drawing.Point(488, 317);
             this.PKGListVersionBox.Name = "PKGListVersionBox";
             this.PKGListVersionBox.ReadOnly = true;
-            this.PKGListVersionBox.Size = new System.Drawing.Size(175, 159);
+            this.PKGListVersionBox.Size = new System.Drawing.Size(189, 159);
             this.PKGListVersionBox.TabIndex = 21;
             this.PKGListVersionBox.Text = "No package list loaded.";
             this.PKGListVersionBox.VScroll += new System.EventHandler(this.PKGListVersionBox_VScroll);
