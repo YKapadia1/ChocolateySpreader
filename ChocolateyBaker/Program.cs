@@ -34,8 +34,7 @@ namespace ChocolateyBaker
             instChoco.StartInfo.FileName = "powershell.exe";
             instChoco.StartInfo.Arguments = "-NoProfile -Inputformat None -ExecutionPolicy Bypass -Command " +
             "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; " +
-            @"iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); choco install " + InstallDrive + @"\setup\packages.config -y --ignore-checksums";
-            //WARNING: Ignoring package checksums can be potentially dangerous! Make sure you know what you are doing!
+            @"iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); choco install " + InstallDrive + @"\setup\packages.config -y";
             instChoco.StartInfo.RedirectStandardOutput = false;
             instChoco.StartInfo.CreateNoWindow = false;
             instChoco.StartInfo.UseShellExecute = false;
