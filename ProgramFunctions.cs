@@ -27,7 +27,7 @@ namespace ChocolateySpreader
         //-l specifies the volume label. In this case, it will be "ESD-ISO".
         //-bootdata specifies the number of boot entries on the ISO. In this case, 2 are provided.
         //One for non-UEFI systems, and one for UEFI enabled systems.
-        const string ISOCreatorArgs1 = @"-m -o -u2 -udfver102 -lESD-ISO -bootdata:2#p0,e,b";
+        const string ISOCreatorArgs1 = @"-w4 -m -o -u2 -udfver102 -lESD-ISO -bootdata:2#p0,e,b";
         const string ISOCreatorArgs2 = @"\boot\etfsboot.com#pEF,e,b";
         const string ISOCreatorArgs3 = @"\efi\microsoft\boot\efisys.bin ";
 
