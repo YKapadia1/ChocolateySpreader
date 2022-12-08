@@ -10,11 +10,17 @@ namespace ChocolateyBaker
         {
             string InstallDrive = null;
             Console.WriteLine("Installing Chocolatey and your packages now. You should see the icons appear on your desktop...\n");
+            
+            //While the drive containing the package list has not been found...
             while (InstallDrive == null)
             {
+                //Get the list of currently connected drives.
                 DriveInfo[] currentDrives = DriveInfo.GetDrives();
+                //For every drive connected...
+                //NOTE: This could be simplified using a foreach loop...
                 for (int i = 0; i < currentDrives.Length; i++)
                 {
+                    //If the drive contains the Windows install image in the appropriate folder...
                     if (File.Exists(currentDrives[i].Name + "\\sources\\install.esd")
                         || File.Exists(currentDrives[i].Name + "\\sources\\install.wim")
                         || File.Exists(currentDrives[i].Name + "\\sources\\install.swm"))
