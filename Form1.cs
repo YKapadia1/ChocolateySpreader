@@ -44,9 +44,10 @@ namespace ChocolateySpreader
         {
             if (e.Data != null)
             {
-                if (e.Data.Contains("%"))
+                if (e.Data.Contains("%")) //If the text contains a percent sign...
                 {
                     BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data); }));
+                    //Send it to the rich text box but do not create a new line.
                 }
                 else
                 {
@@ -152,11 +153,13 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_PKG_FILE_LOCATION +
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
+                    //For every control in the form...
                     foreach (Control control in this.Controls)
                     {
-                        if (control is Button)
+                        if (control is Button) //If the control is a button...
                         {
                             control.Enabled = !control.Enabled;
+                            //Flip its enabled state.
                         }
                     }
 
@@ -327,6 +330,8 @@ namespace ChocolateySpreader
         }
 
         //Code found at https://stackoverflow.com/questions/1827323/synchronize-scroll-position-of-two-richtextboxes
+        //When one text box has been scrolled...
+        //Update both text boxes' scroll position.
         private void PKGListViewBox_VScroll(object sender, EventArgs e)
         {
             Point pt = new Point();
