@@ -99,7 +99,7 @@ namespace ChocolateySpreader
 
         //The string related to selecting a package list.
         public const string ERR_PKGLIST_PARSE_ERROR = "An error occured when attempting to parse the package file.";
-        public const string ERR_PKGLIST_CONTAINS_WHITESPACE = "The package list contains a whitespace as its first character.Please remove it.";
+        public const string ERR_PKGLIST_CONTAINS_WHITESPACE = "The package list contains a whitespace as its first character. Please remove it.";
         public const string ERR_PKGLIST_INVALID = "Please specify a valid .config file.";
 
 
