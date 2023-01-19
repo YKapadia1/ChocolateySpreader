@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,8 +97,10 @@ namespace ChocolateySpreader
         public const string CHOICE_INSERT_FILES_QUESTION = "Do you wish to continue?";
 
 
-        //The string related to selecting a file the XML parser could not handle.
+        //The string related to selecting a package list.
         public const string ERR_PKGLIST_PARSE_ERROR = "An error occured when attempting to parse the package file.";
+        public const string ERR_PKGLIST_CONTAINS_WHITESPACE = "The package list contains a whitespace as its first character.Please remove it.";
+        public const string ERR_PKGLIST_INVALID = "Please specify a valid .config file.";
 
 
         //Strings related to creating the ISO.

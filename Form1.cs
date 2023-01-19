@@ -199,7 +199,7 @@ namespace ChocolateySpreader
             {
                 if (!PKGListBox.Text.Contains(".config"))
                 {
-                    MessageBox.Show("Please specify a valid .config file.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ProgramStrings.ERR_PKGLIST_INVALID, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -209,7 +209,7 @@ namespace ChocolateySpreader
 
                     if (sr.Read() == 32)
                     {
-                        MessageBox.Show("The package list contains a whitespace as its first character. Please remove it.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ProgramStrings.ERR_PKGLIST_CONTAINS_WHITESPACE, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         sr.Close();
                         Process PKGEditor = new Process();
                         PKGEditor.StartInfo.FileName = "notepad.exe";
