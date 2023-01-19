@@ -229,7 +229,7 @@ namespace ChocolateySpreader
 
                 //Create new DirectoryInfo objects for the source files and the destinations.
                 DirectoryInfo OOBESrc = new DirectoryInfo("./files");
-                DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0");
+                DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0/win-x64");
                 DirectoryInfo OOBEDest = new DirectoryInfo(Destination.Text + OOBEFolder);
                 DirectoryInfo ChocoBakerDest = new DirectoryInfo(Destination.Text + @"\setup");
 
