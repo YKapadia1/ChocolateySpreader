@@ -210,6 +210,7 @@ namespace ChocolateySpreader
                     if (sr.Read() == 32)
                     {
                         MessageBox.Show("The package list contains a whitespace as its first character. Please remove it.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        sr.Close();
                         Process PKGEditor = new Process();
                         PKGEditor.StartInfo.FileName = "notepad.exe";
                         PKGEditor.StartInfo.Arguments = PKGListBox.Text;
