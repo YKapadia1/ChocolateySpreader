@@ -197,54 +197,79 @@ namespace ChocolateySpreader
             //If the text box is not empty...
             if (PKGListBox.Text != String.Empty)
             {
-                XmlReaderSettings settings = new XmlReaderSettings(); //Create a new XML parser settings instance.
-                settings.IgnoreWhitespace = true; //Ignore any whitespaces.
-                PKGListViewBox.Clear();
-                PKGListVersionBox.Clear();
-                try //Try to...
+                if (!PKGListBox.Text.Contains(".config"))
                 {
-                    using (var fileStream = File.OpenText(PKGListBox.Text)) //Open the package file.    
-                    using (XmlReader reader = XmlReader.Create(fileStream, settings))
-                    //Create an XML parser instance.
+                    MessageBox.Show("Please specify a valid .config file.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                    FileInfo PKGList = new FileInfo(PKGListBox.Text);
+                    StreamReader sr = PKGList.OpenText();
+
+                    if (sr.Read() == 32)
                     {
-                        while (reader.Read()) //While the reader is reading through the file...
+                        MessageBox.Show("The package list contains a whitespace as its first character. Please remove it.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Process PKGEditor = new Process();
+                        PKGEditor.StartInfo.FileName = "notepad.exe";
+                        PKGEditor.StartInfo.Arguments = PKGListBox.Text;
+                        PKGEditor.Start();
+                    }
+                    else
+                    {
+                        XmlReaderSettings settings = new XmlReaderSettings(); //Create a new XML parser settings instance.
+                        settings.IgnoreWhitespace = true; //Ignore any whitespaces.
+                        PKGListViewBox.Clear();
+                        PKGListVersionBox.Clear();
+                        try //Try to...
                         {
-                            switch (reader.NodeType)
+                            using (var fileStream = File.OpenText(PKGListBox.Text)) //Open the package file.    
+                            using (XmlReader reader = XmlReader.Create(fileStream, settings))
+                            //Create an XML parser instance.
                             {
-                                case XmlNodeType.Element: //If the reader has found an element...
-                                    if (reader.GetAttribute("id") != null) //If the value returned is not null...
+                                while (reader.Read()) //While the reader is reading through the file...
+                                {
+                                    switch (reader.NodeType)
                                     {
-                                        PKGListViewBox.AppendText(reader.GetAttribute("id") + "\n"); //Put it into the text box.
+                                        case XmlNodeType.Element: //If the reader has found an element...
+                                            if (reader.GetAttribute("id") != null) //If the value returned is not null...
+                                            {
+                                                PKGListViewBox.AppendText(reader.GetAttribute("id") + "\n"); //Put it into the text box.
+                                            }
+                                            if (reader.GetAttribute("version") != null)
+                                            {
+                                                PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
+                                            }
+                                            else if (reader.GetAttribute("id") != null && reader.GetAttribute("version") == null)
+                                            {
+                                                PKGListVersionBox.AppendText("Latest\n");
+                                            }
+                                            //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
+                                            //text boxes to be out of sync when scrolling.
+                                            break;
                                     }
-                                    if (reader.GetAttribute("version") != null)
-                                    {
-                                        PKGListVersionBox.AppendText(reader.GetAttribute("version") + "\n");
-                                    }
-                                    else if (reader.GetAttribute("id") != null && reader.GetAttribute("version") == null)
-                                    {
-                                        PKGListVersionBox.AppendText("Latest\n");  
-                                    }
-                                    //These if statements are necessary, otherwise a blank line will be inserted, causing the positions of the
-                                    //text boxes to be out of sync when scrolling.
-                                    break;
+                                }
                             }
+                        }
+                        catch (ArgumentException) //If the filestream throws an argument exception...
+                        {
+                            PKGListViewBox.Text = "No package list loaded.";
+                            PKGListVersionBox.Text = PKGListViewBox.Text;
+                            //Reset the text of the text boxes, as they get cleared before the XML reader tries to open the file.
+                            return; //Handle it and do nothing else. This is usually caused when a user cancels the open file dialog.
+                                    //The if statement above shouldn't let the code run to this point, but I added it just in case.
+
+                        }
+                        catch (XmlException) //If the parser instance has thrown an exception...
+                                             //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
+                        {
+                            MessageBox.Show(ProgramStrings.ERR_PKGLIST_PARSE_ERROR, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
-                catch (ArgumentException) //If the filestream throws an argument exception...
-                {
-                    PKGListViewBox.Text = "No package list loaded.";
-                    PKGListVersionBox.Text = PKGListViewBox.Text;
-                    //Reset the text of the text boxes, as they get cleared before the XML reader tries to open the file.
-                    return; //Handle it and do nothing else. This is usually caused when a user cancels the open file dialog.
-                    //The if statement above shouldn't let the code run to this point, but I added it just in case.
-                    
-                }
-                catch (XmlException) //If the parser instance has thrown an exception...
-                                     //This could be due to a bad packages.config file, or the user has given a file that is not a package list.
-                {
-                    MessageBox.Show(ProgramStrings.ERR_PKGLIST_PARSE_ERROR, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
+
+                
 
 
             }
