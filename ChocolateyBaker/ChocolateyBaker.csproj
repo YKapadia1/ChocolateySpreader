@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <SelfContained>true</SelfContained>
     <Nullable>enable</Nullable>
     <BaseOutputPath>D:\UCLan OneDrive\OneDrive - UCLan\Year 3\CO3808 - Final Year Project\ChocolateySpreader\bin</BaseOutputPath>
     <ApplicationManifest>app.manifest</ApplicationManifest>
