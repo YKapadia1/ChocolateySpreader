@@ -104,6 +104,7 @@ namespace ChocolateySpreader
 
 
         //Strings related to creating the ISO.
+        public const string ERR_DIRECTORY_NOT_FOUND = "The directory ";
         public const string ERR_ISO_CREATOR_NOT_FOUND = "The Windows Assessment and Deployment Kit does not appear to be installed. You can install it from here: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install";
         public const string ERR_USER_UNAUTHORISED = "This user account is not authorised to write to the location you specified. Try running this program as an administrator.";
         public const string ERR_FILE_NOT_FOUND1 = "The file ";

@@ -281,6 +281,10 @@ namespace ChocolateySpreader
             {
                 MessageBox.Show(ProgramStrings.ERR_PATH_TOO_LONG, ProgramStrings.WINDOW_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (DirectoryNotFoundException dir) //If the directory to the files could not be found...
+            {
+                MessageBox.Show(ProgramStrings.ERR_DIRECTORY_NOT_FOUND + dir.Message + ProgramStrings.ERR_FILE_NOT_FOUND2, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //If oscdimg.exe exists...
             if (File.Exists(ISOCreatorEXE))
             {
