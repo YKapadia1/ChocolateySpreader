@@ -52,7 +52,7 @@ namespace ChocolateySpreader
         public const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
         public const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
         public const string ERR_ISO_EXTRACT_FATAL = "A fatal error occured when extracting the ISO.";
-        public const string ERR_ISO_EXTRACT_CLI = "A command line error occured when extracting the ISO.";
+        public const string ERR_ISO_EXTRACT_CLI = "A command line error occured when extracting the ISO.\n The file path may be too long. Try moving the ISO to the root of the storage drive.";
         public const string ERR_ISO_EXTRACT_NO_MEMORY = "There is not enough free memory available to extract the ISO.";
         public const string ERR_ISO_EXTRACT_USER_ABORT = "The user cancelled the operation.";
 
