@@ -16,7 +16,7 @@ To use this application, you will need at least the following:
 - .NET Core 6 or later
 - [7-Zip](https://7-zip.org)
 - Windows Deployment Tools, found in the [Windows Assessment and Deployment Kit](https://aka.ms/windows/adk)
-- (optional) Chocolatey, to enable the use of exporting the list of currently installed packages.
+- (optional) [Chocolatey](https://chocolatey.org/), to enable the use of exporting the list of currently installed packages.
 
 ## How Does It Work?
 
