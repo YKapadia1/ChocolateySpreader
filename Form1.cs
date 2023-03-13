@@ -53,7 +53,7 @@ namespace ChocolateySpreader
                 {
                     BeginInvoke(new MethodInvoker(() => { OutputExtractBox.AppendText(e.Data + Environment.NewLine); }));
                     //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
-                    //If this was done synchronously, the UI would freeze.
+                    //If this was done synchronously, the UI would freeze until the process has ended.
                 }
             }
         }
@@ -426,19 +426,24 @@ namespace ChocolateySpreader
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void SevenZipLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.7-zip.org/");
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ChocoLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://community.chocolatey.org/packages");
         }
 
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void WinADKLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://aka.ms/windows/adk");
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/YKapadia1/ChocolateySpreader/");
         }
     }
 }

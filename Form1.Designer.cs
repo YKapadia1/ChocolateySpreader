@@ -42,7 +42,7 @@ namespace ChocolateySpreader
             this.ExtractISOButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.WelcomePage = new System.Windows.Forms.TabPage();
-            this.label10 = new System.Windows.Forms.Label();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -51,14 +51,16 @@ namespace ChocolateySpreader
             this.WelcomeLabel = new System.Windows.Forms.Label();
             this.ExtractISOPage = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.SevenZipLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ISOExtractExplainLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.OutputExtractBox = new System.Windows.Forms.RichTextBox();
             this.CreateISOPage = new System.Windows.Forms.TabPage();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.WinADKLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.ChocoLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -85,8 +87,6 @@ namespace ChocolateySpreader
             this.OutputLabel = new System.Windows.Forms.Label();
             this.OutputCreateBox = new System.Windows.Forms.RichTextBox();
             this.ChocoDetectLabel = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.WelcomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -100,7 +100,7 @@ namespace ChocolateySpreader
             this.ISOPathLabel.AutoSize = true;
             this.ISOPathLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ISOPathLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ISOPathLabel.Location = new System.Drawing.Point(3, 3);
+            this.ISOPathLabel.Location = new System.Drawing.Point(8, 75);
             this.ISOPathLabel.Name = "ISOPathLabel";
             this.ISOPathLabel.Size = new System.Drawing.Size(54, 13);
             this.ISOPathLabel.TabIndex = 0;
@@ -111,7 +111,7 @@ namespace ChocolateySpreader
             this.FolderPathLabel.AutoSize = true;
             this.FolderPathLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FolderPathLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.FolderPathLabel.Location = new System.Drawing.Point(4, 45);
+            this.FolderPathLabel.Location = new System.Drawing.Point(9, 117);
             this.FolderPathLabel.Name = "FolderPathLabel";
             this.FolderPathLabel.Size = new System.Drawing.Size(84, 13);
             this.FolderPathLabel.TabIndex = 1;
@@ -123,10 +123,10 @@ namespace ChocolateySpreader
             this.FolderPathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FolderPathBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FolderPathBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.FolderPathBox.Location = new System.Drawing.Point(5, 61);
+            this.FolderPathBox.Location = new System.Drawing.Point(10, 133);
             this.FolderPathBox.Name = "FolderPathBox";
             this.FolderPathBox.ReadOnly = true;
-            this.FolderPathBox.Size = new System.Drawing.Size(221, 22);
+            this.FolderPathBox.Size = new System.Drawing.Size(361, 22);
             this.FolderPathBox.TabIndex = 2;
             // 
             // ISOPathBox
@@ -135,10 +135,10 @@ namespace ChocolateySpreader
             this.ISOPathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ISOPathBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ISOPathBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ISOPathBox.Location = new System.Drawing.Point(5, 19);
+            this.ISOPathBox.Location = new System.Drawing.Point(10, 91);
             this.ISOPathBox.Name = "ISOPathBox";
             this.ISOPathBox.ReadOnly = true;
-            this.ISOPathBox.Size = new System.Drawing.Size(221, 22);
+            this.ISOPathBox.Size = new System.Drawing.Size(361, 22);
             this.ISOPathBox.TabIndex = 3;
             // 
             // ISOSelectButton
@@ -147,7 +147,7 @@ namespace ChocolateySpreader
             this.ISOSelectButton.CausesValidation = false;
             this.ISOSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ISOSelectButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOSelectButton.Location = new System.Drawing.Point(232, 18);
+            this.ISOSelectButton.Location = new System.Drawing.Point(377, 90);
             this.ISOSelectButton.Name = "ISOSelectButton";
             this.ISOSelectButton.Size = new System.Drawing.Size(75, 22);
             this.ISOSelectButton.TabIndex = 4;
@@ -160,7 +160,7 @@ namespace ChocolateySpreader
             this.OutputFolderSelectButton.BackColor = System.Drawing.Color.White;
             this.OutputFolderSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.OutputFolderSelectButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputFolderSelectButton.Location = new System.Drawing.Point(232, 61);
+            this.OutputFolderSelectButton.Location = new System.Drawing.Point(377, 133);
             this.OutputFolderSelectButton.Name = "OutputFolderSelectButton";
             this.OutputFolderSelectButton.Size = new System.Drawing.Size(75, 22);
             this.OutputFolderSelectButton.TabIndex = 5;
@@ -173,9 +173,9 @@ namespace ChocolateySpreader
             this.ExtractISOButton.BackColor = System.Drawing.Color.White;
             this.ExtractISOButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ExtractISOButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExtractISOButton.Location = new System.Drawing.Point(93, 93);
+            this.ExtractISOButton.Location = new System.Drawing.Point(159, 161);
             this.ExtractISOButton.Name = "ExtractISOButton";
-            this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
+            this.ExtractISOButton.Size = new System.Drawing.Size(178, 23);
             this.ExtractISOButton.TabIndex = 6;
             this.ExtractISOButton.Text = "Extract ISO";
             this.ExtractISOButton.UseVisualStyleBackColor = false;
@@ -195,7 +195,7 @@ namespace ChocolateySpreader
             // WelcomePage
             // 
             this.WelcomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WelcomePage.Controls.Add(this.label10);
+            this.WelcomePage.Controls.Add(this.linkLabel4);
             this.WelcomePage.Controls.Add(this.label9);
             this.WelcomePage.Controls.Add(this.label8);
             this.WelcomePage.Controls.Add(this.pictureBox1);
@@ -209,37 +209,41 @@ namespace ChocolateySpreader
             this.WelcomePage.TabIndex = 0;
             this.WelcomePage.Text = "Welcome!";
             // 
-            // label10
+            // linkLabel4
             // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label10.Location = new System.Drawing.Point(3, 109);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 13);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "IMMEDIATELY.";
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.linkLabel4.Location = new System.Drawing.Point(399, 93);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(33, 13);
+            this.linkLabel4.TabIndex = 37;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "here:";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(3, 96);
+            this.label9.Location = new System.Drawing.Point(3, 93);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(647, 13);
+            this.label9.Size = new System.Drawing.Size(399, 13);
             this.label9.TabIndex = 36;
-            this.label9.Text = "If you have bought this software either standalone or as part of a bundle you hav" +
-    "e been scammed and should demand your money back";
+            this.label9.Text = "This software should always be obtained from its GitHub repository, located";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Location = new System.Drawing.Point(3, 72);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(623, 13);
+            this.label8.Size = new System.Drawing.Size(748, 13);
             this.label8.TabIndex = 35;
             this.label8.Text = "ChocolateySpreader and all associated software necessary for full functionality i" +
-    "s free of charge and will never be sold for any price.";
+    "s provided free of charge. This stance is not expected to change.\r\n";
             // 
             // pictureBox1
             // 
@@ -254,10 +258,11 @@ namespace ChocolateySpreader
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Location = new System.Drawing.Point(3, 53);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(623, 13);
+            this.label7.Size = new System.Drawing.Size(694, 13);
             this.label7.TabIndex = 33;
             this.label7.Text = "To get started, click on one of the tabs above. Note that additional programs are" +
     " required to ensure full functionality of this program.";
@@ -265,10 +270,11 @@ namespace ChocolateySpreader
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label6.Location = new System.Drawing.Point(3, 38);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(577, 13);
+            this.label6.Size = new System.Drawing.Size(644, 13);
             this.label6.TabIndex = 32;
             this.label6.Text = "This application will help you to create a Windows ISO that will automatically in" +
     "stall the programs of your choosing for you.";
@@ -276,10 +282,11 @@ namespace ChocolateySpreader
             // WelcomeLabel
             // 
             this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WelcomeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.WelcomeLabel.Location = new System.Drawing.Point(3, 15);
             this.WelcomeLabel.Name = "WelcomeLabel";
-            this.WelcomeLabel.Size = new System.Drawing.Size(166, 13);
+            this.WelcomeLabel.Size = new System.Drawing.Size(177, 13);
             this.WelcomeLabel.TabIndex = 30;
             this.WelcomeLabel.Text = "Welcome to ChocolateySpreader!";
             // 
@@ -287,7 +294,7 @@ namespace ChocolateySpreader
             // 
             this.ExtractISOPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ExtractISOPage.Controls.Add(this.label20);
-            this.ExtractISOPage.Controls.Add(this.linkLabel1);
+            this.ExtractISOPage.Controls.Add(this.SevenZipLinkLabel);
             this.ExtractISOPage.Controls.Add(this.label12);
             this.ExtractISOPage.Controls.Add(this.pictureBox2);
             this.ExtractISOPage.Controls.Add(this.ISOExtractExplainLabel);
@@ -310,35 +317,38 @@ namespace ChocolateySpreader
             // label20
             // 
             this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label20.Location = new System.Drawing.Point(323, 37);
-            this.label20.MaximumSize = new System.Drawing.Size(490, 0);
+            this.label20.Location = new System.Drawing.Point(6, 20);
+            this.label20.MaximumSize = new System.Drawing.Size(800, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(487, 26);
+            this.label20.Size = new System.Drawing.Size(783, 26);
             this.label20.TabIndex = 39;
             this.label20.Text = "Depending on the speed of your computer and your storage devices, the extraction " +
     "process may take a while to complete.  You can track the extraction process via " +
     "the output window below.";
             // 
-            // linkLabel1
+            // SevenZipLinkLabel
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.linkLabel1.Location = new System.Drawing.Point(510, 68);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(115, 13);
-            this.linkLabel1.TabIndex = 38;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://www.7-zip.org/";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.SevenZipLinkLabel.AutoSize = true;
+            this.SevenZipLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SevenZipLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.SevenZipLinkLabel.Location = new System.Drawing.Point(217, 52);
+            this.SevenZipLinkLabel.Name = "SevenZipLinkLabel";
+            this.SevenZipLinkLabel.Size = new System.Drawing.Size(125, 13);
+            this.SevenZipLinkLabel.TabIndex = 38;
+            this.SevenZipLinkLabel.TabStop = true;
+            this.SevenZipLinkLabel.Text = "https://www.7-zip.org/";
+            this.SevenZipLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SevenZipLinkLabel_LinkClicked);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label12.Location = new System.Drawing.Point(323, 68);
+            this.label12.Location = new System.Drawing.Point(6, 52);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(188, 13);
+            this.label12.Size = new System.Drawing.Size(211, 13);
             this.label12.TabIndex = 37;
             this.label12.Text = "If 7-Zip is not installed, get it from here:";
             // 
@@ -355,11 +365,12 @@ namespace ChocolateySpreader
             // ISOExtractExplainLabel
             // 
             this.ISOExtractExplainLabel.AutoSize = true;
+            this.ISOExtractExplainLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ISOExtractExplainLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ISOExtractExplainLabel.Location = new System.Drawing.Point(323, 7);
-            this.ISOExtractExplainLabel.MaximumSize = new System.Drawing.Size(490, 0);
+            this.ISOExtractExplainLabel.Location = new System.Drawing.Point(6, 3);
+            this.ISOExtractExplainLabel.MaximumSize = new System.Drawing.Size(1110, 0);
             this.ISOExtractExplainLabel.Name = "ISOExtractExplainLabel";
-            this.ISOExtractExplainLabel.Size = new System.Drawing.Size(490, 26);
+            this.ISOExtractExplainLabel.Size = new System.Drawing.Size(604, 13);
             this.ISOExtractExplainLabel.TabIndex = 29;
             this.ISOExtractExplainLabel.Text = "Select an ISO and the place to extract the files to using the buttons. 7-Zip is r" +
     "equired to extract the files from an ISO.";
@@ -391,9 +402,9 @@ namespace ChocolateySpreader
             // CreateISOPage
             // 
             this.CreateISOPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CreateISOPage.Controls.Add(this.linkLabel3);
+            this.CreateISOPage.Controls.Add(this.WinADKLinkLabel);
             this.CreateISOPage.Controls.Add(this.label21);
-            this.CreateISOPage.Controls.Add(this.linkLabel2);
+            this.CreateISOPage.Controls.Add(this.ChocoLinkLabel);
             this.CreateISOPage.Controls.Add(this.label19);
             this.CreateISOPage.Controls.Add(this.label18);
             this.CreateISOPage.Controls.Add(this.label17);
@@ -428,25 +439,54 @@ namespace ChocolateySpreader
             this.CreateISOPage.TabIndex = 2;
             this.CreateISOPage.Text = "Create New ISO";
             // 
-            // linkLabel2
+            // WinADKLinkLabel
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(580, 130);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(23, 13);
-            this.linkLabel2.TabIndex = 51;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "this";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.WinADKLinkLabel.AutoSize = true;
+            this.WinADKLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WinADKLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.WinADKLinkLabel.Location = new System.Drawing.Point(600, 226);
+            this.WinADKLinkLabel.Name = "WinADKLinkLabel";
+            this.WinADKLinkLabel.Size = new System.Drawing.Size(33, 13);
+            this.WinADKLinkLabel.TabIndex = 53;
+            this.WinADKLinkLabel.TabStop = true;
+            this.WinADKLinkLabel.Text = "here:";
+            this.WinADKLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WinADKLinkLabel_LinkClicked);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label21.Location = new System.Drawing.Point(320, 213);
+            this.label21.MaximumSize = new System.Drawing.Size(490, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(439, 26);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "Creating a new bootable ISO requires the Deployment Tools found in the Windows As" +
+    "sessment and Deployment kit. This can be obtained";
+            // 
+            // ChocoLinkLabel
+            // 
+            this.ChocoLinkLabel.AutoSize = true;
+            this.ChocoLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChocoLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.ChocoLinkLabel.Location = new System.Drawing.Point(604, 130);
+            this.ChocoLinkLabel.Name = "ChocoLinkLabel";
+            this.ChocoLinkLabel.Size = new System.Drawing.Size(26, 13);
+            this.ChocoLinkLabel.TabIndex = 51;
+            this.ChocoLinkLabel.TabStop = true;
+            this.ChocoLinkLabel.Text = "this";
+            this.ChocoLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChocoLinkLabel_LinkClicked);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label19.Location = new System.Drawing.Point(321, 143);
             this.label19.MaximumSize = new System.Drawing.Size(500, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(455, 26);
+            this.label19.Size = new System.Drawing.Size(500, 26);
             this.label19.TabIndex = 50;
             this.label19.Text = "page and select the programs you want included in the list file. When exporting t" +
     "he list, choose \"Individual\" as the integration method, and click the \"Save as ." +
@@ -455,33 +495,36 @@ namespace ChocolateySpreader
             // label18
             // 
             this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label18.Location = new System.Drawing.Point(321, 174);
             this.label18.MaximumSize = new System.Drawing.Size(490, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(486, 39);
+            this.label18.Size = new System.Drawing.Size(484, 39);
             this.label18.TabIndex = 49;
             this.label18.Text = resources.GetString("label18.Text");
             // 
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label17.Location = new System.Drawing.Point(322, 130);
             this.label17.MaximumSize = new System.Drawing.Size(320, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(261, 13);
+            this.label17.Size = new System.Drawing.Size(285, 13);
             this.label17.TabIndex = 48;
             this.label17.Text = "If you do not have Chocolatey installed, you can go to";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label16.Location = new System.Drawing.Point(322, 101);
             this.label16.MaximumSize = new System.Drawing.Size(500, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(464, 26);
+            this.label16.Size = new System.Drawing.Size(494, 26);
             this.label16.TabIndex = 47;
             this.label16.Text = "If you already have Chocolatey installed, you can click the button below to quick" +
     "ly export a list of installed packages, and use that to build the new ISO.";
@@ -489,11 +532,12 @@ namespace ChocolateySpreader
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label15.Location = new System.Drawing.Point(322, 85);
             this.label15.MaximumSize = new System.Drawing.Size(520, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(403, 13);
+            this.label15.Size = new System.Drawing.Size(436, 13);
             this.label15.TabIndex = 46;
             this.label15.Text = "Third, select the location you want your new ISO to be saved to, and give it a na" +
     "me.";
@@ -501,11 +545,12 @@ namespace ChocolateySpreader
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label14.Location = new System.Drawing.Point(322, 53);
             this.label14.MaximumSize = new System.Drawing.Size(520, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(450, 26);
+            this.label14.Size = new System.Drawing.Size(486, 26);
             this.label14.TabIndex = 45;
             this.label14.Text = "Second, select the location where your Chocolatey package list is located. It sho" +
     "uld be called packages.config.";
@@ -513,20 +558,22 @@ namespace ChocolateySpreader
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label13.Location = new System.Drawing.Point(322, 34);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(305, 13);
+            this.label13.Size = new System.Drawing.Size(331, 13);
             this.label13.TabIndex = 44;
             this.label13.Text = "First, select the folder where the extracted ISO files are located.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label5.Location = new System.Drawing.Point(322, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(249, 13);
+            this.label5.Size = new System.Drawing.Size(272, 13);
             this.label5.TabIndex = 43;
             this.label5.Text = "To build your new ISO, here\'s what you need to do:";
             // 
@@ -755,29 +802,6 @@ namespace ChocolateySpreader
             this.ChocoDetectLabel.TabIndex = 17;
             this.ChocoDetectLabel.Text = "Chocolatey Not Detected";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.Location = new System.Drawing.Point(320, 213);
-            this.label21.MaximumSize = new System.Drawing.Size(490, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(478, 26);
-            this.label21.TabIndex = 52;
-            this.label21.Text = "Creating a new bootable ISO requires the Deployment Tools found in the Windows As" +
-    "sessment and Deployment kit. This can be obtained";
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(500, 226);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(31, 13);
-            this.linkLabel3.TabIndex = 53;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "here:";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -846,12 +870,11 @@ namespace ChocolateySpreader
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel SevenZipLinkLabel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel ChocoLinkLabel;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
@@ -860,8 +883,9 @@ namespace ChocolateySpreader
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel WinADKLinkLabel;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.LinkLabel linkLabel4;
     }
 }
 
