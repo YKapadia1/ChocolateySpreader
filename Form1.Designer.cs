@@ -444,7 +444,7 @@ namespace ChocolateySpreader
             this.WinADKLinkLabel.AutoSize = true;
             this.WinADKLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WinADKLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.WinADKLinkLabel.Location = new System.Drawing.Point(600, 226);
+            this.WinADKLinkLabel.Location = new System.Drawing.Point(600, 233);
             this.WinADKLinkLabel.Name = "WinADKLinkLabel";
             this.WinADKLinkLabel.Size = new System.Drawing.Size(33, 13);
             this.WinADKLinkLabel.TabIndex = 53;
@@ -457,7 +457,7 @@ namespace ChocolateySpreader
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.Location = new System.Drawing.Point(320, 213);
+            this.label21.Location = new System.Drawing.Point(320, 220);
             this.label21.MaximumSize = new System.Drawing.Size(490, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(439, 26);
@@ -484,9 +484,9 @@ namespace ChocolateySpreader
             this.label19.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label19.Location = new System.Drawing.Point(321, 143);
-            this.label19.MaximumSize = new System.Drawing.Size(500, 0);
+            this.label19.MaximumSize = new System.Drawing.Size(495, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(500, 26);
+            this.label19.Size = new System.Drawing.Size(493, 39);
             this.label19.TabIndex = 50;
             this.label19.Text = "page and select the programs you want included in the list file. When exporting t" +
     "he list, choose \"Individual\" as the integration method, and click the \"Save as ." +
@@ -497,7 +497,7 @@ namespace ChocolateySpreader
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.Location = new System.Drawing.Point(321, 174);
+            this.label18.Location = new System.Drawing.Point(321, 181);
             this.label18.MaximumSize = new System.Drawing.Size(490, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(484, 39);
