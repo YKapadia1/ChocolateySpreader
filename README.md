@@ -28,11 +28,14 @@ Note that Chocolatey will install the version of the packages specified in packa
 
 ## Usage
 
-When the program starts, it will first check to see if Chocolatey is installed on your machine. This is to enable a feature to quickly export a list of installed packages on the machine.
-If Chocolatey has been detected, then a message box will be displayed letting you know that you can quickly export a package list.
+This application is meant to be used to speed up program installation after a Windows install, and can be used to create a template ISO that can then be used to install Windows and the same set of programs on multiple machines.
 
-![Chocolatey Found](docs/ChocoFound.png)
 
-If Chocolatey was not detected, then a different message box will be displayed:
 
-![Chocolatey Not Found](docs/ChocoNotFound.png)
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
