@@ -31,6 +31,11 @@ Note that Chocolatey will install the version of the packages specified in packa
 This application is meant to be used to speed up program installation after a Windows install, and can be used to create a template ISO that can then be used to install Windows and the same set of programs on multiple machines.
 
 
+## Known Issues
+
+Attempting to enter audit mode will softlock you at the "Just a moment" login screen, as the OOBE script will be executed then. Unplug the USB drive before entering audit mode.
+
+
 
 THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
