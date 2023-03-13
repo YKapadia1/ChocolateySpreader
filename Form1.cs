@@ -40,23 +40,44 @@ namespace ChocolateySpreader
 
 
         //An asynchronous method to update a control without freezing the UI.
-        public void OutputLog(object sendingProcess, DataReceivedEventArgs e)
+        public void OutputExtractLog(object sendingProcess, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
                 if (e.Data.Contains("%")) //If the text contains a percent sign...
                 {
-                    BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data); }));
+                    BeginInvoke(new MethodInvoker(() => { OutputExtractBox.AppendText(e.Data); }));
                     //Send it to the rich text box but do not create a new line.
                 }
                 else
                 {
-                    BeginInvoke(new MethodInvoker(() => { OutputBox.AppendText(e.Data + Environment.NewLine); }));
+                    BeginInvoke(new MethodInvoker(() => { OutputExtractBox.AppendText(e.Data + Environment.NewLine); }));
                     //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
                     //If this was done synchronously, the UI would freeze.
                 }
             }
         }
+
+        public void OutputCreateLog(object sendingProcess, DataReceivedEventArgs e)
+        {
+            if (e.Data != null)
+            {
+                if (e.Data.Contains("%")) //If the text contains a percent sign...
+                {
+                    BeginInvoke(new MethodInvoker(() => { this.OutputCreateBox.AppendText(e.Data); }));
+                    //Send it to the rich text box but do not create a new line.
+                }
+                else
+                {
+                    BeginInvoke(new MethodInvoker(() => { this.OutputCreateBox.AppendText(e.Data + Environment.NewLine); }));
+                    //Invoke the UI thread and update the text box. It must be done this way to ensure asynchronous operation.
+                    //If this was done synchronously, the UI would freeze.
+                }
+            }
+        }
+
+
+
 
         //When the user has clicked the button to browse for an ISO file...
         private void ISOSelectButton_Click(object sender, EventArgs e)
@@ -104,13 +125,13 @@ namespace ChocolateySpreader
                 switch (MessageBox.Show(ProgramStrings.WARN_OUTPUT_FOLDER_NOT_EMPTY, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     case DialogResult.Yes:
-                        Functions.Checkfor7Z(ref SevenZipLocation, this);
+                        Functions.Checkfor7Z(ref SevenZipLocation, this, this.tabControl1);
                         break;
                 }
             }
             else
             {
-                Functions.Checkfor7Z(ref SevenZipLocation, this);
+                Functions.Checkfor7Z(ref SevenZipLocation, this, this.tabControl1);
             }
         }
         
@@ -164,7 +185,7 @@ namespace ChocolateySpreader
                     }
 
 
-                    Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputBox, this);
+                    Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputCreateBox, this);
                     foreach (Control control in this.Controls)
                     {
                         if (control is Button)
@@ -294,7 +315,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.LimeGreen;
                 //Change the label text, font and colour.
-                ChocoDetectLabel.Location = new Point(535, 9);
+                ChocoDetectLabel.Location = new Point(22, 213);
                 //Change the position of the label for better presentation.
             }
             else
@@ -304,7 +325,7 @@ namespace ChocolateySpreader
                 ChocoDetectLabel.Text = ProgramStrings.CHOCO_NOT_DETECTED_LABEL;
                 ChocoDetectLabel.Font = ChocoPresence;
                 ChocoDetectLabel.ForeColor = Color.Red;
-                ChocoDetectLabel.Location = new Point(525, 9);
+                ChocoDetectLabel.Location = new Point(16, 213);
                 ChocoExportButton.Enabled = false;
             }
         }
@@ -399,10 +420,25 @@ namespace ChocolateySpreader
         //If the text in the output window has been changed...
         private void OutputBox_TextChanged(object sender, EventArgs e)
         {
-            if (OutputBox.Text.Length != 0)
+            if (OutputCreateBox.Text.Length != 0)
             {
-                OutputBox.SelectionStart = OutputBox.Text.Length - 1; //Go to the end of the output box.
+                OutputCreateBox.SelectionStart = OutputCreateBox.Text.Length - 1; //Go to the end of the output box.
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.7-zip.org/");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://community.chocolatey.org/packages");
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://aka.ms/windows/adk");
         }
     }
 }

@@ -32,6 +32,7 @@ namespace ChocolateySpreader
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ISOPathLabel = new System.Windows.Forms.Label();
             this.FolderPathLabel = new System.Windows.Forms.Label();
             this.FolderPathBox = new System.Windows.Forms.TextBox();
@@ -39,8 +40,41 @@ namespace ChocolateySpreader
             this.ISOSelectButton = new System.Windows.Forms.Button();
             this.OutputFolderSelectButton = new System.Windows.Forms.Button();
             this.ExtractISOButton = new System.Windows.Forms.Button();
-            this.OutputBox = new System.Windows.Forms.RichTextBox();
-            this.OutputLabel = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.WelcomePage = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
+            this.ExtractISOPage = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.ISOExtractExplainLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.OutputExtractBox = new System.Windows.Forms.RichTextBox();
+            this.CreateISOPage = new System.Windows.Forms.TabPage();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.FinalISOButton = new System.Windows.Forms.Button();
+            this.FinalISOPath = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PKGListVersionBox = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PKGListViewBox = new System.Windows.Forms.RichTextBox();
+            this.ChocoExportButton = new System.Windows.Forms.Button();
             this.ChocoSpreadButton = new System.Windows.Forms.Button();
             this.PKGListButton = new System.Windows.Forms.Button();
             this.ISOFolderButton = new System.Windows.Forms.Button();
@@ -48,15 +82,17 @@ namespace ChocolateySpreader
             this.PKGListBox = new System.Windows.Forms.TextBox();
             this.PKGListLabel = new System.Windows.Forms.Label();
             this.ISOFolderLabel = new System.Windows.Forms.Label();
+            this.OutputLabel = new System.Windows.Forms.Label();
+            this.OutputCreateBox = new System.Windows.Forms.RichTextBox();
             this.ChocoDetectLabel = new System.Windows.Forms.Label();
-            this.ChocoExportButton = new System.Windows.Forms.Button();
-            this.PKGListViewBox = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PKGListVersionBox = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.FinalISOButton = new System.Windows.Forms.Button();
-            this.FinalISOPath = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.tabControl1.SuspendLayout();
+            this.WelcomePage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ExtractISOPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.CreateISOPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // ISOPathLabel
@@ -64,10 +100,9 @@ namespace ChocolateySpreader
             this.ISOPathLabel.AutoSize = true;
             this.ISOPathLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ISOPathLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ISOPathLabel.Location = new System.Drawing.Point(17, 16);
-            this.ISOPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ISOPathLabel.Location = new System.Drawing.Point(3, 3);
             this.ISOPathLabel.Name = "ISOPathLabel";
-            this.ISOPathLabel.Size = new System.Drawing.Size(66, 19);
+            this.ISOPathLabel.Size = new System.Drawing.Size(54, 13);
             this.ISOPathLabel.TabIndex = 0;
             this.ISOPathLabel.Text = "ISO Path:";
             // 
@@ -76,10 +111,9 @@ namespace ChocolateySpreader
             this.FolderPathLabel.AutoSize = true;
             this.FolderPathLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FolderPathLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.FolderPathLabel.Location = new System.Drawing.Point(19, 62);
-            this.FolderPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FolderPathLabel.Location = new System.Drawing.Point(4, 45);
             this.FolderPathLabel.Name = "FolderPathLabel";
-            this.FolderPathLabel.Size = new System.Drawing.Size(99, 19);
+            this.FolderPathLabel.Size = new System.Drawing.Size(84, 13);
             this.FolderPathLabel.TabIndex = 1;
             this.FolderPathLabel.Text = "Output Folder:";
             // 
@@ -89,11 +123,10 @@ namespace ChocolateySpreader
             this.FolderPathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FolderPathBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FolderPathBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.FolderPathBox.Location = new System.Drawing.Point(20, 81);
-            this.FolderPathBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FolderPathBox.Location = new System.Drawing.Point(5, 61);
             this.FolderPathBox.Name = "FolderPathBox";
             this.FolderPathBox.ReadOnly = true;
-            this.FolderPathBox.Size = new System.Drawing.Size(294, 26);
+            this.FolderPathBox.Size = new System.Drawing.Size(221, 22);
             this.FolderPathBox.TabIndex = 2;
             // 
             // ISOPathBox
@@ -102,252 +135,413 @@ namespace ChocolateySpreader
             this.ISOPathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ISOPathBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ISOPathBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ISOPathBox.Location = new System.Drawing.Point(20, 36);
-            this.ISOPathBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ISOPathBox.Location = new System.Drawing.Point(5, 19);
             this.ISOPathBox.Name = "ISOPathBox";
             this.ISOPathBox.ReadOnly = true;
-            this.ISOPathBox.Size = new System.Drawing.Size(294, 26);
+            this.ISOPathBox.Size = new System.Drawing.Size(221, 22);
             this.ISOPathBox.TabIndex = 3;
             // 
             // ISOSelectButton
             // 
+            this.ISOSelectButton.BackColor = System.Drawing.Color.White;
             this.ISOSelectButton.CausesValidation = false;
+            this.ISOSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ISOSelectButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOSelectButton.Location = new System.Drawing.Point(323, 34);
-            this.ISOSelectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ISOSelectButton.Location = new System.Drawing.Point(232, 18);
             this.ISOSelectButton.Name = "ISOSelectButton";
-            this.ISOSelectButton.Size = new System.Drawing.Size(100, 27);
+            this.ISOSelectButton.Size = new System.Drawing.Size(75, 22);
             this.ISOSelectButton.TabIndex = 4;
             this.ISOSelectButton.Text = "Browse...";
-            this.ISOSelectButton.UseVisualStyleBackColor = true;
+            this.ISOSelectButton.UseVisualStyleBackColor = false;
             this.ISOSelectButton.Click += new System.EventHandler(this.ISOSelectButton_Click);
             // 
             // OutputFolderSelectButton
             // 
+            this.OutputFolderSelectButton.BackColor = System.Drawing.Color.White;
+            this.OutputFolderSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.OutputFolderSelectButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputFolderSelectButton.Location = new System.Drawing.Point(323, 81);
-            this.OutputFolderSelectButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OutputFolderSelectButton.Location = new System.Drawing.Point(232, 61);
             this.OutputFolderSelectButton.Name = "OutputFolderSelectButton";
-            this.OutputFolderSelectButton.Size = new System.Drawing.Size(100, 27);
+            this.OutputFolderSelectButton.Size = new System.Drawing.Size(75, 22);
             this.OutputFolderSelectButton.TabIndex = 5;
             this.OutputFolderSelectButton.Text = "Browse...";
-            this.OutputFolderSelectButton.UseVisualStyleBackColor = true;
+            this.OutputFolderSelectButton.UseVisualStyleBackColor = false;
             this.OutputFolderSelectButton.Click += new System.EventHandler(this.FolderSelectButton_Click);
             // 
             // ExtractISOButton
             // 
+            this.ExtractISOButton.BackColor = System.Drawing.Color.White;
+            this.ExtractISOButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ExtractISOButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExtractISOButton.Location = new System.Drawing.Point(137, 116);
-            this.ExtractISOButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ExtractISOButton.Location = new System.Drawing.Point(93, 93);
             this.ExtractISOButton.Name = "ExtractISOButton";
-            this.ExtractISOButton.Size = new System.Drawing.Size(100, 28);
+            this.ExtractISOButton.Size = new System.Drawing.Size(75, 23);
             this.ExtractISOButton.TabIndex = 6;
             this.ExtractISOButton.Text = "Extract ISO";
-            this.ExtractISOButton.UseVisualStyleBackColor = true;
+            this.ExtractISOButton.UseVisualStyleBackColor = false;
             this.ExtractISOButton.Click += new System.EventHandler(this.ExtractISOButton_Click);
             // 
-            // OutputBox
+            // tabControl1
             // 
-            this.OutputBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.OutputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OutputBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.OutputBox.Location = new System.Drawing.Point(23, 390);
-            this.OutputBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.OutputBox.Name = "OutputBox";
-            this.OutputBox.ReadOnly = true;
-            this.OutputBox.Size = new System.Drawing.Size(339, 195);
-            this.OutputBox.TabIndex = 7;
-            this.OutputBox.Text = "";
-            this.OutputBox.TextChanged += new System.EventHandler(this.OutputBox_TextChanged);
+            this.tabControl1.Controls.Add(this.WelcomePage);
+            this.tabControl1.Controls.Add(this.ExtractISOPage);
+            this.tabControl1.Controls.Add(this.CreateISOPage);
+            this.tabControl1.Location = new System.Drawing.Point(0, 2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(820, 467);
+            this.tabControl1.TabIndex = 26;
             // 
-            // OutputLabel
+            // WelcomePage
             // 
-            this.OutputLabel.AutoSize = true;
-            this.OutputLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.OutputLabel.Location = new System.Drawing.Point(17, 370);
-            this.OutputLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.OutputLabel.Name = "OutputLabel";
-            this.OutputLabel.Size = new System.Drawing.Size(54, 19);
-            this.OutputLabel.TabIndex = 8;
-            this.OutputLabel.Text = "Output";
+            this.WelcomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.WelcomePage.Controls.Add(this.label10);
+            this.WelcomePage.Controls.Add(this.label9);
+            this.WelcomePage.Controls.Add(this.label8);
+            this.WelcomePage.Controls.Add(this.pictureBox1);
+            this.WelcomePage.Controls.Add(this.label7);
+            this.WelcomePage.Controls.Add(this.label6);
+            this.WelcomePage.Controls.Add(this.WelcomeLabel);
+            this.WelcomePage.Location = new System.Drawing.Point(4, 22);
+            this.WelcomePage.Name = "WelcomePage";
+            this.WelcomePage.Padding = new System.Windows.Forms.Padding(3);
+            this.WelcomePage.Size = new System.Drawing.Size(812, 441);
+            this.WelcomePage.TabIndex = 0;
+            this.WelcomePage.Text = "Welcome!";
             // 
-            // ChocoSpreadButton
+            // label10
             // 
-            this.ChocoSpreadButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChocoSpreadButton.Location = new System.Drawing.Point(80, 315);
-            this.ChocoSpreadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ChocoSpreadButton.Name = "ChocoSpreadButton";
-            this.ChocoSpreadButton.Size = new System.Drawing.Size(217, 28);
-            this.ChocoSpreadButton.TabIndex = 15;
-            this.ChocoSpreadButton.Text = "Insert Scripts and Create ISO";
-            this.ChocoSpreadButton.UseVisualStyleBackColor = true;
-            this.ChocoSpreadButton.Click += new System.EventHandler(this.ChocoSpreadButton_Click);
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label10.Location = new System.Drawing.Point(3, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "IMMEDIATELY.";
             // 
-            // PKGListButton
+            // label9
             // 
-            this.PKGListButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListButton.Location = new System.Drawing.Point(323, 233);
-            this.PKGListButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PKGListButton.Name = "PKGListButton";
-            this.PKGListButton.Size = new System.Drawing.Size(99, 28);
-            this.PKGListButton.TabIndex = 14;
-            this.PKGListButton.Text = "Browse...";
-            this.PKGListButton.UseVisualStyleBackColor = true;
-            this.PKGListButton.Click += new System.EventHandler(this.PKGListButton_Click);
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label9.Location = new System.Drawing.Point(3, 96);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(647, 13);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "If you have bought this software either standalone or as part of a bundle you hav" +
+    "e been scammed and should demand your money back";
             // 
-            // ISOFolderButton
+            // label8
             // 
-            this.ISOFolderButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOFolderButton.Location = new System.Drawing.Point(323, 187);
-            this.ISOFolderButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ISOFolderButton.Name = "ISOFolderButton";
-            this.ISOFolderButton.Size = new System.Drawing.Size(100, 27);
-            this.ISOFolderButton.TabIndex = 13;
-            this.ISOFolderButton.Text = "Browse...";
-            this.ISOFolderButton.UseVisualStyleBackColor = true;
-            this.ISOFolderButton.Click += new System.EventHandler(this.ISOFolderButton_Click);
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label8.Location = new System.Drawing.Point(3, 72);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(623, 13);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "ChocolateySpreader and all associated software necessary for full functionality i" +
+    "s free of charge and will never be sold for any price.";
             // 
-            // ISOFolderBox
+            // pictureBox1
             // 
-            this.ISOFolderBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ISOFolderBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ISOFolderBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOFolderBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ISOFolderBox.Location = new System.Drawing.Point(20, 188);
-            this.ISOFolderBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ISOFolderBox.Name = "ISOFolderBox";
-            this.ISOFolderBox.ReadOnly = true;
-            this.ISOFolderBox.Size = new System.Drawing.Size(294, 26);
-            this.ISOFolderBox.TabIndex = 12;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(619, 280);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(190, 161);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 34;
+            this.pictureBox1.TabStop = false;
             // 
-            // PKGListBox
+            // label7
             // 
-            this.PKGListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PKGListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PKGListBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.PKGListBox.Location = new System.Drawing.Point(21, 234);
-            this.PKGListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PKGListBox.Name = "PKGListBox";
-            this.PKGListBox.ReadOnly = true;
-            this.PKGListBox.Size = new System.Drawing.Size(294, 26);
-            this.PKGListBox.TabIndex = 11;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label7.Location = new System.Drawing.Point(3, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(623, 13);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "To get started, click on one of the tabs above. Note that additional programs are" +
+    " required to ensure full functionality of this program.";
             // 
-            // PKGListLabel
+            // label6
             // 
-            this.PKGListLabel.AutoSize = true;
-            this.PKGListLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.PKGListLabel.Location = new System.Drawing.Point(19, 214);
-            this.PKGListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.PKGListLabel.Name = "PKGListLabel";
-            this.PKGListLabel.Size = new System.Drawing.Size(87, 19);
-            this.PKGListLabel.TabIndex = 10;
-            this.PKGListLabel.Text = "Package List:";
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label6.Location = new System.Drawing.Point(3, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(577, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "This application will help you to create a Windows ISO that will automatically in" +
+    "stall the programs of your choosing for you.";
             // 
-            // ISOFolderLabel
+            // WelcomeLabel
             // 
-            this.ISOFolderLabel.AutoSize = true;
-            this.ISOFolderLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOFolderLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ISOFolderLabel.Location = new System.Drawing.Point(17, 167);
-            this.ISOFolderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ISOFolderLabel.Name = "ISOFolderLabel";
-            this.ISOFolderLabel.Size = new System.Drawing.Size(76, 19);
-            this.ISOFolderLabel.TabIndex = 9;
-            this.ISOFolderLabel.Text = "ISO Folder:";
+            this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.WelcomeLabel.Location = new System.Drawing.Point(3, 15);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(166, 13);
+            this.WelcomeLabel.TabIndex = 30;
+            this.WelcomeLabel.Text = "Welcome to ChocolateySpreader!";
             // 
-            // ChocoDetectLabel
+            // ExtractISOPage
             // 
-            this.ChocoDetectLabel.AutoSize = true;
-            this.ChocoDetectLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChocoDetectLabel.ForeColor = System.Drawing.Color.LimeGreen;
-            this.ChocoDetectLabel.Location = new System.Drawing.Point(711, 11);
-            this.ChocoDetectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ChocoDetectLabel.Name = "ChocoDetectLabel";
-            this.ChocoDetectLabel.Size = new System.Drawing.Size(153, 19);
-            this.ChocoDetectLabel.TabIndex = 17;
-            this.ChocoDetectLabel.Text = "Chocolatey Detected!";
+            this.ExtractISOPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ExtractISOPage.Controls.Add(this.label20);
+            this.ExtractISOPage.Controls.Add(this.linkLabel1);
+            this.ExtractISOPage.Controls.Add(this.label12);
+            this.ExtractISOPage.Controls.Add(this.pictureBox2);
+            this.ExtractISOPage.Controls.Add(this.ISOExtractExplainLabel);
+            this.ExtractISOPage.Controls.Add(this.label4);
+            this.ExtractISOPage.Controls.Add(this.OutputExtractBox);
+            this.ExtractISOPage.Controls.Add(this.ISOPathLabel);
+            this.ExtractISOPage.Controls.Add(this.FolderPathLabel);
+            this.ExtractISOPage.Controls.Add(this.FolderPathBox);
+            this.ExtractISOPage.Controls.Add(this.ISOPathBox);
+            this.ExtractISOPage.Controls.Add(this.ISOSelectButton);
+            this.ExtractISOPage.Controls.Add(this.OutputFolderSelectButton);
+            this.ExtractISOPage.Controls.Add(this.ExtractISOButton);
+            this.ExtractISOPage.Location = new System.Drawing.Point(4, 22);
+            this.ExtractISOPage.Name = "ExtractISOPage";
+            this.ExtractISOPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ExtractISOPage.Size = new System.Drawing.Size(812, 441);
+            this.ExtractISOPage.TabIndex = 1;
+            this.ExtractISOPage.Text = "Extract ISO";
             // 
-            // ChocoExportButton
+            // label20
             // 
-            this.ChocoExportButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChocoExportButton.Location = new System.Drawing.Point(693, 31);
-            this.ChocoExportButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ChocoExportButton.Name = "ChocoExportButton";
-            this.ChocoExportButton.Size = new System.Drawing.Size(196, 28);
-            this.ChocoExportButton.TabIndex = 18;
-            this.ChocoExportButton.Text = "Export Package List";
-            this.ChocoExportButton.UseVisualStyleBackColor = true;
-            this.ChocoExportButton.Click += new System.EventHandler(this.ChocoExportButton_Click);
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label20.Location = new System.Drawing.Point(323, 37);
+            this.label20.MaximumSize = new System.Drawing.Size(490, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(487, 26);
+            this.label20.TabIndex = 39;
+            this.label20.Text = "Depending on the speed of your computer and your storage devices, the extraction " +
+    "process may take a while to complete.  You can track the extraction process via " +
+    "the output window below.";
             // 
-            // PKGListViewBox
+            // linkLabel1
             // 
-            this.PKGListViewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PKGListViewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PKGListViewBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListViewBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.PKGListViewBox.Location = new System.Drawing.Point(371, 390);
-            this.PKGListViewBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PKGListViewBox.Name = "PKGListViewBox";
-            this.PKGListViewBox.ReadOnly = true;
-            this.PKGListViewBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.PKGListViewBox.Size = new System.Drawing.Size(285, 195);
-            this.PKGListViewBox.TabIndex = 19;
-            this.PKGListViewBox.Text = "No package list loaded.";
-            this.PKGListViewBox.VScroll += new System.EventHandler(this.PKGListViewBox_VScroll);
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.linkLabel1.Location = new System.Drawing.Point(510, 68);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(115, 13);
+            this.linkLabel1.TabIndex = 38;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://www.7-zip.org/";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label1
+            // label12
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(367, 370);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 19);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Packages:";
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label12.Location = new System.Drawing.Point(323, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(188, 13);
+            this.label12.TabIndex = 37;
+            this.label12.Text = "If 7-Zip is not installed, get it from here:";
             // 
-            // PKGListVersionBox
+            // pictureBox2
             // 
-            this.PKGListVersionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PKGListVersionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PKGListVersionBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListVersionBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.PKGListVersionBox.Location = new System.Drawing.Point(651, 390);
-            this.PKGListVersionBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PKGListVersionBox.Name = "PKGListVersionBox";
-            this.PKGListVersionBox.ReadOnly = true;
-            this.PKGListVersionBox.Size = new System.Drawing.Size(237, 195);
-            this.PKGListVersionBox.TabIndex = 21;
-            this.PKGListVersionBox.Text = "No package list loaded.";
-            this.PKGListVersionBox.VScroll += new System.EventHandler(this.PKGListVersionBox_VScroll);
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(619, 280);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(190, 161);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 35;
+            this.pictureBox2.TabStop = false;
             // 
-            // label2
+            // ISOExtractExplainLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(647, 370);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 19);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Version:";
+            this.ISOExtractExplainLabel.AutoSize = true;
+            this.ISOExtractExplainLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ISOExtractExplainLabel.Location = new System.Drawing.Point(323, 7);
+            this.ISOExtractExplainLabel.MaximumSize = new System.Drawing.Size(490, 0);
+            this.ISOExtractExplainLabel.Name = "ISOExtractExplainLabel";
+            this.ISOExtractExplainLabel.Size = new System.Drawing.Size(490, 26);
+            this.ISOExtractExplainLabel.TabIndex = 29;
+            this.ISOExtractExplainLabel.Text = "Select an ISO and the place to extract the files to using the buttons. 7-Zip is r" +
+    "equired to extract the files from an ISO.";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label4.Location = new System.Drawing.Point(8, 261);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Output";
+            // 
+            // OutputExtractBox
+            // 
+            this.OutputExtractBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.OutputExtractBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OutputExtractBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputExtractBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.OutputExtractBox.Location = new System.Drawing.Point(8, 277);
+            this.OutputExtractBox.Name = "OutputExtractBox";
+            this.OutputExtractBox.ReadOnly = true;
+            this.OutputExtractBox.Size = new System.Drawing.Size(608, 164);
+            this.OutputExtractBox.TabIndex = 27;
+            this.OutputExtractBox.Text = "";
+            // 
+            // CreateISOPage
+            // 
+            this.CreateISOPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CreateISOPage.Controls.Add(this.linkLabel3);
+            this.CreateISOPage.Controls.Add(this.label21);
+            this.CreateISOPage.Controls.Add(this.linkLabel2);
+            this.CreateISOPage.Controls.Add(this.label19);
+            this.CreateISOPage.Controls.Add(this.label18);
+            this.CreateISOPage.Controls.Add(this.label17);
+            this.CreateISOPage.Controls.Add(this.label16);
+            this.CreateISOPage.Controls.Add(this.label15);
+            this.CreateISOPage.Controls.Add(this.label14);
+            this.CreateISOPage.Controls.Add(this.label13);
+            this.CreateISOPage.Controls.Add(this.label5);
+            this.CreateISOPage.Controls.Add(this.FinalISOButton);
+            this.CreateISOPage.Controls.Add(this.FinalISOPath);
+            this.CreateISOPage.Controls.Add(this.label3);
+            this.CreateISOPage.Controls.Add(this.label2);
+            this.CreateISOPage.Controls.Add(this.PKGListVersionBox);
+            this.CreateISOPage.Controls.Add(this.label1);
+            this.CreateISOPage.Controls.Add(this.PKGListViewBox);
+            this.CreateISOPage.Controls.Add(this.ChocoExportButton);
+            this.CreateISOPage.Controls.Add(this.ChocoSpreadButton);
+            this.CreateISOPage.Controls.Add(this.PKGListButton);
+            this.CreateISOPage.Controls.Add(this.ISOFolderButton);
+            this.CreateISOPage.Controls.Add(this.ISOFolderBox);
+            this.CreateISOPage.Controls.Add(this.PKGListBox);
+            this.CreateISOPage.Controls.Add(this.PKGListLabel);
+            this.CreateISOPage.Controls.Add(this.ISOFolderLabel);
+            this.CreateISOPage.Controls.Add(this.OutputLabel);
+            this.CreateISOPage.Controls.Add(this.OutputCreateBox);
+            this.CreateISOPage.Controls.Add(this.ChocoDetectLabel);
+            this.CreateISOPage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.CreateISOPage.Location = new System.Drawing.Point(4, 22);
+            this.CreateISOPage.Name = "CreateISOPage";
+            this.CreateISOPage.Padding = new System.Windows.Forms.Padding(3);
+            this.CreateISOPage.Size = new System.Drawing.Size(812, 441);
+            this.CreateISOPage.TabIndex = 2;
+            this.CreateISOPage.Text = "Create New ISO";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(580, 130);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(23, 13);
+            this.linkLabel2.TabIndex = 51;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "this";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label19.Location = new System.Drawing.Point(321, 143);
+            this.label19.MaximumSize = new System.Drawing.Size(500, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(455, 26);
+            this.label19.TabIndex = 50;
+            this.label19.Text = "page and select the programs you want included in the list file. When exporting t" +
+    "he list, choose \"Individual\" as the integration method, and click the \"Save as ." +
+    "config File\" to download the file.";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label18.Location = new System.Drawing.Point(321, 174);
+            this.label18.MaximumSize = new System.Drawing.Size(490, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(486, 39);
+            this.label18.TabIndex = 49;
+            this.label18.Text = resources.GetString("label18.Text");
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label17.Location = new System.Drawing.Point(322, 130);
+            this.label17.MaximumSize = new System.Drawing.Size(320, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(261, 13);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "If you do not have Chocolatey installed, you can go to";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label16.Location = new System.Drawing.Point(322, 101);
+            this.label16.MaximumSize = new System.Drawing.Size(500, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(464, 26);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "If you already have Chocolatey installed, you can click the button below to quick" +
+    "ly export a list of installed packages, and use that to build the new ISO.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label15.Location = new System.Drawing.Point(322, 85);
+            this.label15.MaximumSize = new System.Drawing.Size(520, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(403, 13);
+            this.label15.TabIndex = 46;
+            this.label15.Text = "Third, select the location you want your new ISO to be saved to, and give it a na" +
+    "me.";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label14.Location = new System.Drawing.Point(322, 53);
+            this.label14.MaximumSize = new System.Drawing.Size(520, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(450, 26);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "Second, select the location where your Chocolatey package list is located. It sho" +
+    "uld be called packages.config.";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label13.Location = new System.Drawing.Point(322, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(305, 13);
+            this.label13.TabIndex = 44;
+            this.label13.Text = "First, select the folder where the extracted ISO files are located.";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label5.Location = new System.Drawing.Point(322, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(249, 13);
+            this.label5.TabIndex = 43;
+            this.label5.Text = "To build your new ISO, here\'s what you need to do:";
             // 
             // FinalISOButton
             // 
+            this.FinalISOButton.BackColor = System.Drawing.Color.White;
+            this.FinalISOButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.FinalISOButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalISOButton.Location = new System.Drawing.Point(323, 279);
-            this.FinalISOButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FinalISOButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FinalISOButton.Location = new System.Drawing.Point(184, 107);
             this.FinalISOButton.Name = "FinalISOButton";
-            this.FinalISOButton.Size = new System.Drawing.Size(99, 27);
-            this.FinalISOButton.TabIndex = 25;
+            this.FinalISOButton.Size = new System.Drawing.Size(75, 24);
+            this.FinalISOButton.TabIndex = 42;
             this.FinalISOButton.Text = "Browse...";
-            this.FinalISOButton.UseVisualStyleBackColor = true;
+            this.FinalISOButton.UseVisualStyleBackColor = false;
             this.FinalISOButton.Click += new System.EventHandler(this.FinalISOButton_Click);
             // 
             // FinalISOPath
@@ -356,66 +550,259 @@ namespace ChocolateySpreader
             this.FinalISOPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FinalISOPath.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinalISOPath.ForeColor = System.Drawing.SystemColors.Window;
-            this.FinalISOPath.Location = new System.Drawing.Point(21, 281);
-            this.FinalISOPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FinalISOPath.Location = new System.Drawing.Point(7, 107);
             this.FinalISOPath.Name = "FinalISOPath";
             this.FinalISOPath.ReadOnly = true;
-            this.FinalISOPath.Size = new System.Drawing.Size(294, 26);
-            this.FinalISOPath.TabIndex = 24;
+            this.FinalISOPath.Size = new System.Drawing.Size(167, 22);
+            this.FinalISOPath.TabIndex = 41;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(19, 261);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(5, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 19);
-            this.label3.TabIndex = 23;
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 40;
             this.label3.Text = "Output ISO:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label2.Location = new System.Drawing.Point(629, 271);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "Version:";
+            // 
+            // PKGListVersionBox
+            // 
+            this.PKGListVersionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PKGListVersionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PKGListVersionBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListVersionBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.PKGListVersionBox.Location = new System.Drawing.Point(632, 287);
+            this.PKGListVersionBox.Name = "PKGListVersionBox";
+            this.PKGListVersionBox.ReadOnly = true;
+            this.PKGListVersionBox.Size = new System.Drawing.Size(179, 159);
+            this.PKGListVersionBox.TabIndex = 38;
+            this.PKGListVersionBox.Text = "No package list loaded.";
+            this.PKGListVersionBox.VScroll += new System.EventHandler(this.PKGListVersionBox_VScroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Location = new System.Drawing.Point(413, 268);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Packages:";
+            // 
+            // PKGListViewBox
+            // 
+            this.PKGListViewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PKGListViewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PKGListViewBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListViewBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.PKGListViewBox.Location = new System.Drawing.Point(416, 287);
+            this.PKGListViewBox.Name = "PKGListViewBox";
+            this.PKGListViewBox.ReadOnly = true;
+            this.PKGListViewBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.PKGListViewBox.Size = new System.Drawing.Size(219, 156);
+            this.PKGListViewBox.TabIndex = 36;
+            this.PKGListViewBox.Text = "No package list loaded.";
+            this.PKGListViewBox.VScroll += new System.EventHandler(this.PKGListViewBox_VScroll);
+            // 
+            // ChocoExportButton
+            // 
+            this.ChocoExportButton.BackColor = System.Drawing.Color.White;
+            this.ChocoExportButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ChocoExportButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChocoExportButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ChocoExportButton.Location = new System.Drawing.Point(11, 229);
+            this.ChocoExportButton.Name = "ChocoExportButton";
+            this.ChocoExportButton.Size = new System.Drawing.Size(147, 23);
+            this.ChocoExportButton.TabIndex = 35;
+            this.ChocoExportButton.Text = "Export Package List";
+            this.ChocoExportButton.UseVisualStyleBackColor = false;
+            this.ChocoExportButton.Click += new System.EventHandler(this.ChocoExportButton_Click);
+            // 
+            // ChocoSpreadButton
+            // 
+            this.ChocoSpreadButton.BackColor = System.Drawing.Color.White;
+            this.ChocoSpreadButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ChocoSpreadButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChocoSpreadButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ChocoSpreadButton.Location = new System.Drawing.Point(7, 150);
+            this.ChocoSpreadButton.Name = "ChocoSpreadButton";
+            this.ChocoSpreadButton.Size = new System.Drawing.Size(252, 23);
+            this.ChocoSpreadButton.TabIndex = 34;
+            this.ChocoSpreadButton.Text = "Insert Scripts and Create ISO";
+            this.ChocoSpreadButton.UseVisualStyleBackColor = false;
+            this.ChocoSpreadButton.Click += new System.EventHandler(this.ChocoSpreadButton_Click);
+            // 
+            // PKGListButton
+            // 
+            this.PKGListButton.BackColor = System.Drawing.Color.White;
+            this.PKGListButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PKGListButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.PKGListButton.Location = new System.Drawing.Point(184, 68);
+            this.PKGListButton.Name = "PKGListButton";
+            this.PKGListButton.Size = new System.Drawing.Size(75, 24);
+            this.PKGListButton.TabIndex = 33;
+            this.PKGListButton.Text = "Browse...";
+            this.PKGListButton.UseVisualStyleBackColor = false;
+            this.PKGListButton.Click += new System.EventHandler(this.PKGListButton_Click);
+            // 
+            // ISOFolderButton
+            // 
+            this.ISOFolderButton.BackColor = System.Drawing.Color.White;
+            this.ISOFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ISOFolderButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ISOFolderButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ISOFolderButton.Location = new System.Drawing.Point(184, 31);
+            this.ISOFolderButton.Name = "ISOFolderButton";
+            this.ISOFolderButton.Size = new System.Drawing.Size(75, 24);
+            this.ISOFolderButton.TabIndex = 32;
+            this.ISOFolderButton.Text = "Browse...";
+            this.ISOFolderButton.UseVisualStyleBackColor = false;
+            this.ISOFolderButton.Click += new System.EventHandler(this.ISOFolderButton_Click);
+            // 
+            // ISOFolderBox
+            // 
+            this.ISOFolderBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ISOFolderBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ISOFolderBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ISOFolderBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.ISOFolderBox.Location = new System.Drawing.Point(6, 32);
+            this.ISOFolderBox.Name = "ISOFolderBox";
+            this.ISOFolderBox.ReadOnly = true;
+            this.ISOFolderBox.Size = new System.Drawing.Size(168, 22);
+            this.ISOFolderBox.TabIndex = 31;
+            // 
+            // PKGListBox
+            // 
+            this.PKGListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PKGListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PKGListBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.PKGListBox.Location = new System.Drawing.Point(7, 69);
+            this.PKGListBox.Name = "PKGListBox";
+            this.PKGListBox.ReadOnly = true;
+            this.PKGListBox.Size = new System.Drawing.Size(167, 22);
+            this.PKGListBox.TabIndex = 30;
+            // 
+            // PKGListLabel
+            // 
+            this.PKGListLabel.AutoSize = true;
+            this.PKGListLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.PKGListLabel.Location = new System.Drawing.Point(5, 53);
+            this.PKGListLabel.Name = "PKGListLabel";
+            this.PKGListLabel.Size = new System.Drawing.Size(72, 13);
+            this.PKGListLabel.TabIndex = 29;
+            this.PKGListLabel.Text = "Package List:";
+            // 
+            // ISOFolderLabel
+            // 
+            this.ISOFolderLabel.AutoSize = true;
+            this.ISOFolderLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ISOFolderLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ISOFolderLabel.Location = new System.Drawing.Point(4, 15);
+            this.ISOFolderLabel.Name = "ISOFolderLabel";
+            this.ISOFolderLabel.Size = new System.Drawing.Size(64, 13);
+            this.ISOFolderLabel.TabIndex = 28;
+            this.ISOFolderLabel.Text = "ISO Folder:";
+            // 
+            // OutputLabel
+            // 
+            this.OutputLabel.AutoSize = true;
+            this.OutputLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.OutputLabel.Location = new System.Drawing.Point(0, 271);
+            this.OutputLabel.Name = "OutputLabel";
+            this.OutputLabel.Size = new System.Drawing.Size(45, 13);
+            this.OutputLabel.TabIndex = 27;
+            this.OutputLabel.Text = "Output";
+            // 
+            // OutputCreateBox
+            // 
+            this.OutputCreateBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.OutputCreateBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OutputCreateBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputCreateBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.OutputCreateBox.Location = new System.Drawing.Point(4, 287);
+            this.OutputCreateBox.Name = "OutputCreateBox";
+            this.OutputCreateBox.ReadOnly = true;
+            this.OutputCreateBox.Size = new System.Drawing.Size(415, 159);
+            this.OutputCreateBox.TabIndex = 26;
+            this.OutputCreateBox.Text = "";
+            // 
+            // ChocoDetectLabel
+            // 
+            this.ChocoDetectLabel.AutoSize = true;
+            this.ChocoDetectLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChocoDetectLabel.ForeColor = System.Drawing.Color.LimeGreen;
+            this.ChocoDetectLabel.Location = new System.Drawing.Point(16, 213);
+            this.ChocoDetectLabel.Name = "ChocoDetectLabel";
+            this.ChocoDetectLabel.Size = new System.Drawing.Size(137, 13);
+            this.ChocoDetectLabel.TabIndex = 17;
+            this.ChocoDetectLabel.Text = "Chocolatey Not Detected";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label21.Location = new System.Drawing.Point(320, 213);
+            this.label21.MaximumSize = new System.Drawing.Size(490, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(478, 26);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "Creating a new bootable ISO requires the Deployment Tools found in the Windows As" +
+    "sessment and Deployment kit. This can be obtained";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(500, 226);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(31, 13);
+            this.linkLabel3.TabIndex = 53;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "here:";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(893, 601);
-            this.Controls.Add(this.FinalISOButton);
-            this.Controls.Add(this.FinalISOPath);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.PKGListVersionBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.PKGListViewBox);
-            this.Controls.Add(this.ChocoExportButton);
-            this.Controls.Add(this.ChocoDetectLabel);
-            this.Controls.Add(this.ChocoSpreadButton);
-            this.Controls.Add(this.PKGListButton);
-            this.Controls.Add(this.ISOFolderButton);
-            this.Controls.Add(this.ISOFolderBox);
-            this.Controls.Add(this.PKGListBox);
-            this.Controls.Add(this.PKGListLabel);
-            this.Controls.Add(this.ISOFolderLabel);
-            this.Controls.Add(this.OutputLabel);
-            this.Controls.Add(this.OutputBox);
-            this.Controls.Add(this.ExtractISOButton);
-            this.Controls.Add(this.OutputFolderSelectButton);
-            this.Controls.Add(this.ISOSelectButton);
-            this.Controls.Add(this.ISOPathBox);
-            this.Controls.Add(this.FolderPathBox);
-            this.Controls.Add(this.FolderPathLabel);
-            this.Controls.Add(this.ISOPathLabel);
+            this.ClientSize = new System.Drawing.Size(822, 470);
+            this.Controls.Add(this.tabControl1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "ChocolateySpreader";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.WelcomePage.ResumeLayout(false);
+            this.WelcomePage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ExtractISOPage.ResumeLayout(false);
+            this.ExtractISOPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.CreateISOPage.ResumeLayout(false);
+            this.CreateISOPage.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -428,8 +815,20 @@ namespace ChocolateySpreader
         public System.Windows.Forms.Button ISOSelectButton;
         public System.Windows.Forms.Button OutputFolderSelectButton;
         public System.Windows.Forms.Button ExtractISOButton;
-        public System.Windows.Forms.RichTextBox OutputBox;
-        public System.Windows.Forms.Label OutputLabel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage WelcomePage;
+        private System.Windows.Forms.TabPage ExtractISOPage;
+        private System.Windows.Forms.TabPage CreateISOPage;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.RichTextBox OutputExtractBox;
+        public System.Windows.Forms.Button FinalISOButton;
+        public System.Windows.Forms.TextBox FinalISOPath;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.RichTextBox PKGListVersionBox;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.RichTextBox PKGListViewBox;
+        public System.Windows.Forms.Button ChocoExportButton;
         public System.Windows.Forms.Button ChocoSpreadButton;
         public System.Windows.Forms.Button PKGListButton;
         public System.Windows.Forms.Button ISOFolderButton;
@@ -437,15 +836,32 @@ namespace ChocolateySpreader
         public System.Windows.Forms.TextBox PKGListBox;
         public System.Windows.Forms.Label PKGListLabel;
         public System.Windows.Forms.Label ISOFolderLabel;
+        public System.Windows.Forms.Label OutputLabel;
+        public System.Windows.Forms.RichTextBox OutputCreateBox;
         public System.Windows.Forms.Label ChocoDetectLabel;
-        public System.Windows.Forms.Button ChocoExportButton;
-        public System.Windows.Forms.RichTextBox PKGListViewBox;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.RichTextBox PKGListVersionBox;
-        public System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Button FinalISOButton;
-        public System.Windows.Forms.TextBox FinalISOPath;
-        public System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label ISOExtractExplainLabel;
+        private System.Windows.Forms.Label WelcomeLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.Label label21;
     }
 }
 

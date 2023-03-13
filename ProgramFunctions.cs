@@ -43,7 +43,7 @@ namespace ChocolateySpreader
 
         
         
-        public void Checkfor7Z(ref string SevenZipLocation, Form1 form1)
+        public void Checkfor7Z(ref string SevenZipLocation, Form1 form1, TabControl currentTab)
         {
             //Check if 7-Zip is installed. This should work on both 32 and 64 bit systems.
             //This will fail if the user has installed 7-Zip in an alternate location.
@@ -91,16 +91,16 @@ namespace ChocolateySpreader
             }
             if (SevenZipInstalled)
             {
-                ExtractISO(SevenZipLocation, form1.FolderPathBox.Text, form1.ISOPathBox.Text, form1);
+                ExtractISO(SevenZipLocation, form1.FolderPathBox.Text, form1.ISOPathBox.Text, form1, currentTab);
                 //Extract the ISO and re-enable the buttons after the extraction process has exited.
             }
         }
 
-        public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1)
+        public void ExtractISO(string SevenZipLocation, string OutputPath, string ISOPath, Form1 form1, TabControl currentTab)
         {
             //Disable the buttons to prevent accidental user input.
-            //For every control in the form...
-            foreach (Control control in form1.Controls)
+            //For every control in the currently selected tab...
+            foreach (Control control in currentTab.SelectedTab.Controls)
             {
                 //If the control is a button...
                 if (control is Button)
@@ -126,7 +126,7 @@ namespace ChocolateySpreader
             ExtractISO.StartInfo.UseShellExecute = false;
 
             //Send any output to the event handler responsible for updating the text box.
-            ExtractISO.OutputDataReceived += new DataReceivedEventHandler(form1.OutputLog);
+            ExtractISO.OutputDataReceived += new DataReceivedEventHandler(form1.OutputExtractLog);
             ExtractISO.Start(); //Start the process.
             ExtractISO.BeginOutputReadLine(); //Begin asynchronously reading the output.
             while (!ExtractISO.HasExited) //If the process has not yet exited...
@@ -161,7 +161,7 @@ namespace ChocolateySpreader
                     break;
             }
             //Reenable the buttons once the operation is finished.
-            foreach (Control control in form1.Controls)
+            foreach (Control control in currentTab.SelectedTab.Controls)
             {
                 if (control is Button)
                 {
@@ -229,7 +229,7 @@ namespace ChocolateySpreader
 
                 //Create new DirectoryInfo objects for the source files and the destinations.
                 DirectoryInfo OOBESrc = new DirectoryInfo("./files");
-                DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0/win-x64");
+                DirectoryInfo ChocoBakerSrc = new DirectoryInfo("./net6.0/");
                 DirectoryInfo OOBEDest = new DirectoryInfo(Destination.Text + OOBEFolder);
                 DirectoryInfo ChocoBakerDest = new DirectoryInfo(Destination.Text + @"\setup");
 
@@ -283,7 +283,7 @@ namespace ChocolateySpreader
             }
             catch (DirectoryNotFoundException dir) //If the directory to the files could not be found...
             {
-                MessageBox.Show(ProgramStrings.ERR_DIRECTORY_NOT_FOUND + dir.Message + ProgramStrings.ERR_FILE_NOT_FOUND2, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(dir.Message + ProgramStrings.ERR_FILE_NOT_FOUND2, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //If oscdimg.exe exists...
             if (File.Exists(ISOCreatorEXE))
@@ -291,14 +291,13 @@ namespace ChocolateySpreader
                 Process CreateISO = new Process();
                 CreateISO.StartInfo.FileName = ISOCreatorEXE;
                 CreateISO.StartInfo.Arguments = ISOCreatorArgs1 + ISOFolderLocation + ISOCreatorArgs2 +
-                    ISOFolderLocation + ISOCreatorArgs3 + ISOFolderLocation + " " + OutputISOLocation;
-                form1.OutputBox.AppendText(CreateISO.StartInfo.Arguments);
+                ISOFolderLocation + ISOCreatorArgs3 + ISOFolderLocation + " " + OutputISOLocation;
                 CreateISO.StartInfo.CreateNoWindow = true;
                 CreateISO.StartInfo.RedirectStandardOutput = true;
                 CreateISO.StartInfo.RedirectStandardError = true;
                 CreateISO.StartInfo.UseShellExecute = false;
 
-                CreateISO.OutputDataReceived += new DataReceivedEventHandler(form1.OutputLog);
+                CreateISO.OutputDataReceived += new DataReceivedEventHandler(form1.OutputCreateLog);
                 CreateISO.Start();
                 CreateISO.BeginOutputReadLine();
                 while (!CreateISO.HasExited)
