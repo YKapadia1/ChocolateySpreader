@@ -203,8 +203,8 @@ namespace ChocolateySpreader
             this.WelcomePage.Controls.Add(this.label6);
             this.WelcomePage.Controls.Add(this.WelcomeLabel);
             this.WelcomePage.Location = new System.Drawing.Point(4, 22);
+            this.WelcomePage.Margin = new System.Windows.Forms.Padding(0);
             this.WelcomePage.Name = "WelcomePage";
-            this.WelcomePage.Padding = new System.Windows.Forms.Padding(3);
             this.WelcomePage.Size = new System.Drawing.Size(812, 441);
             this.WelcomePage.TabIndex = 0;
             this.WelcomePage.Text = "Welcome!";
@@ -214,7 +214,7 @@ namespace ChocolateySpreader
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.linkLabel4.Location = new System.Drawing.Point(399, 93);
+            this.linkLabel4.Location = new System.Drawing.Point(396, 90);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(33, 13);
             this.linkLabel4.TabIndex = 37;
@@ -227,7 +227,7 @@ namespace ChocolateySpreader
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(3, 93);
+            this.label9.Location = new System.Drawing.Point(0, 90);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(399, 13);
             this.label9.TabIndex = 36;
@@ -238,7 +238,7 @@ namespace ChocolateySpreader
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label8.Location = new System.Drawing.Point(3, 72);
+            this.label8.Location = new System.Drawing.Point(0, 69);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(748, 13);
             this.label8.TabIndex = 35;
@@ -260,7 +260,7 @@ namespace ChocolateySpreader
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label7.Location = new System.Drawing.Point(3, 53);
+            this.label7.Location = new System.Drawing.Point(0, 50);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(694, 13);
             this.label7.TabIndex = 33;
@@ -272,7 +272,7 @@ namespace ChocolateySpreader
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label6.Location = new System.Drawing.Point(3, 38);
+            this.label6.Location = new System.Drawing.Point(0, 35);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(644, 13);
             this.label6.TabIndex = 32;
@@ -284,7 +284,7 @@ namespace ChocolateySpreader
             this.WelcomeLabel.AutoSize = true;
             this.WelcomeLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WelcomeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.WelcomeLabel.Location = new System.Drawing.Point(3, 15);
+            this.WelcomeLabel.Location = new System.Drawing.Point(0, 12);
             this.WelcomeLabel.Name = "WelcomeLabel";
             this.WelcomeLabel.Size = new System.Drawing.Size(177, 13);
             this.WelcomeLabel.TabIndex = 30;
@@ -380,7 +380,7 @@ namespace ChocolateySpreader
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(8, 261);
+            this.label4.Location = new System.Drawing.Point(0, 261);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 28;
@@ -392,7 +392,7 @@ namespace ChocolateySpreader
             this.OutputExtractBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OutputExtractBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutputExtractBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.OutputExtractBox.Location = new System.Drawing.Point(8, 277);
+            this.OutputExtractBox.Location = new System.Drawing.Point(4, 278);
             this.OutputExtractBox.Name = "OutputExtractBox";
             this.OutputExtractBox.ReadOnly = true;
             this.OutputExtractBox.Size = new System.Drawing.Size(608, 164);
