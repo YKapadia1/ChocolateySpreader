@@ -50,6 +50,8 @@ namespace ChocolateySpreader
             this.label6 = new System.Windows.Forms.Label();
             this.WelcomeLabel = new System.Windows.Forms.Label();
             this.ExtractISOPage = new System.Windows.Forms.TabPage();
+            this.OutputFolderHelpButton = new System.Windows.Forms.Button();
+            this.ISOPathHelpButton = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.SevenZipLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,6 +60,9 @@ namespace ChocolateySpreader
             this.label4 = new System.Windows.Forms.Label();
             this.OutputExtractBox = new System.Windows.Forms.RichTextBox();
             this.CreateISOPage = new System.Windows.Forms.TabPage();
+            this.FinalISOHelpButton = new System.Windows.Forms.Button();
+            this.PKGListHelpButton = new System.Windows.Forms.Button();
+            this.ISOFolderHelpButton = new System.Windows.Forms.Button();
             this.WinADKLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label21 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -80,11 +85,6 @@ namespace ChocolateySpreader
             this.OutputLabel = new System.Windows.Forms.Label();
             this.OutputCreateBox = new System.Windows.Forms.RichTextBox();
             this.ChocoDetectLabel = new System.Windows.Forms.Label();
-            this.ISOFolderHelpButton = new System.Windows.Forms.Button();
-            this.PKGListHelpButton = new System.Windows.Forms.Button();
-            this.FinalISOHelpButton = new System.Windows.Forms.Button();
-            this.ISOPathHelpButton = new System.Windows.Forms.Button();
-            this.OutputFolderHelpButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.WelcomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -314,6 +314,32 @@ namespace ChocolateySpreader
             this.ExtractISOPage.TabIndex = 1;
             this.ExtractISOPage.Text = "Extract ISO";
             // 
+            // OutputFolderHelpButton
+            // 
+            this.OutputFolderHelpButton.BackColor = System.Drawing.Color.White;
+            this.OutputFolderHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.OutputFolderHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputFolderHelpButton.Location = new System.Drawing.Point(458, 133);
+            this.OutputFolderHelpButton.Name = "OutputFolderHelpButton";
+            this.OutputFolderHelpButton.Size = new System.Drawing.Size(22, 22);
+            this.OutputFolderHelpButton.TabIndex = 56;
+            this.OutputFolderHelpButton.Text = "?";
+            this.OutputFolderHelpButton.UseVisualStyleBackColor = false;
+            this.OutputFolderHelpButton.Click += new System.EventHandler(this.OutputFolderHelpButton_Click);
+            // 
+            // ISOPathHelpButton
+            // 
+            this.ISOPathHelpButton.BackColor = System.Drawing.Color.White;
+            this.ISOPathHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ISOPathHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ISOPathHelpButton.Location = new System.Drawing.Point(458, 90);
+            this.ISOPathHelpButton.Name = "ISOPathHelpButton";
+            this.ISOPathHelpButton.Size = new System.Drawing.Size(22, 22);
+            this.ISOPathHelpButton.TabIndex = 55;
+            this.ISOPathHelpButton.Text = "?";
+            this.ISOPathHelpButton.UseVisualStyleBackColor = false;
+            this.ISOPathHelpButton.Click += new System.EventHandler(this.ISOPathHelpButton_Click);
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -435,12 +461,51 @@ namespace ChocolateySpreader
             this.CreateISOPage.TabIndex = 2;
             this.CreateISOPage.Text = "Create New ISO";
             // 
+            // FinalISOHelpButton
+            // 
+            this.FinalISOHelpButton.BackColor = System.Drawing.Color.White;
+            this.FinalISOHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FinalISOHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FinalISOHelpButton.Location = new System.Drawing.Point(264, 107);
+            this.FinalISOHelpButton.Name = "FinalISOHelpButton";
+            this.FinalISOHelpButton.Size = new System.Drawing.Size(24, 24);
+            this.FinalISOHelpButton.TabIndex = 56;
+            this.FinalISOHelpButton.Text = "?";
+            this.FinalISOHelpButton.UseVisualStyleBackColor = false;
+            this.FinalISOHelpButton.Click += new System.EventHandler(this.FinalISOHelpButton_Click);
+            // 
+            // PKGListHelpButton
+            // 
+            this.PKGListHelpButton.BackColor = System.Drawing.Color.White;
+            this.PKGListHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PKGListHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PKGListHelpButton.Location = new System.Drawing.Point(264, 68);
+            this.PKGListHelpButton.Name = "PKGListHelpButton";
+            this.PKGListHelpButton.Size = new System.Drawing.Size(24, 24);
+            this.PKGListHelpButton.TabIndex = 55;
+            this.PKGListHelpButton.Text = "?";
+            this.PKGListHelpButton.UseVisualStyleBackColor = false;
+            this.PKGListHelpButton.Click += new System.EventHandler(this.PKGListHelpButton_Click);
+            // 
+            // ISOFolderHelpButton
+            // 
+            this.ISOFolderHelpButton.BackColor = System.Drawing.Color.White;
+            this.ISOFolderHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ISOFolderHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ISOFolderHelpButton.Location = new System.Drawing.Point(264, 31);
+            this.ISOFolderHelpButton.Name = "ISOFolderHelpButton";
+            this.ISOFolderHelpButton.Size = new System.Drawing.Size(24, 24);
+            this.ISOFolderHelpButton.TabIndex = 54;
+            this.ISOFolderHelpButton.Text = "?";
+            this.ISOFolderHelpButton.UseVisualStyleBackColor = false;
+            this.ISOFolderHelpButton.Click += new System.EventHandler(this.ISOFolderHelpButton_Click);
+            // 
             // WinADKLinkLabel
             // 
             this.WinADKLinkLabel.AutoSize = true;
             this.WinADKLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WinADKLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.WinADKLinkLabel.Location = new System.Drawing.Point(600, 86);
+            this.WinADKLinkLabel.Location = new System.Drawing.Point(600, 95);
             this.WinADKLinkLabel.Name = "WinADKLinkLabel";
             this.WinADKLinkLabel.Size = new System.Drawing.Size(33, 13);
             this.WinADKLinkLabel.TabIndex = 53;
@@ -453,7 +518,7 @@ namespace ChocolateySpreader
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.Location = new System.Drawing.Point(320, 73);
+            this.label21.Location = new System.Drawing.Point(320, 82);
             this.label21.MaximumSize = new System.Drawing.Size(490, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(439, 26);
@@ -466,7 +531,7 @@ namespace ChocolateySpreader
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.Location = new System.Drawing.Point(321, 34);
+            this.label18.Location = new System.Drawing.Point(321, 37);
             this.label18.MaximumSize = new System.Drawing.Size(490, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(481, 39);
@@ -709,71 +774,6 @@ namespace ChocolateySpreader
             this.ChocoDetectLabel.Size = new System.Drawing.Size(137, 13);
             this.ChocoDetectLabel.TabIndex = 17;
             this.ChocoDetectLabel.Text = "Chocolatey Not Detected";
-            // 
-            // ISOFolderHelpButton
-            // 
-            this.ISOFolderHelpButton.BackColor = System.Drawing.Color.White;
-            this.ISOFolderHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ISOFolderHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOFolderHelpButton.Location = new System.Drawing.Point(264, 31);
-            this.ISOFolderHelpButton.Name = "ISOFolderHelpButton";
-            this.ISOFolderHelpButton.Size = new System.Drawing.Size(24, 24);
-            this.ISOFolderHelpButton.TabIndex = 54;
-            this.ISOFolderHelpButton.Text = "?";
-            this.ISOFolderHelpButton.UseVisualStyleBackColor = false;
-            this.ISOFolderHelpButton.Click += new System.EventHandler(this.ISOFolderHelpButton_Click);
-            // 
-            // PKGListHelpButton
-            // 
-            this.PKGListHelpButton.BackColor = System.Drawing.Color.White;
-            this.PKGListHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PKGListHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PKGListHelpButton.Location = new System.Drawing.Point(264, 68);
-            this.PKGListHelpButton.Name = "PKGListHelpButton";
-            this.PKGListHelpButton.Size = new System.Drawing.Size(24, 24);
-            this.PKGListHelpButton.TabIndex = 55;
-            this.PKGListHelpButton.Text = "?";
-            this.PKGListHelpButton.UseVisualStyleBackColor = false;
-            this.PKGListHelpButton.Click += new System.EventHandler(this.PKGListHelpButton_Click);
-            // 
-            // FinalISOHelpButton
-            // 
-            this.FinalISOHelpButton.BackColor = System.Drawing.Color.White;
-            this.FinalISOHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FinalISOHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalISOHelpButton.Location = new System.Drawing.Point(264, 107);
-            this.FinalISOHelpButton.Name = "FinalISOHelpButton";
-            this.FinalISOHelpButton.Size = new System.Drawing.Size(24, 24);
-            this.FinalISOHelpButton.TabIndex = 56;
-            this.FinalISOHelpButton.Text = "?";
-            this.FinalISOHelpButton.UseVisualStyleBackColor = false;
-            this.FinalISOHelpButton.Click += new System.EventHandler(this.FinalISOHelpButton_Click);
-            // 
-            // ISOPathHelpButton
-            // 
-            this.ISOPathHelpButton.BackColor = System.Drawing.Color.White;
-            this.ISOPathHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ISOPathHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ISOPathHelpButton.Location = new System.Drawing.Point(458, 90);
-            this.ISOPathHelpButton.Name = "ISOPathHelpButton";
-            this.ISOPathHelpButton.Size = new System.Drawing.Size(22, 22);
-            this.ISOPathHelpButton.TabIndex = 55;
-            this.ISOPathHelpButton.Text = "?";
-            this.ISOPathHelpButton.UseVisualStyleBackColor = false;
-            this.ISOPathHelpButton.Click += new System.EventHandler(this.ISOPathHelpButton_Click);
-            // 
-            // OutputFolderHelpButton
-            // 
-            this.OutputFolderHelpButton.BackColor = System.Drawing.Color.White;
-            this.OutputFolderHelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.OutputFolderHelpButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputFolderHelpButton.Location = new System.Drawing.Point(458, 133);
-            this.OutputFolderHelpButton.Name = "OutputFolderHelpButton";
-            this.OutputFolderHelpButton.Size = new System.Drawing.Size(22, 22);
-            this.OutputFolderHelpButton.TabIndex = 56;
-            this.OutputFolderHelpButton.Text = "?";
-            this.OutputFolderHelpButton.UseVisualStyleBackColor = false;
-            this.OutputFolderHelpButton.Click += new System.EventHandler(this.OutputFolderHelpButton_Click);
             // 
             // Form1
             // 
