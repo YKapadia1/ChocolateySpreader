@@ -445,5 +445,35 @@ namespace ChocolateySpreader
         {
             Process.Start("https://github.com/YKapadia1/ChocolateySpreader/");
         }
+
+        private void ISOFolderHelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ProgramStrings.HELP_ISO_FOLDER_LOCATION, Text,
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void PKGListHelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ProgramStrings.HELP_PKG_LIST_LOCATION, Text,
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void FinalISOHelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ProgramStrings.HELP_FINAL_ISO_LOCATION, Text,
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ISOPathHelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ProgramStrings.HELP_ISO_PATH, Text,
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OutputFolderHelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ProgramStrings.HELP_OUTPUT_FOLDER_LOCATION, Text,
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

@@ -115,5 +115,14 @@ namespace ChocolateySpreader
         public const string INFO_ISO_CREATION_SUCCESS2 = "An active Internet connection is required throughout the setup process.\n";
         public const string INFO_ISO_CREATION_SUCCESS3 = "The auto-install scripts will not work on a Ventoy enabled USB drive. You will need to extract the setup folder from this ISO onto the root of the USB drive.";
 
+
+
+        //Strings related to providing the user with help in case they are stuck.
+        public const string HELP_ISO_PATH = "This is where your Windows ISO is located.";
+        public const string HELP_OUTPUT_FOLDER_LOCATION = "This is where you want the extracted ISO files to go.";
+        public const string HELP_ISO_FOLDER_LOCATION = "This is where your extracted ISO files are located. It should have a setup.exe application, as well as a sources folder. If you cannot find such a folder, you may need to extract a Windows ISO by going to the Extract ISO tab.";
+        public const string HELP_PKG_LIST_LOCATION = "This is where your Chocolatey package list is located. If you do not have one, you can do one of the following:\n\nIf you already have Chocolatey and some packages installed on this machine, you can use the button below to export one if you have Chocolatey installed.\n\nIf you do not have Chocolatey installed on this machine, you can go to https://community.chocolatey.org/packages and create one there. More detailed instructions can be found in the README file.";
+        public const string HELP_FINAL_ISO_LOCATION = "This is the location where you want the new ISO to be saved to. It is recommended to save it in a place that you have easy access to. Saving the ISO directly onto a removable disk will not make it bootable!";
+
     }
 }
