@@ -22,6 +22,7 @@ namespace ChocolateySpreader
         const string ChocoBakerFolder = @"\setup";
         
         //The arguments to be passed to the ISO creator.
+        //-w4 reports the name of every file written to the ISO.
         //-m ignores the maximum file size an image can have, -o enables MD5 hashing.
         //-u2 creates the image using the UDF file system, -udfver102 uses UDF version 1.02.
         //-l specifies the volume label. In this case, it will be "ESD-ISO".
@@ -312,6 +313,12 @@ namespace ChocolateySpreader
                 {
                     MessageBox.Show(ProgramStrings.INFO_ISO_CREATION_SUCCESS1 + ProgramStrings.INFO_ISO_CREATION_SUCCESS2 + ProgramStrings.INFO_ISO_CREATION_SUCCESS3, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            else
+            {
+                MessageBox.Show(ProgramStrings.ERR_ISO_CREATOR_NOT_FOUND, form1.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Process.Start("https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install");
+                //Open the following website. This will open the user's default browser.
             }
 
         }
