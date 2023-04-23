@@ -191,7 +191,6 @@ namespace ChocolateySpreader
                 }
                 return null;
             }
-
         }
 
         public string CreateOpenFolderDialog(string name)
