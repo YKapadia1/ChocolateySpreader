@@ -50,7 +50,7 @@ namespace ChocolateySpreader
 
         //Strings related to the status of the extraction process.
         public const string INFO_ISO_EXTRACT_SUCCESS = "ISO extracted successfully!";
-        public const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Please check for any corrupt/missing files.";
+        public const string INFO_ISO_EXTRACT_WARNING = "ISO extracted with warnings. Try extracting the ISO again.\nIt is possible the ISO file may be damaged.";
         public const string ERR_ISO_EXTRACT_FATAL = "A fatal error occured when extracting the ISO.";
         public const string ERR_ISO_EXTRACT_CLI = "A command line error occured when extracting the ISO.\n The file path may be too long. Try moving the ISO to the root of the storage drive.";
         public const string ERR_ISO_EXTRACT_NO_MEMORY = "There is not enough free memory available to extract the ISO.";
@@ -65,7 +65,7 @@ namespace ChocolateySpreader
         public const string ERR_INVALID_ISO_FOLDER_SPECIFIED = "Could not find install.esd/.wim/.swm. Please check that the folder contains valid Windows ISO files.";
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED_TITLE = "No packages.config file";
         public const string ERR_NO_PACKAGE_LIST_SPECIFIED = "You have not specified the location to your Chocolatey package list. You can create one by going to https://community.chocolatey.org/packages.\n" +
-            "If Chocolatey is installed on this machine, press the \"Export Package List\" button at the top.";
+            "If Chocolatey is installed on this machine, press the \"Export Package List\" button.";
         public const string ISO_FOLDER_SELECT_TITLE = "Select folder with Windows ISO files:";
         public const string ERR_NO_OUTPUT_ISO_PATH_SPECIFIED = "You have not specified a location to save the finalised ISO.";
 

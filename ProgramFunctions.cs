@@ -142,7 +142,7 @@ namespace ChocolateySpreader
                     break;
                 case 1: //If there were non-fatal errors/warnings...
                     MessageBox.Show(ProgramStrings.INFO_ISO_EXTRACT_WARNING, form1.Text,
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 case 2: //If there was a fatal error...
                     MessageBox.Show(ProgramStrings.ERR_ISO_EXTRACT_FATAL, form1.Text,

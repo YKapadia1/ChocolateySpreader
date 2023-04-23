@@ -42,7 +42,7 @@ namespace ChocolateySpreader
             this.ExtractISOButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.WelcomePage = new System.Windows.Forms.TabPage();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.GitHubLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -193,7 +193,7 @@ namespace ChocolateySpreader
             // WelcomePage
             // 
             this.WelcomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WelcomePage.Controls.Add(this.linkLabel4);
+            this.WelcomePage.Controls.Add(this.GitHubLinkLabel);
             this.WelcomePage.Controls.Add(this.label9);
             this.WelcomePage.Controls.Add(this.label8);
             this.WelcomePage.Controls.Add(this.pictureBox1);
@@ -207,18 +207,18 @@ namespace ChocolateySpreader
             this.WelcomePage.TabIndex = 0;
             this.WelcomePage.Text = "Welcome!";
             // 
-            // linkLabel4
+            // GitHubLinkLabel
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            this.linkLabel4.Location = new System.Drawing.Point(396, 90);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(33, 13);
-            this.linkLabel4.TabIndex = 37;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "here:";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.GitHubLinkLabel.AutoSize = true;
+            this.GitHubLinkLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GitHubLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.GitHubLinkLabel.Location = new System.Drawing.Point(396, 90);
+            this.GitHubLinkLabel.Name = "GitHubLinkLabel";
+            this.GitHubLinkLabel.Size = new System.Drawing.Size(33, 13);
+            this.GitHubLinkLabel.TabIndex = 37;
+            this.GitHubLinkLabel.TabStop = true;
+            this.GitHubLinkLabel.Text = "here:";
+            this.GitHubLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GitHubLinkLabel_LinkClicked);
             // 
             // label9
             // 
@@ -850,7 +850,7 @@ namespace ChocolateySpreader
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.LinkLabel WinADKLinkLabel;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel GitHubLinkLabel;
         public System.Windows.Forms.TextBox ISOFolderBox;
         private System.Windows.Forms.Button FinalISOHelpButton;
         private System.Windows.Forms.Button PKGListHelpButton;

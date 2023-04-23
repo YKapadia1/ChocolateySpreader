@@ -225,9 +225,10 @@ namespace ChocolateySpreader
                 else
                 {
 
+                    //Open the package list for reading.
                     FileInfo PKGList = new FileInfo(PKGListBox.Text);
                     StreamReader sr = PKGList.OpenText();
-
+                    //If the first character is a whitespace...
                     if (sr.Read() == 32)
                     {
                         MessageBox.Show(ProgramStrings.ERR_PKGLIST_CONTAINS_WHITESPACE, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -441,7 +442,7 @@ namespace ChocolateySpreader
             Process.Start("https://aka.ms/windows/adk");
         }
 
-        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void GitHubLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/YKapadia1/ChocolateySpreader/");
         }
