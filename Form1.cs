@@ -176,22 +176,22 @@ namespace ChocolateySpreader
                     ProgramStrings.CHOICE_INSERT_FILES_QUESTION, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     //For every control in the form...
-                    foreach (Control control in this.Controls)
+                    foreach (Control control in tabControl1.SelectedTab.Controls)
                     {
                         if (control is Button) //If the control is a button...
                         {
-                            control.Enabled = !control.Enabled;
+                            control.Enabled = false;
                             //Flip its enabled state.
                         }
                     }
 
 
                     Functions.InsertFiles(ISOFolderBox, ISOFolderBox.Text, FinalISOPath.Text, PKGListBox.Text, OutputCreateBox, this);
-                    foreach (Control control in this.Controls)
+                    foreach (Control control in tabControl1.SelectedTab.Controls)
                     {
                         if (control is Button)
                         {
-                            control.Enabled = !control.Enabled;
+                            control.Enabled = true;
                         }
                     }
                 }
@@ -273,6 +273,7 @@ namespace ChocolateySpreader
                                             break;
                                     }
                                 }
+                                reader.Close();
                             }
                         }
                         catch (ArgumentException) //If the filestream throws an argument exception...
